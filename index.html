@@ -2,16 +2,38 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Hola Mundo</title>
+  <meta
+    name="description"
+    content="Herramientas gratuitas para networking y administración de sistemas."
+  >
+
+  <title>NET//TOOLS — Network Engineering Toolbox</title>
 
   <style>
+    :root {
+      --bg: #030603;
+      --panel: #071007;
+      --panel-2: #091409;
+      --green: #76ff03;
+      --green-soft: #a7ff5a;
+      --text: #efffe8;
+      --muted: #788a72;
+      --line: rgba(118,255,3,.13);
+      --danger: #ff4747;
+    }
+
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -19,79 +41,1248 @@
 
       min-height: 100vh;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background:
+        radial-gradient(
+          circle at 75% 10%,
+          rgba(118,255,3,.08),
+          transparent 28%
+        ),
+        linear-gradient(
+          180deg,
+          #020402,
+          var(--bg)
+        );
 
-      background: #050805;
-
-      color: #76ff03;
+      color: var(--text);
 
       font-family:
-        Arial,
-        Helvetica,
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
         sans-serif;
     }
 
-    main {
-      text-align: center;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    h1 {
-      margin: 0;
+    button,
+    input,
+    select {
+      font: inherit;
+    }
 
-      font-size: clamp(
-        50px,
-        10vw,
-        120px
-      );
+    .noise {
+      position: fixed;
+      inset: 0;
 
-      letter-spacing: -0.05em;
+      pointer-events: none;
+
+      opacity: .025;
+
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          #fff 0,
+          #fff 1px,
+          transparent 1px,
+          transparent 3px
+        );
+
+      z-index: 100;
+    }
+
+    header {
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 25px;
+
+      padding: 0 5vw;
+
+      border-bottom: 1px solid var(--line);
+
+      background:
+        rgba(3,6,3,.88);
+
+      backdrop-filter: blur(16px);
+
+      position: sticky;
+      top: 0;
+
+      z-index: 50;
+    }
+
+    .brand {
+      font-weight: 1000;
+
+      letter-spacing: -.04em;
+
+      font-size: 22px;
+    }
+
+    .brand span {
+      color: var(--green);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+
+      gap: 30px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      letter-spacing: .12em;
+    }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    .online {
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+
+      color: var(--green);
+
+      font-size: 10px;
+
+      font-weight: 900;
+
+      letter-spacing: .14em;
+    }
+
+    .online-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      box-shadow:
+        0 0 14px var(--green);
+    }
+
+    .hero {
+      width: min(1500px, 90vw);
+
+      margin: auto;
+
+      padding:
+        clamp(80px, 11vw, 160px)
+        0
+        80px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+
+      font-size: 10px;
+
+      font-weight: 900;
+
+      letter-spacing: .22em;
+
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 1100px;
+
+      margin:
+        15px 0
+        25px;
+
+      font-size:
+        clamp(55px, 9vw, 145px);
+
+      line-height: .82;
+
+      letter-spacing: -.075em;
+    }
+
+    .hero h1 span {
+      color: var(--green);
 
       text-shadow:
-        0 0 30px
-        rgba(118, 255, 3, 0.35);
+        0 0 35px
+        rgba(118,255,3,.18);
     }
 
-    p {
-      color: #aab7a4;
+    .hero-description {
+      max-width: 650px;
 
-      font-size: 18px;
+      margin: 0;
+
+      color: #96a591;
+
+      font-size:
+        clamp(16px, 2vw, 21px);
+
+      line-height: 1.7;
     }
 
-    .status {
-      display: inline-block;
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
 
-      margin-top: 30px;
+      gap: 12px;
 
-      padding: 10px 18px;
+      margin-top: 42px;
+    }
+
+    .stat {
+      padding: 12px 15px;
+
+      border: 1px solid var(--line);
+
+      color: var(--muted);
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+      letter-spacing: .13em;
+    }
+
+    .stat strong {
+      color: var(--green);
+    }
+
+    .tools {
+      width: min(1500px, 90vw);
+
+      margin: auto;
+
+      padding-bottom: 120px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+
+      gap: 30px;
+
+      margin-bottom: 25px;
+
+      border-bottom: 1px solid var(--line);
+
+      padding-bottom: 18px;
+    }
+
+    .section-heading h2 {
+      margin: 8px 0 0;
+
+      font-size:
+        clamp(32px, 5vw, 65px);
+
+      letter-spacing: -.055em;
+    }
+
+    .section-number {
+      color: var(--green);
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size: 12px;
+    }
+
+    .tool-grid {
+      display: grid;
+
+      grid-template-columns:
+        minmax(330px, .7fr)
+        minmax(0, 1.3fr);
+
+      gap: 16px;
+    }
+
+    .panel {
+      border:
+        1px solid
+        var(--line);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(9,20,9,.9),
+          rgba(3,7,3,.95)
+        );
+
+      padding:
+        clamp(24px, 4vw, 42px);
+    }
+
+    .panel-title {
+      margin: 0 0 7px;
+
+      font-size: 26px;
+
+      letter-spacing: -.04em;
+    }
+
+    .panel-subtitle {
+      margin: 0 0 32px;
+
+      color: var(--muted);
+
+      line-height: 1.6;
+
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+
+      gap: 8px;
+
+      margin-bottom: 18px;
+    }
+
+    label {
+      color: #84937e;
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      letter-spacing: .14em;
+    }
+
+    input,
+    select {
+      width: 100%;
+
+      min-height: 52px;
+
+      padding: 0 15px;
+
+      outline: none;
 
       border:
         1px solid
-        rgba(118, 255, 3, 0.4);
+        rgba(118,255,3,.13);
+
+      background: #020502;
+
+      color: var(--text);
+
+      border-radius: 0;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--green);
+
+      box-shadow:
+        0 0 0 1px
+        rgba(118,255,3,.15);
+    }
+
+    .calculate {
+      width: 100%;
+
+      min-height: 54px;
+
+      margin-top: 8px;
+
+      cursor: pointer;
+
+      border:
+        1px solid
+        var(--green);
+
+      background: var(--green);
+
+      color: #031000;
+
+      font-weight: 1000;
+
+      font-size: 11px;
+
+      letter-spacing: .12em;
+
+      transition: .18s ease;
+    }
+
+    .calculate:hover {
+      box-shadow:
+        0 0 30px
+        rgba(118,255,3,.22);
+
+      transform:
+        translateY(-1px);
+    }
+
+    .error {
+      display: none;
+
+      margin-top: 16px;
+
+      padding: 13px;
+
+      border:
+        1px solid
+        rgba(255,71,71,.25);
+
+      color: var(--danger);
 
       font-size: 12px;
+    }
 
-      letter-spacing: 0.15em;
+    .results {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+      gap: 10px;
+    }
+
+    .result {
+      min-height: 95px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      padding: 16px;
+
+      border:
+        1px solid
+        rgba(118,255,3,.08);
+
+      background:
+        rgba(0,0,0,.18);
+    }
+
+    .result small {
+      color: #647060;
+
+      font-size: 8px;
+
+      font-weight: 900;
+
+      letter-spacing: .13em;
+    }
+
+    .result strong {
+      overflow-wrap: anywhere;
+
+      color: var(--green-soft);
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size:
+        clamp(14px, 2vw, 20px);
+    }
+
+    .binary-result {
+      grid-column: 1 / -1;
+
+      min-height: 110px;
+    }
+
+    .binary-result strong {
+      font-size:
+        clamp(11px, 1.4vw, 15px);
+
+      line-height: 1.7;
+    }
+
+    .coming {
+      width: min(1500px, 90vw);
+
+      margin: auto;
+
+      padding-bottom: 120px;
+    }
+
+    .coming-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 10px;
+    }
+
+    .coming-card {
+      min-height: 150px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      padding: 22px;
+
+      border:
+        1px solid
+        rgba(118,255,3,.08);
+
+      color: #707e6b;
+
+      background:
+        rgba(4,9,4,.6);
+    }
+
+    .coming-card strong {
+      color: #b5c4af;
+
+      font-size: 15px;
+    }
+
+    .coming-card span {
+      color: var(--green);
+
+      font-size: 8px;
+
+      font-weight: 900;
+
+      letter-spacing: .15em;
+    }
+
+    footer {
+      width: min(1500px, 90vw);
+
+      margin: auto;
+
+      display: flex;
+      justify-content: space-between;
+
+      gap: 30px;
+
+      padding:
+        30px 0
+        50px;
+
+      border-top:
+        1px solid
+        var(--line);
+
+      color: #596454;
+
+      font-size: 9px;
+
+      letter-spacing: .12em;
+    }
+
+    @media (max-width: 1000px) {
+      .tool-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .coming-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding:
+          0 20px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero,
+      .tools,
+      .coming,
+      footer {
+        width:
+          calc(100% - 34px);
+      }
+
+      .results {
+        grid-template-columns: 1fr;
+      }
+
+      .binary-result {
+        grid-column: auto;
+      }
+
+      .coming-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <main>
+  <div class="noise"></div>
 
-    <h1>HOLA MUNDO.</h1>
+  <header>
 
-    <p>
-      Mi primera página publicada en Internet.
-    </p>
+    <a
+      class="brand"
+      href="#"
+    >
+      NET<span>//</span>TOOLS
+    </a>
 
-    <div class="status">
-      ● ONLINE
+    <nav>
+      <a href="#ipv4">
+        IPV4
+      </a>
+
+      <a href="#proximamente">
+        HERRAMIENTAS
+      </a>
+    </nav>
+
+    <div class="online">
+      <div class="online-dot"></div>
+      ONLINE
     </div>
 
+  </header>
+
+
+  <main>
+
+    <section class="hero">
+
+      <div class="eyebrow">
+        Network Engineering Toolbox
+      </div>
+
+      <h1>
+        NETWORK
+        <br>
+        <span>TOOLS.</span>
+      </h1>
+
+      <p class="hero-description">
+        Herramientas rápidas para redes,
+        infraestructura y administración
+        de sistemas directamente desde
+        tu navegador.
+      </p>
+
+      <div class="hero-stats">
+
+        <div class="stat">
+          <strong>01</strong>
+          HERRAMIENTA ACTIVA
+        </div>
+
+        <div class="stat">
+          <strong>100%</strong>
+          WEB
+        </div>
+
+        <div class="stat">
+          <strong>0</strong>
+          INSTALACIONES
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section
+      class="tools"
+      id="ipv4"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <div class="eyebrow">
+            IPv4 / CIDR
+          </div>
+
+          <h2>
+            Calculadora de red
+          </h2>
+        </div>
+
+        <div class="section-number">
+          TOOL_001
+        </div>
+
+      </div>
+
+
+      <div class="tool-grid">
+
+        <article class="panel">
+
+          <h3 class="panel-title">
+            Introduce la red
+          </h3>
+
+          <p class="panel-subtitle">
+            Escribe una dirección IPv4 y
+            selecciona el prefijo CIDR.
+          </p>
+
+          <div class="field">
+
+            <label for="ip">
+              DIRECCIÓN IPv4
+            </label>
+
+            <input
+              id="ip"
+              type="text"
+              value="192.168.10.25"
+              placeholder="192.168.1.10"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="prefix">
+              PREFIJO CIDR
+            </label>
+
+            <select id="prefix"></select>
+
+          </div>
+
+
+          <button
+            class="calculate"
+            id="calculate"
+            type="button"
+          >
+            CALCULAR RED →
+          </button>
+
+
+          <div
+            class="error"
+            id="error"
+          ></div>
+
+        </article>
+
+
+        <article class="panel">
+
+          <h3 class="panel-title">
+            Resultado
+          </h3>
+
+          <p class="panel-subtitle">
+            Información calculada a partir
+            de la dirección y prefijo.
+          </p>
+
+
+          <div class="results">
+
+            <div class="result">
+              <small>RED</small>
+              <strong id="network">—</strong>
+            </div>
+
+            <div class="result">
+              <small>MÁSCARA</small>
+              <strong id="mask">—</strong>
+            </div>
+
+            <div class="result">
+              <small>WILDCARD</small>
+              <strong id="wildcard">—</strong>
+            </div>
+
+            <div class="result">
+              <small>BROADCAST</small>
+              <strong id="broadcast">—</strong>
+            </div>
+
+            <div class="result">
+              <small>PRIMER HOST</small>
+              <strong id="firstHost">—</strong>
+            </div>
+
+            <div class="result">
+              <small>ÚLTIMO HOST</small>
+              <strong id="lastHost">—</strong>
+            </div>
+
+            <div class="result">
+              <small>DIRECCIONES TOTALES</small>
+              <strong id="totalAddresses">—</strong>
+            </div>
+
+            <div class="result">
+              <small>HOSTS UTILIZABLES</small>
+              <strong id="usableHosts">—</strong>
+            </div>
+
+            <div class="result binary-result">
+              <small>IPv4 EN BINARIO</small>
+              <strong id="binary">—</strong>
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <section
+      class="coming"
+      id="proximamente"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <div class="eyebrow">
+            Roadmap
+          </div>
+
+          <h2>
+            Próximas herramientas
+          </h2>
+        </div>
+
+      </div>
+
+
+      <div class="coming-grid">
+
+        <article class="coming-card">
+          <span>TOOL_002</span>
+          <strong>VLSM Calculator</strong>
+          <small>Próximamente</small>
+        </article>
+
+        <article class="coming-card">
+          <span>TOOL_003</span>
+          <strong>IPv6 Analyzer</strong>
+          <small>Próximamente</small>
+        </article>
+
+        <article class="coming-card">
+          <span>TOOL_004</span>
+          <strong>DNS Lookup</strong>
+          <small>Próximamente</small>
+        </article>
+
+        <article class="coming-card">
+          <span>TOOL_005</span>
+          <strong>TCP / UDP Ports</strong>
+          <small>Próximamente</small>
+        </article>
+
+        <article class="coming-card">
+          <span>TOOL_006</span>
+          <strong>Subnet Trainer</strong>
+          <small>Próximamente</small>
+        </article>
+
+        <article class="coming-card">
+          <span>TOOL_007</span>
+          <strong>Wildcard Calculator</strong>
+          <small>Próximamente</small>
+        </article>
+
+        <article class="coming-card">
+          <span>TOOL_008</span>
+          <strong>Linux Command Builder</strong>
+          <small>Próximamente</small>
+        </article>
+
+        <article class="coming-card">
+          <span>TOOL_009</span>
+          <strong>Cisco Config Builder</strong>
+          <small>Próximamente</small>
+        </article>
+
+      </div>
+
+    </section>
+
   </main>
+
+
+  <footer>
+
+    <div>
+      NET//TOOLS
+    </div>
+
+    <div>
+      NETWORK & SYSTEM ENGINEERING TOOLBOX
+    </div>
+
+  </footer>
+
+
+  <script>
+    const prefixSelect =
+      document.getElementById(
+        "prefix"
+      );
+
+    for (
+      let prefix = 0;
+      prefix <= 32;
+      prefix++
+    ) {
+      const option =
+        document.createElement(
+          "option"
+        );
+
+      option.value =
+        prefix;
+
+      option.textContent =
+        `/${prefix}`;
+
+      if (prefix === 24) {
+        option.selected =
+          true;
+      }
+
+      prefixSelect.appendChild(
+        option
+      );
+    }
+
+
+    function validIPv4(ip) {
+
+      const parts =
+        ip.trim().split(".");
+
+      if (parts.length !== 4) {
+        return false;
+      }
+
+      return parts.every(
+        (part) => {
+
+          if (
+            !/^\d{1,3}$/.test(
+              part
+            )
+          ) {
+            return false;
+          }
+
+          const value =
+            Number(part);
+
+          return (
+            value >= 0 &&
+            value <= 255
+          );
+        }
+      );
+    }
+
+
+    function ipToInt(ip) {
+
+      const parts =
+        ip.split(".").map(Number);
+
+      return (
+        (
+          ((parts[0] << 24) >>> 0) +
+          (parts[1] << 16) +
+          (parts[2] << 8) +
+          parts[3]
+        ) >>> 0
+      );
+    }
+
+
+    function intToIp(value) {
+
+      value =
+        value >>> 0;
+
+      return [
+        (value >>> 24) & 255,
+        (value >>> 16) & 255,
+        (value >>> 8) & 255,
+        value & 255
+      ].join(".");
+    }
+
+
+    function prefixToMask(prefix) {
+
+      if (prefix === 0) {
+        return 0;
+      }
+
+      return (
+        0xffffffff <<
+        (32 - prefix)
+      ) >>> 0;
+    }
+
+
+    function toBinary(ip) {
+
+      return ip
+        .split(".")
+        .map(
+          (part) =>
+            Number(part)
+              .toString(2)
+              .padStart(8, "0")
+        )
+        .join(".");
+    }
+
+
+    function calculateNetwork() {
+
+      const error =
+        document.getElementById(
+          "error"
+        );
+
+      error.style.display =
+        "none";
+
+      const ip =
+        document
+          .getElementById("ip")
+          .value
+          .trim();
+
+      const prefix =
+        Number(
+          prefixSelect.value
+        );
+
+
+      if (!validIPv4(ip)) {
+
+        error.textContent =
+          "Introduce una dirección IPv4 válida.";
+
+        error.style.display =
+          "block";
+
+        return;
+      }
+
+
+      const ipInt =
+        ipToInt(ip);
+
+      const maskInt =
+        prefixToMask(prefix);
+
+      const wildcardInt =
+        (~maskInt) >>> 0;
+
+      const networkInt =
+        (ipInt & maskInt) >>> 0;
+
+      const broadcastInt =
+        (
+          networkInt |
+          wildcardInt
+        ) >>> 0;
+
+
+      const total =
+        2 ** (32 - prefix);
+
+
+      let usable;
+      let first;
+      let last;
+
+
+      if (prefix <= 30) {
+
+        usable =
+          total - 2;
+
+        first =
+          (networkInt + 1) >>> 0;
+
+        last =
+          (broadcastInt - 1) >>> 0;
+
+      } else if (
+        prefix === 31
+      ) {
+
+        usable = 2;
+
+        first =
+          networkInt;
+
+        last =
+          broadcastInt;
+
+      } else {
+
+        usable = 1;
+
+        first =
+          networkInt;
+
+        last =
+          networkInt;
+      }
+
+
+      document
+        .getElementById(
+          "network"
+        )
+        .textContent =
+          `${intToIp(networkInt)}/${prefix}`;
+
+
+      document
+        .getElementById(
+          "mask"
+        )
+        .textContent =
+          intToIp(maskInt);
+
+
+      document
+        .getElementById(
+          "wildcard"
+        )
+        .textContent =
+          intToIp(
+            wildcardInt
+          );
+
+
+      document
+        .getElementById(
+          "broadcast"
+        )
+        .textContent =
+          intToIp(
+            broadcastInt
+          );
+
+
+      document
+        .getElementById(
+          "firstHost"
+        )
+        .textContent =
+          intToIp(first);
+
+
+      document
+        .getElementById(
+          "lastHost"
+        )
+        .textContent =
+          intToIp(last);
+
+
+      document
+        .getElementById(
+          "totalAddresses"
+        )
+        .textContent =
+          total.toLocaleString(
+            "es-ES"
+          );
+
+
+      document
+        .getElementById(
+          "usableHosts"
+        )
+        .textContent =
+          usable.toLocaleString(
+            "es-ES"
+          );
+
+
+      document
+        .getElementById(
+          "binary"
+        )
+        .textContent =
+          toBinary(ip);
+    }
+
+
+    document
+      .getElementById(
+        "calculate"
+      )
+      .addEventListener(
+        "click",
+        calculateNetwork
+      );
+
+
+    document
+      .getElementById("ip")
+      .addEventListener(
+        "keydown",
+        (event) => {
+
+          if (
+            event.key === "Enter"
+          ) {
+            calculateNetwork();
+          }
+        }
+      );
+
+
+    prefixSelect
+      .addEventListener(
+        "change",
+        calculateNetwork
+      );
+
+
+    calculateNetwork();
+  </script>
 
 </body>
 </html>
