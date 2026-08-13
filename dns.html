@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Consulta registros DNS A, AAAA, MX, NS, TXT, CNAME, CAA y SOA."
+  >
+
+  <title>DNS Lookup — NET//TOOLS</title>
+
+  <style>
+    :root {
+      --bg: #030603;
+      --panel: #071007;
+      --green: #76ff03;
+      --green-soft: #a7ff5a;
+      --text: #efffe8;
+      --muted: #788a72;
+      --line: rgba(118,255,3,.13);
+      --danger: #ff4d4d;
+      --warning: #ffd84d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 78% 8%,
+          rgba(118,255,3,.08),
+          transparent 30%
+        ),
+        linear-gradient(
+          180deg,
+          #020402,
+          var(--bg)
+        );
+
+      color: var(--text);
+
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+
+      opacity: .025;
+
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          #fff 0,
+          #fff 1px,
+          transparent 1px,
+          transparent 3px
+        );
+
+      z-index: 100;
+    }
+
+    header {
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 24px;
+
+      padding: 0 5vw;
+
+      border-bottom:
+        1px solid var(--line);
+
+      background:
+        rgba(3,6,3,.9);
+
+      backdrop-filter:
+        blur(16px);
+
+      position: sticky;
+      top: 0;
+
+      z-index: 50;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 1000;
+      letter-spacing: -.04em;
+    }
+
+    .brand span {
+      color: var(--green);
+    }
+
+    .back {
+      color: var(--muted);
+
+      font-size: 10px;
+      font-weight: 900;
+
+      letter-spacing: .12em;
+    }
+
+    .back:hover {
+      color: var(--green);
+    }
+
+    .online {
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+
+      color: var(--green);
+
+      font-size: 9px;
+      font-weight: 900;
+
+      letter-spacing: .14em;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      box-shadow:
+        0 0 14px var(--green);
+    }
+
+    main {
+      width: min(1450px, 90vw);
+
+      margin: auto;
+
+      padding:
+        80px 0
+        120px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+
+      font-size: 9px;
+      font-weight: 900;
+
+      letter-spacing: .2em;
+    }
+
+    h1 {
+      margin:
+        14px 0
+        22px;
+
+      font-size:
+        clamp(55px, 8vw, 120px);
+
+      line-height: .85;
+
+      letter-spacing: -.07em;
+    }
+
+    h1 span {
+      color: var(--green);
+
+      text-shadow:
+        0 0 35px
+        rgba(118,255,3,.17);
+    }
+
+    .intro {
+      max-width: 760px;
+
+      margin-bottom: 55px;
+
+      color: #93a18e;
+
+      font-size: 16px;
+
+      line-height: 1.7;
+    }
+
+    .layout {
+      display: grid;
+
+      grid-template-columns:
+        minmax(330px,.65fr)
+        minmax(0,1.45fr);
+
+      gap: 16px;
+    }
+
+    .panel {
+      padding:
+        clamp(24px,4vw,40px);
+
+      border:
+        1px solid var(--line);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(9,20,9,.92),
+          rgba(3,7,3,.96)
+        );
+    }
+
+    .panel h2 {
+      margin: 0 0 7px;
+
+      font-size: 28px;
+
+      letter-spacing: -.045em;
+    }
+
+    .subtitle {
+      margin:
+        0 0 30px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+    .field {
+      display: grid;
+
+      gap: 8px;
+
+      margin-bottom: 20px;
+    }
+
+    label {
+      color: #85947f;
+
+      font-size: 9px;
+      font-weight: 900;
+
+      letter-spacing: .13em;
+    }
+
+    input,
+    select {
+      width: 100%;
+
+      min-height: 52px;
+
+      padding: 0 15px;
+
+      outline: none;
+
+      border:
+        1px solid rgba(118,255,3,.13);
+
+      background: #020502;
+
+      color: var(--text);
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--green);
+    }
+
+    .query-button {
+      width: 100%;
+
+      min-height: 54px;
+
+      margin-top: 8px;
+
+      border:
+        1px solid var(--green);
+
+      cursor: pointer;
+
+      background: var(--green);
+
+      color: #031000;
+
+      font-size: 10px;
+      font-weight: 1000;
+
+      letter-spacing: .12em;
+    }
+
+    .query-button:hover {
+      box-shadow:
+        0 0 30px
+        rgba(118,255,3,.22);
+    }
+
+    .quick-types {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 7px;
+
+      margin-top: 18px;
+    }
+
+    .type-button {
+      width: auto;
+      min-height: auto;
+
+      margin: 0;
+
+      padding: 8px 11px;
+
+      border:
+        1px solid rgba(118,255,3,.13);
+
+      background: transparent;
+
+      color: #748270;
+
+      cursor: pointer;
+
+      font-size: 8px;
+      font-weight: 900;
+
+      letter-spacing: .1em;
+    }
+
+    .type-button:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .privacy {
+      margin-top: 25px;
+
+      padding: 15px;
+
+      border-left:
+        2px solid var(--green);
+
+      background:
+        rgba(118,255,3,.025);
+
+      color: #71806d;
+
+      font-size: 11px;
+
+      line-height: 1.7;
+    }
+
+    .error {
+      display: none;
+
+      margin-top: 16px;
+
+      padding: 13px;
+
+      border:
+        1px solid
+        rgba(255,77,77,.25);
+
+      color: var(--danger);
+
+      font-size: 12px;
+    }
+
+    .loading {
+      display: none;
+
+      margin-bottom: 18px;
+
+      color: var(--green);
+
+      font-size: 9px;
+      font-weight: 900;
+
+      letter-spacing: .14em;
+    }
+
+    .summary {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4,1fr);
+
+      gap: 8px;
+
+      margin-bottom: 22px;
+    }
+
+    .summary-card {
+      min-height: 90px;
+
+      padding: 14px;
+
+      border:
+        1px solid
+        rgba(118,255,3,.08);
+
+      background:
+        rgba(0,0,0,.18);
+    }
+
+    .summary-card small {
+      display: block;
+
+      margin-bottom: 9px;
+
+      color: #647060;
+
+      font-size: 8px;
+
+      letter-spacing: .12em;
+    }
+
+    .summary-card strong {
+      color: var(--green);
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size: 14px;
+
+      overflow-wrap: anywhere;
+    }
+
+    .dnssec-valid {
+      color: var(--green) !important;
+    }
+
+    .dnssec-unknown {
+      color: var(--warning) !important;
+    }
+
+    .record-section {
+      margin-top: 13px;
+
+      border:
+        1px solid rgba(118,255,3,.08);
+    }
+
+    .record-heading {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 13px 15px;
+
+      border-bottom:
+        1px solid rgba(118,255,3,.08);
+
+      background:
+        rgba(118,255,3,.025);
+    }
+
+    .record-heading strong {
+      color: var(--green);
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size: 13px;
+    }
+
+    .record-heading small {
+      color: #657060;
+
+      font-size: 8px;
+
+      letter-spacing: .1em;
+    }
+
+    .record-list {
+      display: grid;
+    }
+
+    .record-row {
+      display: grid;
+
+      grid-template-columns:
+        70px
+        minmax(110px,.5fr)
+        minmax(0,2fr);
+
+      gap: 12px;
+
+      align-items: start;
+
+      padding: 14px 15px;
+
+      border-bottom:
+        1px solid rgba(118,255,3,.055);
+    }
+
+    .record-row:last-child {
+      border-bottom: none;
+    }
+
+    .record-type {
+      color: var(--green);
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size: 11px;
+
+      font-weight: 900;
+    }
+
+    .record-ttl {
+      color: #697665;
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size: 10px;
+    }
+
+    .record-data {
+      color: #bdcbb8;
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size: 11px;
+
+      line-height: 1.6;
+
+      overflow-wrap: anywhere;
+
+      white-space: pre-wrap;
+    }
+
+    .empty {
+      padding: 45px;
+
+      text-align: center;
+
+      border:
+        1px dashed
+        rgba(118,255,3,.1);
+
+      color: #596555;
+
+      font-size: 11px;
+
+      line-height: 1.7;
+    }
+
+    footer {
+      margin-top: 70px;
+
+      padding-top: 25px;
+
+      border-top:
+        1px solid var(--line);
+
+      color: #53604f;
+
+      font-size: 9px;
+
+      letter-spacing: .12em;
+    }
+
+    @media (max-width:1000px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+    }
+
+    @media (max-width:650px) {
+      main {
+        width:
+          calc(100% - 30px);
+      }
+
+      header {
+        padding:
+          0 18px;
+      }
+
+      .online {
+        display: none;
+      }
+
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      .record-row {
+        grid-template-columns: 60px 1fr;
+      }
+
+      .record-data {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="noise"></div>
+
+  <header>
+
+    <a
+      href="/"
+      class="brand"
+    >
+      NET<span>//</span>TOOLS
+    </a>
+
+    <a
+      href="/"
+      class="back"
+    >
+      ← VOLVER A HERRAMIENTAS
+    </a>
+
+    <div class="online">
+      <div class="dot"></div>
+      TOOL_004
+    </div>
+
+  </header>
+
+  <main>
+
+    <div class="eyebrow">
+      TOOL_004 // DNS OVER HTTPS
+    </div>
+
+    <h1>
+      DNS
+      <span>LOOKUP.</span>
+    </h1>
+
+    <p class="intro">
+      Consulta registros DNS públicos
+      utilizando DNS over HTTPS.
+      Analiza IPv4, IPv6, correo,
+      servidores DNS, TXT, alias
+      y otros registros de un dominio.
+    </p>
+
+    <section class="layout">
+
+      <article class="panel">
+
+        <h2>
+          Consultar dominio
+        </h2>
+
+        <p class="subtitle">
+          Introduce un dominio o nombre DNS
+          y selecciona qué registros deseas consultar.
+        </p>
+
+        <div class="field">
+
+          <label for="domain">
+            DOMINIO / HOSTNAME
+          </label>
+
+          <input
+            id="domain"
+            type="text"
+            value="google.com"
+            placeholder="example.com"
+            autocomplete="off"
+          >
+
+        </div>
+
+        <div class="field">
+
+          <label for="recordType">
+            TIPO DE REGISTRO
+          </label>
+
+          <select id="recordType">
+
+            <option value="ALL">
+              Todos los principales
+            </option>
+
+            <option value="A">
+              A — IPv4
+            </option>
+
+            <option value="AAAA">
+              AAAA — IPv6
+            </option>
+
+            <option value="MX">
+              MX — Correo
+            </option>
+
+            <option value="NS">
+              NS — Name Servers
+            </option>
+
+            <option value="TXT">
+              TXT
+            </option>
+
+            <option value="CNAME">
+              CNAME — Alias
+            </option>
+
+            <option value="CAA">
+              CAA — Autoridades SSL
+            </option>
+
+            <option value="SOA">
+              SOA
+            </option>
+
+          </select>
+
+        </div>
+
+        <button
+          class="query-button"
+          id="lookup"
+          type="button"
+        >
+          CONSULTAR DNS →
+        </button>
+
+        <div class="quick-types">
+
+          <button
+            class="type-button"
+            data-type="A"
+          >
+            A
+          </button>
+
+          <button
+            class="type-button"
+            data-type="AAAA"
+          >
+            AAAA
+          </button>
+
+          <button
+            class="type-button"
+            data-type="MX"
+          >
+            MX
+          </button>
+
+          <button
+            class="type-button"
+            data-type="NS"
+          >
+            NS
+          </button>
+
+          <button
+            class="type-button"
+            data-type="TXT"
+          >
+            TXT
+          </button>
+
+          <button
+            class="type-button"
+            data-type="CNAME"
+          >
+            CNAME
+          </button>
+
+        </div>
+
+        <div
+          class="error"
+          id="error"
+        ></div>
+
+        <div class="privacy">
+          Esta herramienta realiza la consulta
+          a Google Public DNS mediante HTTPS.
+          El dominio consultado sale de tu navegador
+          hacia el resolver DNS público.
+        </div>
+
+      </article>
+
+
+      <article class="panel">
+
+        <h2>
+          Resultado DNS
+        </h2>
+
+        <p class="subtitle">
+          Registros recibidos del resolver DNS.
+        </p>
+
+        <div
+          class="loading"
+          id="loading"
+        >
+          ● CONSULTANDO DNS...
+        </div>
+
+        <div class="summary">
+
+          <div class="summary-card">
+            <small>DOMINIO</small>
+            <strong id="summaryDomain">
+              —
+            </strong>
+          </div>
+
+          <div class="summary-card">
+            <small>ESTADO DNS</small>
+            <strong id="summaryStatus">
+              —
+            </strong>
+          </div>
+
+          <div class="summary-card">
+            <small>DNSSEC</small>
+            <strong id="summaryDnssec">
+              —
+            </strong>
+          </div>
+
+          <div class="summary-card">
+            <small>REGISTROS</small>
+            <strong id="summaryRecords">
+              —
+            </strong>
+          </div>
+
+        </div>
+
+        <div id="results">
+
+          <div class="empty">
+            Introduce un dominio y ejecuta
+            una consulta DNS.
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <footer>
+      NET//TOOLS —
+      NETWORK & SYSTEM ENGINEERING TOOLBOX
+    </footer>
+
+  </main>
+
+
+  <script>
+
+    const TYPES = {
+      A: 1,
+      NS: 2,
+      CNAME: 5,
+      SOA: 6,
+      MX: 15,
+      TXT: 16,
+      AAAA: 28,
+      CAA: 257
+    };
+
+
+    const TYPE_NAMES = {
+      1: "A",
+      2: "NS",
+      5: "CNAME",
+      6: "SOA",
+      15: "MX",
+      16: "TXT",
+      28: "AAAA",
+      257: "CAA"
+    };
+
+
+    const STATUS_NAMES = {
+      0: "NOERROR",
+      1: "FORMERR",
+      2: "SERVFAIL",
+      3: "NXDOMAIN",
+      4: "NOTIMP",
+      5: "REFUSED"
+    };
+
+
+    const MAIN_TYPES = [
+      "A",
+      "AAAA",
+      "MX",
+      "NS",
+      "TXT",
+      "CNAME",
+      "CAA",
+      "SOA"
+    ];
+
+
+    function escapeHtml(value) {
+
+      return String(value)
+
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+    }
+
+
+    function cleanDomain(raw) {
+
+      let value =
+        raw.trim();
+
+
+      if (!value) {
+        return null;
+      }
+
+
+      /*
+       * Si escriben https://dominio.com/ruta
+       * extraemos solamente el hostname.
+       */
+
+      if (
+        value.startsWith("http://") ||
+        value.startsWith("https://")
+      ) {
+
+        try {
+
+          value =
+            new URL(value).hostname;
+
+        }
+        catch {
+
+          return null;
+
+        }
+
+      }
+
+
+      value =
+        value
+          .replace(/\.$/, "")
+          .trim();
+
+
+      if (
+        value.length < 1 ||
+        value.length > 253 ||
+        /\s/.test(value)
+      ) {
+        return null;
+      }
+
+
+      return value;
+
+    }
+
+
+    async function queryDNS(
+      domain,
+      type
+    ) {
+
+      const url =
+        new URL(
+          "https://dns.google/resolve"
+        );
+
+
+      url.searchParams.set(
+        "name",
+        domain
+      );
+
+
+      url.searchParams.set(
+        "type",
+        type
+      );
+
+
+      /*
+       * Solicitar registros DNSSEC.
+       */
+
+      url.searchParams.set(
+        "do",
+        "1"
+      );
+
+
+      /*
+       * Evitar enviar una subred del cliente
+       * a servidores autoritativos.
+       */
+
+      url.searchParams.set(
+        "edns_client_subnet",
+        "0.0.0.0/0"
+      );
+
+
+      const response =
+        await fetch(
+          url.toString(),
+          {
+            method: "GET"
+          }
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          `Error HTTP ${response.status}`
+        );
+
+      }
+
+
+      return await response.json();
+
+    }
+
+
+    function showError(message) {
+
+      const error =
+        document.getElementById(
+          "error"
+        );
+
+
+      error.textContent =
+        message;
+
+
+      error.style.display =
+        "block";
+
+    }
+
+
+    function hideError() {
+
+      document
+        .getElementById(
+          "error"
+        )
+        .style.display =
+          "none";
+
+    }
+
+
+    function setLoading(active) {
+
+      document
+        .getElementById(
+          "loading"
+        )
+        .style.display =
+          active
+            ? "block"
+            : "none";
+
+
+      document
+        .getElementById(
+          "lookup"
+        )
+        .disabled =
+          active;
+
+    }
+
+
+    function renderResults(
+      domain,
+      queries
+    ) {
+
+      let totalRecords = 0;
+
+      let dnssecValidated = false;
+
+      let worstStatus = 0;
+
+
+      for (
+        const query
+        of queries
+      ) {
+
+        totalRecords +=
+          query.data.Answer
+            ?.length || 0;
+
+
+        if (
+          query.data.AD === true
+        ) {
+
+          dnssecValidated =
+            true;
+
+        }
+
+
+        if (
+          query.data.Status !== 0
+        ) {
+
+          worstStatus =
+            query.data.Status;
+
+        }
+
+      }
+
+
+      document
+        .getElementById(
+          "summaryDomain"
+        )
+        .textContent =
+          domain;
+
+
+      document
+        .getElementById(
+          "summaryStatus"
+        )
+        .textContent =
+          STATUS_NAMES[
+            worstStatus
+          ] ||
+          `CODE ${worstStatus}`;
+
+
+      const dnssec =
+        document.getElementById(
+          "summaryDnssec"
+        );
+
+
+      dnssec.textContent =
+        dnssecValidated
+          ? "VALIDADO"
+          : "NO CONFIRMADO";
+
+
+      dnssec.className =
+        dnssecValidated
+          ? "dnssec-valid"
+          : "dnssec-unknown";
+
+
+      document
+        .getElementById(
+          "summaryRecords"
+        )
+        .textContent =
+          totalRecords;
+
+
+      let html = "";
+
+
+      for (
+        const query
+        of queries
+      ) {
+
+        const answers =
+          query.data.Answer || [];
+
+
+        html += `
+          <section class="record-section">
+
+            <div class="record-heading">
+
+              <strong>
+                ${escapeHtml(query.type)}
+              </strong>
+
+              <small>
+                ${
+                  answers.length
+                } REGISTRO(S)
+              </small>
+
+            </div>
+        `;
+
+
+        if (
+          answers.length === 0
+        ) {
+
+          html += `
+            <div class="empty">
+
+              No se encontraron registros
+              ${escapeHtml(query.type)}
+              para este nombre.
+
+            </div>
+          `;
+
+        }
+
+        else {
+
+          html += `
+            <div class="record-list">
+          `;
+
+
+          for (
+            const record
+            of answers
+          ) {
+
+            html += `
+              <div class="record-row">
+
+                <div class="record-type">
+                  ${
+                    TYPE_NAMES[
+                      record.type
+                    ] ||
+                    record.type
+                  }
+                </div>
+
+                <div class="record-ttl">
+                  TTL ${record.TTL}s
+                </div>
+
+                <div class="record-data">${
+                  escapeHtml(
+                    record.data
+                  )
+                }</div>
+
+              </div>
+            `;
+
+          }
+
+
+          html += `
+            </div>
+          `;
+
+        }
+
+
+        html += `
+          </section>
+        `;
+
+      }
+
+
+      document
+        .getElementById(
+          "results"
+        )
+        .innerHTML =
+          html;
+
+    }
+
+
+    async function lookupDNS(
+      forcedType = null
+    ) {
+
+      hideError();
+
+
+      const raw =
+        document
+          .getElementById(
+            "domain"
+          )
+          .value;
+
+
+      const domain =
+        cleanDomain(raw);
+
+
+      if (!domain) {
+
+        showError(
+          "Introduce un dominio o hostname válido."
+        );
+
+        return;
+
+      }
+
+
+      let selectedType =
+        forcedType ||
+        document
+          .getElementById(
+            "recordType"
+          )
+          .value;
+
+
+      if (forcedType) {
+
+        document
+          .getElementById(
+            "recordType"
+          )
+          .value =
+            forcedType;
+
+      }
+
+
+      const types =
+        selectedType === "ALL"
+          ? MAIN_TYPES
+          : [selectedType];
+
+
+      setLoading(true);
+
+
+      document
+        .getElementById(
+          "results"
+        )
+        .innerHTML = `
+          <div class="empty">
+            Consultando registros DNS...
+          </div>
+        `;
+
+
+      try {
+
+        /*
+         * Cada pregunta DNS es una consulta independiente.
+         * Ejecutamos todas en paralelo.
+         */
+
+        const responses =
+          await Promise.all(
+
+            types.map(
+
+              async type => {
+
+                const data =
+                  await queryDNS(
+                    domain,
+                    type
+                  );
+
+
+                return {
+                  type,
+                  data
+                };
+
+              }
+
+            )
+
+          );
+
+
+        renderResults(
+          domain,
+          responses
+        );
+
+      }
+
+      catch (error) {
+
+        showError(
+          `No fue posible realizar la consulta DNS: ${error.message}`
+        );
+
+
+        document
+          .getElementById(
+            "results"
+          )
+          .innerHTML = `
+            <div class="empty">
+              La consulta DNS falló.
+            </div>
+          `;
+
+      }
+
+      finally {
+
+        setLoading(false);
+
+      }
+
+    }
+
+
+    document
+      .getElementById(
+        "lookup"
+      )
+      .addEventListener(
+        "click",
+        () => lookupDNS()
+      );
+
+
+    document
+      .getElementById(
+        "domain"
+      )
+      .addEventListener(
+        "keydown",
+        event => {
+
+          if (
+            event.key === "Enter"
+          ) {
+
+            lookupDNS();
+
+          }
+
+        }
+      );
+
+
+    document
+      .querySelectorAll(
+        ".type-button"
+      )
+      .forEach(
+        button => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              lookupDNS(
+                button.dataset.type
+              );
+
+            }
+          );
+
+        }
+      );
+
+
+    lookupDNS();
+
+  </script>
+
+</body>
+</html>
