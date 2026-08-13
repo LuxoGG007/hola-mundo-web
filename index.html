@@ -10,7 +10,7 @@
 
   <meta
     name="description"
-    content="Herramientas gratuitas para networking y administración de sistemas."
+    content="Herramientas gratuitas para networking, redes y administración de sistemas."
   >
 
   <title>NET//TOOLS — Network Engineering Toolbox</title>
@@ -96,6 +96,11 @@
       z-index: 100;
     }
 
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
     header {
       min-height: 72px;
 
@@ -107,12 +112,14 @@
 
       padding: 0 5vw;
 
-      border-bottom: 1px solid var(--line);
+      border-bottom:
+        1px solid var(--line);
 
       background:
         rgba(3,6,3,.88);
 
-      backdrop-filter: blur(16px);
+      backdrop-filter:
+        blur(16px);
 
       position: sticky;
       top: 0;
@@ -123,7 +130,8 @@
     .brand {
       font-weight: 1000;
 
-      letter-spacing: -.04em;
+      letter-spacing:
+        -.04em;
 
       font-size: 22px;
     }
@@ -144,7 +152,13 @@
 
       font-weight: 800;
 
-      letter-spacing: .12em;
+      letter-spacing:
+        .12em;
+    }
+
+    nav a {
+      transition:
+        color .15s ease;
     }
 
     nav a:hover {
@@ -163,7 +177,8 @@
 
       font-weight: 900;
 
-      letter-spacing: .14em;
+      letter-spacing:
+        .14em;
     }
 
     .online-dot {
@@ -172,14 +187,22 @@
 
       border-radius: 50%;
 
-      background: var(--green);
+      background:
+        var(--green);
 
       box-shadow:
-        0 0 14px var(--green);
+        0 0 14px
+        var(--green);
     }
 
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
     .hero {
-      width: min(1500px, 90vw);
+      width:
+        min(1500px, 90vw);
 
       margin: auto;
 
@@ -196,9 +219,11 @@
 
       font-weight: 900;
 
-      letter-spacing: .22em;
+      letter-spacing:
+        .22em;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
     .hero h1 {
@@ -209,11 +234,16 @@
         25px;
 
       font-size:
-        clamp(55px, 9vw, 145px);
+        clamp(
+          55px,
+          9vw,
+          145px
+        );
 
       line-height: .82;
 
-      letter-spacing: -.075em;
+      letter-spacing:
+        -.075em;
     }
 
     .hero h1 span {
@@ -232,7 +262,11 @@
       color: #96a591;
 
       font-size:
-        clamp(16px, 2vw, 21px);
+        clamp(
+          16px,
+          2vw,
+          21px
+        );
 
       line-height: 1.7;
     }
@@ -247,9 +281,12 @@
     }
 
     .stat {
-      padding: 12px 15px;
+      padding:
+        12px 15px;
 
-      border: 1px solid var(--line);
+      border:
+        1px solid
+        var(--line);
 
       color: var(--muted);
 
@@ -257,15 +294,22 @@
 
       font-weight: 800;
 
-      letter-spacing: .13em;
+      letter-spacing:
+        .13em;
     }
 
     .stat strong {
       color: var(--green);
     }
 
+
+    /* =========================================================
+       TOOL 001
+       ========================================================= */
+
     .tools {
-      width: min(1500px, 90vw);
+      width:
+        min(1500px, 90vw);
 
       margin: auto;
 
@@ -275,24 +319,33 @@
     .section-heading {
       display: flex;
       align-items: end;
-      justify-content: space-between;
+      justify-content:
+        space-between;
 
       gap: 30px;
 
       margin-bottom: 25px;
 
-      border-bottom: 1px solid var(--line);
+      border-bottom:
+        1px solid
+        var(--line);
 
       padding-bottom: 18px;
     }
 
     .section-heading h2 {
-      margin: 8px 0 0;
+      margin:
+        8px 0 0;
 
       font-size:
-        clamp(32px, 5vw, 65px);
+        clamp(
+          32px,
+          5vw,
+          65px
+        );
 
-      letter-spacing: -.055em;
+      letter-spacing:
+        -.055em;
     }
 
     .section-number {
@@ -328,19 +381,26 @@
         );
 
       padding:
-        clamp(24px, 4vw, 42px);
+        clamp(
+          24px,
+          4vw,
+          42px
+        );
     }
 
     .panel-title {
-      margin: 0 0 7px;
+      margin:
+        0 0 7px;
 
       font-size: 26px;
 
-      letter-spacing: -.04em;
+      letter-spacing:
+        -.04em;
     }
 
     .panel-subtitle {
-      margin: 0 0 32px;
+      margin:
+        0 0 32px;
 
       color: var(--muted);
 
@@ -364,7 +424,8 @@
 
       font-weight: 900;
 
-      letter-spacing: .14em;
+      letter-spacing:
+        .14em;
     }
 
     input,
@@ -373,7 +434,8 @@
 
       min-height: 52px;
 
-      padding: 0 15px;
+      padding:
+        0 15px;
 
       outline: none;
 
@@ -390,7 +452,8 @@
 
     input:focus,
     select:focus {
-      border-color: var(--green);
+      border-color:
+        var(--green);
 
       box-shadow:
         0 0 0 1px
@@ -410,7 +473,8 @@
         1px solid
         var(--green);
 
-      background: var(--green);
+      background:
+        var(--green);
 
       color: #031000;
 
@@ -418,9 +482,11 @@
 
       font-size: 11px;
 
-      letter-spacing: .12em;
+      letter-spacing:
+        .12em;
 
-      transition: .18s ease;
+      transition:
+        .18s ease;
     }
 
     .calculate:hover {
@@ -452,7 +518,10 @@
       display: grid;
 
       grid-template-columns:
-        repeat(2, minmax(0,1fr));
+        repeat(
+          2,
+          minmax(0,1fr)
+        );
 
       gap: 10px;
     }
@@ -462,7 +531,8 @@
 
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content:
+        space-between;
 
       padding: 16px;
 
@@ -481,37 +551,55 @@
 
       font-weight: 900;
 
-      letter-spacing: .13em;
+      letter-spacing:
+        .13em;
     }
 
     .result strong {
-      overflow-wrap: anywhere;
+      overflow-wrap:
+        anywhere;
 
-      color: var(--green-soft);
+      color:
+        var(--green-soft);
 
       font-family:
         "Courier New",
         monospace;
 
       font-size:
-        clamp(14px, 2vw, 20px);
+        clamp(
+          14px,
+          2vw,
+          20px
+        );
     }
 
     .binary-result {
-      grid-column: 1 / -1;
+      grid-column:
+        1 / -1;
 
       min-height: 110px;
     }
 
     .binary-result strong {
       font-size:
-        clamp(11px, 1.4vw, 15px);
+        clamp(
+          11px,
+          1.4vw,
+          15px
+        );
 
       line-height: 1.7;
     }
 
+
+    /* =========================================================
+       HERRAMIENTAS
+       ========================================================= */
+
     .coming {
-      width: min(1500px, 90vw);
+      width:
+        min(1500px, 90vw);
 
       margin: auto;
 
@@ -528,11 +616,12 @@
     }
 
     .coming-card {
-      min-height: 150px;
+      min-height: 165px;
 
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content:
+        space-between;
 
       padding: 22px;
 
@@ -544,12 +633,21 @@
 
       background:
         rgba(4,9,4,.6);
+
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        background .18s ease,
+        box-shadow .18s ease;
     }
 
     .coming-card strong {
       color: #b5c4af;
 
       font-size: 15px;
+
+      transition:
+        color .18s ease;
     }
 
     .coming-card span {
@@ -559,16 +657,95 @@
 
       font-weight: 900;
 
-      letter-spacing: .15em;
+      letter-spacing:
+        .15em;
     }
 
+    .coming-card small {
+      color: #596454;
+
+      font-size: 9px;
+
+      font-weight: 700;
+
+      letter-spacing:
+        .08em;
+    }
+
+    .coming-card.active-tool {
+      cursor: pointer;
+
+      border-color:
+        rgba(118,255,3,.22);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(11,26,9,.9),
+          rgba(3,8,3,.94)
+        );
+    }
+
+    .coming-card.active-tool:hover {
+      transform:
+        translateY(-4px);
+
+      border-color:
+        rgba(118,255,3,.6);
+
+      box-shadow:
+        0 15px 50px
+        rgba(0,0,0,.25);
+    }
+
+    .coming-card.active-tool:hover strong {
+      color: var(--green);
+    }
+
+    .coming-card.active-tool small {
+      color: var(--green);
+    }
+
+    .status-active {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 5px;
+
+      color: var(--green);
+    }
+
+    .status-active::before {
+      content: "";
+
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background:
+        var(--green);
+
+      box-shadow:
+        0 0 8px
+        var(--green);
+    }
+
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
     footer {
-      width: min(1500px, 90vw);
+      width:
+        min(1500px, 90vw);
 
       margin: auto;
 
       display: flex;
-      justify-content: space-between;
+      justify-content:
+        space-between;
 
       gap: 30px;
 
@@ -584,21 +761,31 @@
 
       font-size: 9px;
 
-      letter-spacing: .12em;
+      letter-spacing:
+        .12em;
     }
 
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
     @media (max-width: 1000px) {
+
       .tool-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
       .coming-grid {
         grid-template-columns:
           repeat(2, 1fr);
       }
+
     }
 
     @media (max-width: 700px) {
+
       header {
         padding:
           0 20px;
@@ -617,50 +804,72 @@
       }
 
       .results {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
       .binary-result {
-        grid-column: auto;
+        grid-column:
+          auto;
       }
 
       .coming-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
       footer {
-        flex-direction: column;
+        flex-direction:
+          column;
       }
+
     }
   </style>
 </head>
+
 
 <body>
 
   <div class="noise"></div>
 
+
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+
   <header>
 
     <a
       class="brand"
-      href="#"
+      href="/"
     >
       NET<span>//</span>TOOLS
     </a>
 
+
     <nav>
+
       <a href="#ipv4">
         IPV4
       </a>
 
-      <a href="#proximamente">
+      <a href="/vlsm.html">
+        VLSM
+      </a>
+
+      <a href="#herramientas">
         HERRAMIENTAS
       </a>
+
     </nav>
 
+
     <div class="online">
+
       <div class="online-dot"></div>
+
       ONLINE
+
     </div>
 
   </header>
@@ -668,11 +877,17 @@
 
   <main>
 
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
     <section class="hero">
 
       <div class="eyebrow">
         Network Engineering Toolbox
       </div>
+
 
       <h1>
         NETWORK
@@ -680,18 +895,22 @@
         <span>TOOLS.</span>
       </h1>
 
+
       <p class="hero-description">
+
         Herramientas rápidas para redes,
         infraestructura y administración
         de sistemas directamente desde
         tu navegador.
+
       </p>
+
 
       <div class="hero-stats">
 
         <div class="stat">
-          <strong>01</strong>
-          HERRAMIENTA ACTIVA
+          <strong>02</strong>
+          HERRAMIENTAS ACTIVAS
         </div>
 
         <div class="stat">
@@ -709,6 +928,10 @@
     </section>
 
 
+    <!-- =====================================================
+         TOOL 001
+         ===================================================== -->
+
     <section
       class="tools"
       id="ipv4"
@@ -717,6 +940,7 @@
       <div class="section-heading">
 
         <div>
+
           <div class="eyebrow">
             IPv4 / CIDR
           </div>
@@ -724,7 +948,9 @@
           <h2>
             Calculadora de red
           </h2>
+
         </div>
+
 
         <div class="section-number">
           TOOL_001
@@ -735,16 +961,23 @@
 
       <div class="tool-grid">
 
+
+        <!-- ENTRADA -->
+
         <article class="panel">
 
           <h3 class="panel-title">
             Introduce la red
           </h3>
 
+
           <p class="panel-subtitle">
+
             Escribe una dirección IPv4 y
             selecciona el prefijo CIDR.
+
           </p>
+
 
           <div class="field">
 
@@ -755,7 +988,7 @@
             <input
               id="ip"
               type="text"
-              value="192.168.10.25"
+              value="192.168.1.25"
               placeholder="192.168.1.10"
               autocomplete="off"
             >
@@ -791,64 +1024,144 @@
         </article>
 
 
+        <!-- RESULTADOS -->
+
         <article class="panel">
 
           <h3 class="panel-title">
             Resultado
           </h3>
 
+
           <p class="panel-subtitle">
+
             Información calculada a partir
             de la dirección y prefijo.
+
           </p>
 
 
           <div class="results">
 
-            <div class="result">
-              <small>RED</small>
-              <strong id="network">—</strong>
-            </div>
 
             <div class="result">
-              <small>MÁSCARA</small>
-              <strong id="mask">—</strong>
+
+              <small>
+                RED
+              </small>
+
+              <strong id="network">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>WILDCARD</small>
-              <strong id="wildcard">—</strong>
+
+              <small>
+                MÁSCARA
+              </small>
+
+              <strong id="mask">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>BROADCAST</small>
-              <strong id="broadcast">—</strong>
+
+              <small>
+                WILDCARD
+              </small>
+
+              <strong id="wildcard">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>PRIMER HOST</small>
-              <strong id="firstHost">—</strong>
+
+              <small>
+                BROADCAST
+              </small>
+
+              <strong id="broadcast">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>ÚLTIMO HOST</small>
-              <strong id="lastHost">—</strong>
+
+              <small>
+                PRIMER HOST
+              </small>
+
+              <strong id="firstHost">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>DIRECCIONES TOTALES</small>
-              <strong id="totalAddresses">—</strong>
+
+              <small>
+                ÚLTIMO HOST
+              </small>
+
+              <strong id="lastHost">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>HOSTS UTILIZABLES</small>
-              <strong id="usableHosts">—</strong>
+
+              <small>
+                DIRECCIONES TOTALES
+              </small>
+
+              <strong id="totalAddresses">
+                —
+              </strong>
+
             </div>
 
-            <div class="result binary-result">
-              <small>IPv4 EN BINARIO</small>
-              <strong id="binary">—</strong>
+
+            <div class="result">
+
+              <small>
+                HOSTS UTILIZABLES
+              </small>
+
+              <strong id="usableHosts">
+                —
+              </strong>
+
             </div>
+
+
+            <div
+              class="result binary-result"
+            >
+
+              <small>
+                IPv4 EN BINARIO
+              </small>
+
+              <strong id="binary">
+                —
+              </strong>
+
+            </div>
+
 
           </div>
 
@@ -859,21 +1172,27 @@
     </section>
 
 
+    <!-- =====================================================
+         HERRAMIENTAS
+         ===================================================== -->
+
     <section
       class="coming"
-      id="proximamente"
+      id="herramientas"
     >
 
       <div class="section-heading">
 
         <div>
+
           <div class="eyebrow">
-            Roadmap
+            Network Toolbox
           </div>
 
           <h2>
-            Próximas herramientas
+            Herramientas
           </h2>
+
         </div>
 
       </div>
@@ -881,53 +1200,183 @@
 
       <div class="coming-grid">
 
-        <article class="coming-card">
-          <span>TOOL_002</span>
-          <strong>VLSM Calculator</strong>
-          <small>Próximamente</small>
-        </article>
+
+        <!-- TOOL 001 -->
+
+        <a
+          class="coming-card active-tool"
+          href="#ipv4"
+        >
+
+          <span>
+            TOOL_001
+          </span>
+
+          <strong>
+            IPv4 / CIDR Calculator
+          </strong>
+
+          <small class="status-active">
+            ACTIVA
+          </small>
+
+        </a>
+
+
+        <!-- TOOL 002 -->
+
+        <a
+          class="coming-card active-tool"
+          href="/vlsm.html"
+        >
+
+          <span>
+            TOOL_002
+          </span>
+
+          <strong>
+            VLSM Calculator
+          </strong>
+
+          <small class="status-active">
+            ABRIR HERRAMIENTA →
+          </small>
+
+        </a>
+
+
+        <!-- TOOL 003 -->
 
         <article class="coming-card">
-          <span>TOOL_003</span>
-          <strong>IPv6 Analyzer</strong>
-          <small>Próximamente</small>
+
+          <span>
+            TOOL_003
+          </span>
+
+          <strong>
+            IPv6 Analyzer
+          </strong>
+
+          <small>
+            PRÓXIMAMENTE
+          </small>
+
         </article>
 
-        <article class="coming-card">
-          <span>TOOL_004</span>
-          <strong>DNS Lookup</strong>
-          <small>Próximamente</small>
-        </article>
+
+        <!-- TOOL 004 -->
 
         <article class="coming-card">
-          <span>TOOL_005</span>
-          <strong>TCP / UDP Ports</strong>
-          <small>Próximamente</small>
+
+          <span>
+            TOOL_004
+          </span>
+
+          <strong>
+            DNS Lookup
+          </strong>
+
+          <small>
+            PRÓXIMAMENTE
+          </small>
+
         </article>
 
-        <article class="coming-card">
-          <span>TOOL_006</span>
-          <strong>Subnet Trainer</strong>
-          <small>Próximamente</small>
-        </article>
+
+        <!-- TOOL 005 -->
 
         <article class="coming-card">
-          <span>TOOL_007</span>
-          <strong>Wildcard Calculator</strong>
-          <small>Próximamente</small>
+
+          <span>
+            TOOL_005
+          </span>
+
+          <strong>
+            TCP / UDP Ports
+          </strong>
+
+          <small>
+            PRÓXIMAMENTE
+          </small>
+
         </article>
 
-        <article class="coming-card">
-          <span>TOOL_008</span>
-          <strong>Linux Command Builder</strong>
-          <small>Próximamente</small>
-        </article>
+
+        <!-- TOOL 006 -->
 
         <article class="coming-card">
-          <span>TOOL_009</span>
-          <strong>Cisco Config Builder</strong>
-          <small>Próximamente</small>
+
+          <span>
+            TOOL_006
+          </span>
+
+          <strong>
+            Subnet Trainer
+          </strong>
+
+          <small>
+            PRÓXIMAMENTE
+          </small>
+
         </article>
+
+
+        <!-- TOOL 007 -->
+
+        <article class="coming-card">
+
+          <span>
+            TOOL_007
+          </span>
+
+          <strong>
+            Wildcard / ACL Calculator
+          </strong>
+
+          <small>
+            PRÓXIMAMENTE
+          </small>
+
+        </article>
+
+
+        <!-- TOOL 008 -->
+
+        <article class="coming-card">
+
+          <span>
+            TOOL_008
+          </span>
+
+          <strong>
+            Linux Command Builder
+          </strong>
+
+          <small>
+            PRÓXIMAMENTE
+          </small>
+
+        </article>
+
+
+        <!-- TOOL 009 -->
+
+        <article class="coming-card">
+
+          <span>
+            TOOL_009
+          </span>
+
+          <strong>
+            Cisco Config Builder
+          </strong>
+
+          <small>
+            PRÓXIMAMENTE
+          </small>
+
+        </article>
+
 
       </div>
 
@@ -935,6 +1384,10 @@
 
   </main>
 
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
 
   <footer>
 
@@ -949,17 +1402,26 @@
   </footer>
 
 
+  <!-- =======================================================
+       JAVASCRIPT — IPv4 / CIDR
+       ======================================================= -->
+
   <script>
+
     const prefixSelect =
       document.getElementById(
         "prefix"
       );
+
+
+    /* Crear prefijos /0 a /32 */
 
     for (
       let prefix = 0;
       prefix <= 32;
       prefix++
     ) {
+
       const option =
         document.createElement(
           "option"
@@ -972,24 +1434,39 @@
         `/${prefix}`;
 
       if (prefix === 24) {
+
         option.selected =
           true;
+
       }
 
       prefixSelect.appendChild(
         option
       );
+
     }
 
+
+    /* =======================================================
+       VALIDAR IPv4
+       ======================================================= */
 
     function validIPv4(ip) {
 
       const parts =
-        ip.trim().split(".");
+        ip
+          .trim()
+          .split(".");
 
-      if (parts.length !== 4) {
+
+      if (
+        parts.length !== 4
+      ) {
+
         return false;
+
       }
+
 
       return parts.every(
         (part) => {
@@ -999,77 +1476,133 @@
               part
             )
           ) {
+
             return false;
+
           }
+
 
           const value =
             Number(part);
+
 
           return (
             value >= 0 &&
             value <= 255
           );
+
         }
       );
+
     }
 
+
+    /* =======================================================
+       IPv4 → ENTERO
+       ======================================================= */
 
     function ipToInt(ip) {
 
       const parts =
-        ip.split(".").map(Number);
+        ip
+          .split(".")
+          .map(Number);
+
 
       return (
         (
-          ((parts[0] << 24) >>> 0) +
-          (parts[1] << 16) +
-          (parts[2] << 8) +
+          ((parts[0] << 24) >>> 0)
+          +
+          (parts[1] << 16)
+          +
+          (parts[2] << 8)
+          +
           parts[3]
         ) >>> 0
       );
+
     }
 
+
+    /* =======================================================
+       ENTERO → IPv4
+       ======================================================= */
 
     function intToIp(value) {
 
       value =
         value >>> 0;
 
+
       return [
+
         (value >>> 24) & 255,
+
         (value >>> 16) & 255,
+
         (value >>> 8) & 255,
+
         value & 255
+
       ].join(".");
+
     }
 
 
+    /* =======================================================
+       PREFIJO → MÁSCARA
+       ======================================================= */
+
     function prefixToMask(prefix) {
 
-      if (prefix === 0) {
+      if (
+        prefix === 0
+      ) {
+
         return 0;
+
       }
+
 
       return (
         0xffffffff <<
         (32 - prefix)
       ) >>> 0;
+
     }
 
+
+    /* =======================================================
+       IPv4 → BINARIO
+       ======================================================= */
 
     function toBinary(ip) {
 
       return ip
+
         .split(".")
+
         .map(
           (part) =>
+
             Number(part)
+
               .toString(2)
-              .padStart(8, "0")
+
+              .padStart(
+                8,
+                "0"
+              )
         )
+
         .join(".");
+
     }
 
+
+    /* =======================================================
+       CALCULAR
+       ======================================================= */
 
     function calculateNetwork() {
 
@@ -1078,14 +1611,19 @@
           "error"
         );
 
+
       error.style.display =
         "none";
 
+
       const ip =
         document
-          .getElementById("ip")
+          .getElementById(
+            "ip"
+          )
           .value
           .trim();
+
 
       const prefix =
         Number(
@@ -1093,7 +1631,11 @@
         );
 
 
-      if (!validIPv4(ip)) {
+      /* Validación */
+
+      if (
+        !validIPv4(ip)
+      ) {
 
         error.textContent =
           "Introduce una dirección IPv4 válida.";
@@ -1102,20 +1644,30 @@
           "block";
 
         return;
+
       }
 
 
       const ipInt =
         ipToInt(ip);
 
+
       const maskInt =
-        prefixToMask(prefix);
+        prefixToMask(
+          prefix
+        );
+
 
       const wildcardInt =
         (~maskInt) >>> 0;
 
+
       const networkInt =
-        (ipInt & maskInt) >>> 0;
+        (
+          ipInt &
+          maskInt
+        ) >>> 0;
+
 
       const broadcastInt =
         (
@@ -1125,26 +1677,50 @@
 
 
       const total =
-        2 ** (32 - prefix);
+        2 ** (
+          32 -
+          prefix
+        );
 
 
       let usable;
+
       let first;
+
       let last;
 
 
-      if (prefix <= 30) {
+      /*
+       * /0 hasta /30:
+       * red + broadcast reservados.
+       *
+       * /31:
+       * RFC 3021 para enlaces punto a punto.
+       *
+       * /32:
+       * una única dirección.
+       */
+
+      if (
+        prefix <= 30
+      ) {
 
         usable =
           total - 2;
 
         first =
-          (networkInt + 1) >>> 0;
+          (
+            networkInt + 1
+          ) >>> 0;
 
         last =
-          (broadcastInt - 1) >>> 0;
+          (
+            broadcastInt - 1
+          ) >>> 0;
 
-      } else if (
+      }
+
+      else if (
         prefix === 31
       ) {
 
@@ -1156,7 +1732,9 @@
         last =
           broadcastInt;
 
-      } else {
+      }
+
+      else {
 
         usable = 1;
 
@@ -1165,89 +1743,130 @@
 
         last =
           networkInt;
+
       }
 
+
+      /* RED */
 
       document
         .getElementById(
           "network"
         )
         .textContent =
-          `${intToIp(networkInt)}/${prefix}`;
 
+          `${intToIp(
+            networkInt
+          )}/${prefix}`;
+
+
+      /* MÁSCARA */
 
       document
         .getElementById(
           "mask"
         )
         .textContent =
-          intToIp(maskInt);
 
+          intToIp(
+            maskInt
+          );
+
+
+      /* WILDCARD */
 
       document
         .getElementById(
           "wildcard"
         )
         .textContent =
+
           intToIp(
             wildcardInt
           );
 
+
+      /* BROADCAST */
 
       document
         .getElementById(
           "broadcast"
         )
         .textContent =
+
           intToIp(
             broadcastInt
           );
 
+
+      /* PRIMER HOST */
 
       document
         .getElementById(
           "firstHost"
         )
         .textContent =
-          intToIp(first);
 
+          intToIp(
+            first
+          );
+
+
+      /* ÚLTIMO HOST */
 
       document
         .getElementById(
           "lastHost"
         )
         .textContent =
-          intToIp(last);
 
+          intToIp(
+            last
+          );
+
+
+      /* TOTAL */
 
       document
         .getElementById(
           "totalAddresses"
         )
         .textContent =
+
           total.toLocaleString(
             "es-ES"
           );
 
+
+      /* HOSTS */
 
       document
         .getElementById(
           "usableHosts"
         )
         .textContent =
+
           usable.toLocaleString(
             "es-ES"
           );
 
+
+      /* BINARIO */
 
       document
         .getElementById(
           "binary"
         )
         .textContent =
+
           toBinary(ip);
+
     }
 
+
+    /* =======================================================
+       EVENTOS
+       ======================================================= */
 
     document
       .getElementById(
@@ -1260,16 +1879,22 @@
 
 
     document
-      .getElementById("ip")
+      .getElementById(
+        "ip"
+      )
       .addEventListener(
         "keydown",
         (event) => {
 
           if (
-            event.key === "Enter"
+            event.key ===
+            "Enter"
           ) {
+
             calculateNetwork();
+
           }
+
         }
       );
 
@@ -1281,7 +1906,10 @@
       );
 
 
+    /* Ejecutar al cargar */
+
     calculateNetwork();
+
   </script>
 
 </body>
