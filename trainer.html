@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Calculadora de wildcard mask y generador de ACL estándar Cisco IOS.">
+<title>Wildcard / ACL — NET//TOOLS</title>
+
+<style>
+:root{
+  --bg:#030603;
+  --green:#76ff03;
+  --green2:#a7ff5a;
+  --text:#efffe8;
+  --muted:#788a72;
+  --line:rgba(118,255,3,.13);
+  --red:#ff5050
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 78% 8%,rgba(118,255,3,.08),transparent 30%),
+    #030603;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif
+}
+a{text-decoration:none;color:inherit}
+button,input,select{font:inherit}
+header{
+  height:72px;
+  padding:0 5vw;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  background:rgba(3,6,3,.92);
+  position:sticky;
+  top:0;
+  z-index:20
+}
+.brand{font-size:22px;font-weight:1000;letter-spacing:-.04em}
+.brand span{color:var(--green)}
+.back{color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.12em}
+.back:hover{color:var(--green)}
+.online{color:var(--green);font-size:9px;font-weight:900;letter-spacing:.14em}
+main{width:min(1400px,90vw);margin:auto;padding:80px 0 110px}
+.eyebrow{color:var(--green);font-size:9px;font-weight:900;letter-spacing:.2em}
+h1{
+  margin:14px 0 22px;
+  font-size:clamp(52px,8vw,115px);
+  line-height:.85;
+  letter-spacing:-.07em
+}
+h1 span{color:var(--green)}
+.intro{max-width:760px;color:#93a18e;line-height:1.7;margin-bottom:50px}
+.layout{
+  display:grid;
+  grid-template-columns:minmax(320px,.7fr) minmax(0,1.3fr);
+  gap:16px
+}
+.panel{
+  padding:clamp(24px,4vw,40px);
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,rgba(9,20,9,.92),rgba(3,7,3,.97))
+}
+.panel h2{margin:0 0 7px;font-size:27px}
+.subtitle{margin:0 0 28px;color:var(--muted);font-size:13px;line-height:1.6}
+.field{display:grid;gap:8px;margin-bottom:17px}
+label{font-size:8px;font-weight:900;letter-spacing:.13em;color:#84937e}
+input,select{
+  width:100%;
+  min-height:50px;
+  padding:0 14px;
+  border:1px solid rgba(118,255,3,.13);
+  background:#020502;
+  color:var(--text);
+  outline:none
+}
+input:focus,select:focus{border-color:var(--green)}
+.btn{
+  width:100%;
+  min-height:52px;
+  margin-top:8px;
+  border:1px solid var(--green);
+  background:var(--green);
+  color:#031000;
+  cursor:pointer;
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.12em
+}
+.error{
+  display:none;
+  margin-top:15px;
+  padding:12px;
+  border:1px solid rgba(255,80,80,.25);
+  color:var(--red);
+  font-size:11px
+}
+.results{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px
+}
+.result{
+  min-height:95px;
+  padding:15px;
+  border:1px solid rgba(118,255,3,.08);
+  background:rgba(0,0,0,.18);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:10px
+}
+.result small{
+  color:#647060;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.12em
+}
+.result strong{
+  color:var(--green2);
+  font-family:"Courier New",monospace;
+  overflow-wrap:anywhere
+}
+.full{grid-column:1/-1}
+.codebox{
+  margin-top:12px;
+  padding:18px;
+  border:1px solid rgba(118,255,3,.12);
+  background:#020502
+}
+.codebox small{
+  display:block;
+  color:#667162;
+  font-size:8px;
+  letter-spacing:.12em;
+  margin-bottom:10px
+}
+.codebox pre{
+  margin:0;
+  color:var(--green2);
+  font-family:"Courier New",monospace;
+  font-size:12px;
+  line-height:1.7;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere
+}
+.note{
+  margin-top:20px;
+  border-left:2px solid var(--green);
+  padding:14px;
+  background:rgba(118,255,3,.025);
+  color:#71806d;
+  font-size:11px;
+  line-height:1.7
+}
+footer{
+  margin-top:65px;
+  padding-top:25px;
+  border-top:1px solid var(--line);
+  color:#53604f;
+  font-size:9px;
+  letter-spacing:.12em
+}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+@media(max-width:600px){
+  main{width:calc(100% - 30px)}
+  header{padding:0 18px}
+  .online{display:none}
+  .results{grid-template-columns:1fr}
+  .full{grid-column:auto}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<a class="brand" href="/">NET<span>//</span>TOOLS</a>
+<a class="back" href="/">← VOLVER A HERRAMIENTAS</a>
+<div class="online">● TOOL_007</div>
+</header>
+
+<main>
+
+<div class="eyebrow">TOOL_007 // IPV4 ACL UTILITIES</div>
+
+<h1>WILDCARD / <span>ACL.</span></h1>
+
+<p class="intro">
+Calcula la máscara wildcard de una red IPv4 y genera ejemplos
+de ACL estándar con sintaxis estilo Cisco IOS.
+</p>
+
+<section class="layout">
+
+<article class="panel">
+
+<h2>Parámetros</h2>
+
+<p class="subtitle">
+Introduce una dirección IPv4, el prefijo CIDR y la acción de la ACL.
+</p>
+
+<div class="field">
+<label>DIRECCIÓN IPv4</label>
+<input id="ip" value="192.168.10.25">
+</div>
+
+<div class="field">
+<label>PREFIJO CIDR</label>
+<select id="prefix"></select>
+</div>
+
+<div class="field">
+<label>ACCIÓN</label>
+<select id="action">
+<option value="permit">permit</option>
+<option value="deny">deny</option>
+</select>
+</div>
+
+<div class="field">
+<label>NÚMERO ACL ESTÁNDAR</label>
+<input id="acl" type="number" value="10">
+</div>
+
+<button class="btn" id="calculate">
+CALCULAR Y GENERAR ACL →
+</button>
+
+<div class="error" id="error"></div>
+
+</article>
+
+
+<article class="panel">
+
+<h2>Resultado</h2>
+
+<p class="subtitle">
+Valores derivados de la red y ejemplos de configuración.
+</p>
+
+<div class="results">
+
+<div class="result">
+<small>RED</small>
+<strong id="network">—</strong>
+</div>
+
+<div class="result">
+<small>MÁSCARA</small>
+<strong id="mask">—</strong>
+</div>
+
+<div class="result">
+<small>WILDCARD</small>
+<strong id="wildcard">—</strong>
+</div>
+
+<div class="result">
+<small>BROADCAST</small>
+<strong id="broadcast">—</strong>
+</div>
+
+<div class="result full">
+<small>RANGO CUBIERTO</small>
+<strong id="range">—</strong>
+</div>
+
+</div>
+
+<div class="codebox">
+<small>ACL ESTÁNDAR — RED COMPLETA</small>
+<pre id="aclNetwork">—</pre>
+</div>
+
+<div class="codebox">
+<small>ACL ESTÁNDAR — HOST EXACTO</small>
+<pre id="aclHost">—</pre>
+</div>
+
+<div class="codebox">
+<small>ACL NOMBRADA — EJEMPLO</small>
+<pre id="namedAcl">—</pre>
+</div>
+
+<div class="note">
+Verifica siempre la dirección, wildcard, plataforma y ubicación
+de la ACL antes de aplicar una configuración en producción.
+</div>
+
+</article>
+
+</section>
+
+<footer>
+NET//TOOLS — NETWORK & SYSTEM ENGINEERING TOOLBOX
+</footer>
+
+</main>
+
+<script>
+const prefixSelect = document.getElementById("prefix");
+
+for(let i=0;i<=32;i++){
+  const o=document.createElement("option");
+  o.value=i;
+  o.textContent=`/${i}`;
+  if(i===24)o.selected=true;
+  prefixSelect.appendChild(o);
+}
+
+function validIPv4(ip){
+  const p=ip.trim().split(".");
+  return p.length===4 &&
+    p.every(x=>/^\d{1,3}$/.test(x) && Number(x)>=0 && Number(x)<=255);
+}
+
+function ipToInt(ip){
+  const p=ip.split(".").map(Number);
+  return (
+    (((p[0]<<24)>>>0)+(p[1]<<16)+(p[2]<<8)+p[3])>>>0
+  );
+}
+
+function intToIp(n){
+  n=n>>>0;
+  return [
+    (n>>>24)&255,
+    (n>>>16)&255,
+    (n>>>8)&255,
+    n&255
+  ].join(".");
+}
+
+function prefixToMask(prefix){
+  return prefix===0
+    ? 0
+    : (0xffffffff << (32-prefix))>>>0;
+}
+
+function validAcl(n){
+  return (
+    (n>=1 && n<=99) ||
+    (n>=1300 && n<=1999)
+  );
+}
+
+function calculate(){
+
+  const error=document.getElementById("error");
+  error.style.display="none";
+
+  const ip=document.getElementById("ip").value.trim();
+  const prefix=Number(prefixSelect.value);
+  const action=document.getElementById("action").value;
+  const acl=Number(document.getElementById("acl").value);
+
+  if(!validIPv4(ip)){
+    error.textContent="Introduce una dirección IPv4 válida.";
+    error.style.display="block";
+    return;
+  }
+
+  if(!validAcl(acl)){
+    error.textContent=
+      "Usa una ACL estándar 1-99 o 1300-1999.";
+    error.style.display="block";
+    return;
+  }
+
+  const ipInt=ipToInt(ip);
+  const maskInt=prefixToMask(prefix);
+  const wildcardInt=(~maskInt)>>>0;
+  const networkInt=(ipInt&maskInt)>>>0;
+  const broadcastInt=(networkInt|wildcardInt)>>>0;
+
+  const network=intToIp(networkInt);
+  const mask=intToIp(maskInt);
+  const wildcard=intToIp(wildcardInt);
+  const broadcast=intToIp(broadcastInt);
+
+  document.getElementById("network").textContent=
+    `${network}/${prefix}`;
+
+  document.getElementById("mask").textContent=mask;
+  document.getElementById("wildcard").textContent=wildcard;
+  document.getElementById("broadcast").textContent=broadcast;
+  document.getElementById("range").textContent=
+    `${network} → ${broadcast}`;
+
+  const networkRule =
+    prefix===32
+      ? `access-list ${acl} ${action} host ${ip}`
+      : `access-list ${acl} ${action} ${network} ${wildcard}`;
+
+  document.getElementById("aclNetwork").textContent=
+    networkRule;
+
+  document.getElementById("aclHost").textContent=
+    `access-list ${acl} ${action} host ${ip}`;
+
+  document.getElementById("namedAcl").textContent=
+`ip access-list standard NETTOOLS_ACL
+ ${action} ${prefix===32 ? "host "+ip : network+" "+wildcard}
+exit`;
+
+}
+
+document.getElementById("calculate")
+  .addEventListener("click",calculate);
+
+document.getElementById("ip")
+  .addEventListener("keydown",e=>{
+    if(e.key==="Enter")calculate();
+  });
+
+prefixSelect.addEventListener("change",calculate);
+
+calculate();
+</script>
+
+</body>
+</html>
