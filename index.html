@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
   <meta charset="UTF-8">
@@ -11,12 +12,13 @@
 
   <meta
     name="description"
-    content="NET//TOOLS - Herramientas gratuitas para networking, IPv4, IPv6, VLSM, DNS y administración de sistemas."
+    content="NET//TOOLS - Herramientas gratuitas para networking, IPv4, IPv6, VLSM, DNS, puertos TCP UDP y administración de sistemas."
   >
 
   <title>
     NET//TOOLS — Network Engineering Toolbox
   </title>
+
 
   <style>
 
@@ -99,6 +101,11 @@
       z-index: 100;
     }
 
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
     header {
       min-height: 72px;
 
@@ -143,11 +150,11 @@
       display: flex;
       align-items: center;
 
-      gap: 25px;
+      gap: 23px;
 
       color: var(--muted);
 
-      font-size: 10px;
+      font-size: 9px;
 
       font-weight: 900;
 
@@ -182,11 +189,18 @@
       background: var(--green);
 
       box-shadow:
-        0 0 14px var(--green);
+        0 0 14px
+        var(--green);
     }
 
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
     .hero {
-      width: min(1500px,90vw);
+      width:
+        min(1500px,90vw);
 
       margin: auto;
 
@@ -232,7 +246,7 @@
     }
 
     .hero-description {
-      max-width: 690px;
+      max-width: 710px;
 
       margin: 0;
 
@@ -254,7 +268,8 @@
     }
 
     .stat {
-      padding: 12px 15px;
+      padding:
+        12px 15px;
 
       border:
         1px solid var(--line);
@@ -272,10 +287,16 @@
       color: var(--green);
     }
 
+
+    /* =========================================================
+       COMMON SECTIONS
+       ========================================================= */
+
     .tools,
     .directory,
     .info {
-      width: min(1500px,90vw);
+      width:
+        min(1500px,90vw);
 
       margin: auto;
 
@@ -317,6 +338,11 @@
 
       font-size: 12px;
     }
+
+
+    /* =========================================================
+       TOOL 001
+       ========================================================= */
 
     .tool-grid {
       display: grid;
@@ -387,14 +413,17 @@
 
       min-height: 52px;
 
-      padding: 0 15px;
+      padding:
+        0 15px;
 
       outline: none;
 
       border:
-        1px solid rgba(118,255,3,.13);
+        1px solid
+        rgba(118,255,3,.13);
 
-      background: #020502;
+      background:
+        #020502;
 
       color: var(--text);
     }
@@ -416,7 +445,8 @@
 
       cursor: pointer;
 
-      background: var(--green);
+      background:
+        var(--green);
 
       color: #031000;
 
@@ -441,7 +471,8 @@
       padding: 13px;
 
       border:
-        1px solid rgba(255,71,71,.25);
+        1px solid
+        rgba(255,71,71,.25);
 
       color: var(--danger);
 
@@ -469,7 +500,8 @@
       padding: 16px;
 
       border:
-        1px solid rgba(118,255,3,.08);
+        1px solid
+        rgba(118,255,3,.08);
 
       background:
         rgba(0,0,0,.18);
@@ -499,7 +531,8 @@
     }
 
     .binary-result {
-      grid-column: 1 / -1;
+      grid-column:
+        1 / -1;
 
       min-height: 110px;
     }
@@ -510,6 +543,11 @@
 
       line-height: 1.7;
     }
+
+
+    /* =========================================================
+       DIRECTORY
+       ========================================================= */
 
     .tool-directory-grid {
       display: grid;
@@ -534,7 +572,8 @@
       padding: 24px;
 
       border:
-        1px solid rgba(118,255,3,.08);
+        1px solid
+        rgba(118,255,3,.08);
 
       background:
         rgba(4,9,4,.6);
@@ -635,8 +674,14 @@
       background: var(--green);
 
       box-shadow:
-        0 0 9px var(--green);
+        0 0 9px
+        var(--green);
     }
+
+
+    /* =========================================================
+       INFO
+       ========================================================= */
 
     .info-grid {
       display: grid;
@@ -688,8 +733,14 @@
       line-height: 1.6;
     }
 
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
     footer {
-      width: min(1500px,90vw);
+      width:
+        min(1500px,90vw);
 
       margin: auto;
 
@@ -699,7 +750,8 @@
       gap: 30px;
 
       padding:
-        30px 0 50px;
+        30px 0
+        50px;
 
       border-top:
         1px solid var(--line);
@@ -710,6 +762,11 @@
 
       letter-spacing: .12em;
     }
+
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
 
     @media (max-width:1050px) {
 
@@ -774,11 +831,18 @@
     }
 
   </style>
+
 </head>
+
 
 <body>
 
   <div class="noise"></div>
+
+
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
 
   <header>
 
@@ -788,6 +852,7 @@
     >
       NET<span>//</span>TOOLS
     </a>
+
 
     <nav>
 
@@ -807,15 +872,23 @@
         DNS
       </a>
 
+      <a href="/ports.html">
+        PORTS
+      </a>
+
       <a href="#herramientas">
         HERRAMIENTAS
       </a>
 
     </nav>
 
+
     <div class="online">
+
       <div class="online-dot"></div>
+
       ONLINE
+
     </div>
 
   </header>
@@ -823,52 +896,95 @@
 
   <main>
 
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
     <section class="hero">
 
       <div class="eyebrow">
         Network & System Engineering Toolbox
       </div>
 
+
       <h1>
+
         NETWORK
+
         <br>
-        <span>TOOLS.</span>
+
+        <span>
+          TOOLS.
+        </span>
+
       </h1>
 
+
       <p class="hero-description">
+
         Herramientas rápidas para redes,
         direccionamiento IP, DNS,
-        infraestructura y administración
-        de sistemas directamente desde
-        tu navegador.
+        puertos, infraestructura y
+        administración de sistemas,
+        directamente desde tu navegador.
+
       </p>
+
 
       <div class="hero-stats">
 
         <div class="stat">
-          <strong>04</strong>
+
+          <strong>
+            05
+          </strong>
+
           HERRAMIENTAS ACTIVAS
+
         </div>
 
+
         <div class="stat">
-          <strong>100%</strong>
+
+          <strong>
+            100%
+          </strong>
+
           WEB
+
         </div>
 
+
         <div class="stat">
-          <strong>0</strong>
+
+          <strong>
+            0
+          </strong>
+
           INSTALACIONES
+
         </div>
 
+
         <div class="stat">
-          <strong>24/7</strong>
+
+          <strong>
+            24/7
+          </strong>
+
           ONLINE
+
         </div>
 
       </div>
 
     </section>
 
+
+    <!-- =====================================================
+         TOOL 001
+         ===================================================== -->
 
     <section
       class="tools"
@@ -898,6 +1014,7 @@
 
       <div class="tool-grid">
 
+
         <article class="panel">
 
           <h3 class="panel-title">
@@ -908,6 +1025,7 @@
             Escribe una dirección IPv4
             y selecciona el prefijo CIDR.
           </p>
+
 
           <div class="field">
 
@@ -923,6 +1041,7 @@
 
           </div>
 
+
           <div class="field">
 
             <label for="prefix">
@@ -933,6 +1052,7 @@
 
           </div>
 
+
           <button
             class="calculate"
             id="calculate"
@@ -940,6 +1060,7 @@
           >
             CALCULAR RED →
           </button>
+
 
           <div
             class="error"
@@ -960,51 +1081,125 @@
             automáticamente.
           </p>
 
+
           <div class="results">
 
             <div class="result">
-              <small>RED</small>
-              <strong id="network">—</strong>
+
+              <small>
+                RED
+              </small>
+
+              <strong id="network">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>MÁSCARA</small>
-              <strong id="mask">—</strong>
+
+              <small>
+                MÁSCARA
+              </small>
+
+              <strong id="mask">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>WILDCARD</small>
-              <strong id="wildcard">—</strong>
+
+              <small>
+                WILDCARD
+              </small>
+
+              <strong id="wildcard">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>BROADCAST</small>
-              <strong id="broadcast">—</strong>
+
+              <small>
+                BROADCAST
+              </small>
+
+              <strong id="broadcast">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>PRIMER HOST</small>
-              <strong id="firstHost">—</strong>
+
+              <small>
+                PRIMER HOST
+              </small>
+
+              <strong id="firstHost">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>ÚLTIMO HOST</small>
-              <strong id="lastHost">—</strong>
+
+              <small>
+                ÚLTIMO HOST
+              </small>
+
+              <strong id="lastHost">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>DIRECCIONES TOTALES</small>
-              <strong id="totalAddresses">—</strong>
+
+              <small>
+                DIRECCIONES TOTALES
+              </small>
+
+              <strong id="totalAddresses">
+                —
+              </strong>
+
             </div>
+
 
             <div class="result">
-              <small>HOSTS UTILIZABLES</small>
-              <strong id="usableHosts">—</strong>
+
+              <small>
+                HOSTS UTILIZABLES
+              </small>
+
+              <strong id="usableHosts">
+                —
+              </strong>
+
             </div>
 
-            <div class="result binary-result">
-              <small>IPv4 EN BINARIO</small>
-              <strong id="binary">—</strong>
+
+            <div
+              class="result binary-result"
+            >
+
+              <small>
+                IPv4 EN BINARIO
+              </small>
+
+              <strong id="binary">
+                —
+              </strong>
+
             </div>
 
           </div>
@@ -1015,6 +1210,10 @@
 
     </section>
 
+
+    <!-- =====================================================
+         HERRAMIENTAS
+         ===================================================== -->
 
     <section
       class="directory"
@@ -1036,13 +1235,16 @@
         </div>
 
         <div class="section-number">
-          04 / 09 ACTIVAS
+          05 / 09 ACTIVAS
         </div>
 
       </div>
 
 
       <div class="tool-directory-grid">
+
+
+        <!-- TOOL 001 -->
 
         <a
           class="tool-card active"
@@ -1054,20 +1256,28 @@
           </span>
 
           <div>
-            <h3>IPv4 / CIDR Calculator</h3>
+
+            <h3>
+              IPv4 / CIDR Calculator
+            </h3>
 
             <p>
               Red, máscara, wildcard,
               broadcast, hosts y binario.
             </p>
+
           </div>
 
-          <span class="tool-card-status active-status">
+          <span
+            class="tool-card-status active-status"
+          >
             ACTIVA
           </span>
 
         </a>
 
+
+        <!-- TOOL 002 -->
 
         <a
           class="tool-card active"
@@ -1079,21 +1289,29 @@
           </span>
 
           <div>
-            <h3>VLSM Calculator</h3>
+
+            <h3>
+              VLSM Calculator
+            </h3>
 
             <p>
               Distribución automática
               de subredes según
               necesidades de hosts.
             </p>
+
           </div>
 
-          <span class="tool-card-status active-status">
+          <span
+            class="tool-card-status active-status"
+          >
             ABRIR HERRAMIENTA →
           </span>
 
         </a>
 
+
+        <!-- TOOL 003 -->
 
         <a
           class="tool-card active"
@@ -1105,21 +1323,29 @@
           </span>
 
           <div>
-            <h3>IPv6 Analyzer</h3>
+
+            <h3>
+              IPv6 Analyzer
+            </h3>
 
             <p>
               Expansión, compresión,
               red, prefijo y clasificación
-              de IPv6.
+              de direcciones IPv6.
             </p>
+
           </div>
 
-          <span class="tool-card-status active-status">
+          <span
+            class="tool-card-status active-status"
+          >
             ABRIR HERRAMIENTA →
           </span>
 
         </a>
 
+
+        <!-- TOOL 004 -->
 
         <a
           class="tool-card active"
@@ -1131,44 +1357,63 @@
           </span>
 
           <div>
-            <h3>DNS Lookup</h3>
+
+            <h3>
+              DNS Lookup
+            </h3>
 
             <p>
               Consulta registros A,
               AAAA, MX, NS, TXT,
               CNAME, CAA y SOA.
             </p>
+
           </div>
 
-          <span class="tool-card-status active-status">
+          <span
+            class="tool-card-status active-status"
+          >
             ABRIR HERRAMIENTA →
           </span>
 
         </a>
 
 
-        <article class="tool-card">
+        <!-- TOOL 005 -->
+
+        <a
+          class="tool-card active"
+          href="/ports.html"
+        >
 
           <span class="tool-card-number">
             TOOL_005
           </span>
 
           <div>
-            <h3>TCP / UDP Ports</h3>
+
+            <h3>
+              TCP / UDP Ports
+            </h3>
 
             <p>
               Busca puertos,
-              protocolos y servicios
-              conocidos.
+              protocolos, servicios
+              y comandos de diagnóstico.
             </p>
+
           </div>
 
-          <span class="tool-card-status">
-            PRÓXIMAMENTE
+          <span
+            class="tool-card-status active-status"
+          >
+            ABRIR HERRAMIENTA →
           </span>
 
-        </article>
+        </a>
 
+
+        <!-- TOOL 006 -->
 
         <article class="tool-card">
 
@@ -1177,12 +1422,16 @@
           </span>
 
           <div>
-            <h3>Subnet Trainer</h3>
+
+            <h3>
+              Subnet Trainer
+            </h3>
 
             <p>
               Ejercicios interactivos
               de subnetting IPv4.
             </p>
+
           </div>
 
           <span class="tool-card-status">
@@ -1191,6 +1440,8 @@
 
         </article>
 
+
+        <!-- TOOL 007 -->
 
         <article class="tool-card">
 
@@ -1199,12 +1450,17 @@
           </span>
 
           <div>
-            <h3>Wildcard / ACL Calculator</h3>
+
+            <h3>
+              Wildcard / ACL Calculator
+            </h3>
 
             <p>
               Calcula wildcard masks
-              y ayuda a construir ACL.
+              y ayuda a construir
+              reglas ACL.
             </p>
+
           </div>
 
           <span class="tool-card-status">
@@ -1213,6 +1469,8 @@
 
         </article>
 
+
+        <!-- TOOL 008 -->
 
         <article class="tool-card">
 
@@ -1221,13 +1479,17 @@
           </span>
 
           <div>
-            <h3>Linux Command Builder</h3>
+
+            <h3>
+              Linux Command Builder
+            </h3>
 
             <p>
               Generador de comandos
               Linux para administración
               y troubleshooting.
             </p>
+
           </div>
 
           <span class="tool-card-status">
@@ -1237,6 +1499,8 @@
         </article>
 
 
+        <!-- TOOL 009 -->
+
         <article class="tool-card">
 
           <span class="tool-card-number">
@@ -1244,13 +1508,17 @@
           </span>
 
           <div>
-            <h3>Cisco Config Builder</h3>
+
+            <h3>
+              Cisco Config Builder
+            </h3>
 
             <p>
-              Generador de configuración
-              para VLAN, interfaces
-              y routing.
+              Generador para VLAN,
+              interfaces, routing
+              y servicios de red.
             </p>
+
           </div>
 
           <span class="tool-card-status">
@@ -1264,9 +1532,14 @@
     </section>
 
 
+    <!-- =====================================================
+         INFO
+         ===================================================== -->
+
     <section class="info">
 
       <div class="info-grid">
+
 
         <div class="info-item">
 
@@ -1279,10 +1552,10 @@
           </h3>
 
           <p>
-            IPv4, VLSM e IPv6 se procesan
-            directamente en el navegador.
-            DNS Lookup utiliza un resolver
-            DNS público mediante HTTPS.
+            IPv4, VLSM, IPv6 y el buscador
+            de puertos funcionan directamente
+            en el navegador. DNS Lookup utiliza
+            un resolver DNS público.
           </p>
 
         </div>
@@ -1299,9 +1572,9 @@
           </h3>
 
           <p>
-            Accede desde cualquier
-            navegador moderno sin
-            instalar aplicaciones.
+            Accede desde cualquier navegador
+            moderno sin instalar aplicaciones
+            adicionales.
           </p>
 
         </div>
@@ -1318,8 +1591,8 @@
           </h3>
 
           <p>
-            Herramientas enfocadas
-            en tareas reales de redes,
+            Utilidades pensadas para
+            tareas reales de redes,
             infraestructura y sistemas.
           </p>
 
@@ -1331,6 +1604,10 @@
 
   </main>
 
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
 
   <footer>
 
@@ -1344,6 +1621,10 @@
 
   </footer>
 
+
+  <!-- =======================================================
+       TOOL_001 JAVASCRIPT
+       ======================================================= -->
 
   <script>
 
@@ -1364,14 +1645,11 @@
           "option"
         );
 
-
       option.value =
         prefix;
 
-
       option.textContent =
         `/${prefix}`;
-
 
       if (
         prefix === 24
@@ -1381,7 +1659,6 @@
           true;
 
       }
-
 
       prefixSelect.appendChild(
         option
@@ -1558,10 +1835,8 @@
         error.textContent =
           "Introduce una dirección IPv4 válida.";
 
-
         error.style.display =
           "block";
-
 
         return;
 
@@ -1612,12 +1887,10 @@
         usable =
           total - 2;
 
-
         first =
           (
             networkInt + 1
           ) >>> 0;
-
 
         last =
           (
@@ -1773,4 +2046,5 @@
   </script>
 
 </body>
+
 </html>
