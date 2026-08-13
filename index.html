@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -10,52 +12,111 @@
 
   <meta
     name="description"
-    content="Herramientas gratuitas para networking, redes y administración de sistemas."
+    content="NET//TOOLS - Herramientas gratuitas para networking, IPv4, IPv6, VLSM y administración de sistemas."
   >
 
-  <title>NET//TOOLS — Network Engineering Toolbox</title>
+  <title>
+    NET//TOOLS — Network Engineering Toolbox
+  </title>
+
 
   <style>
+
+    /* =========================================================
+       VARIABLES
+       ========================================================= */
+
     :root {
-      --bg: #030603;
-      --panel: #071007;
-      --panel-2: #091409;
-      --green: #76ff03;
-      --green-soft: #a7ff5a;
-      --text: #efffe8;
-      --muted: #788a72;
-      --line: rgba(118,255,3,.13);
-      --danger: #ff4747;
+
+      --bg:
+        #030603;
+
+      --panel:
+        #071007;
+
+      --panel-2:
+        #091409;
+
+      --green:
+        #76ff03;
+
+      --green-soft:
+        #a7ff5a;
+
+      --text:
+        #efffe8;
+
+      --muted:
+        #788a72;
+
+      --line:
+        rgba(118,255,3,.13);
+
+      --danger:
+        #ff4747;
+
     }
+
+
+    /* =========================================================
+       BASE
+       ========================================================= */
 
     * {
-      box-sizing: border-box;
+
+      box-sizing:
+        border-box;
+
     }
+
 
     html {
-      scroll-behavior: smooth;
+
+      scroll-behavior:
+        smooth;
+
     }
 
+
     body {
+
       margin: 0;
 
-      min-height: 100vh;
+      min-height:
+        100vh;
 
       background:
+
         radial-gradient(
+
           circle at 75% 10%,
-          rgba(118,255,3,.08),
+
+          rgba(
+            118,
+            255,
+            3,
+            .08
+          ),
+
           transparent 28%
+
         ),
+
         linear-gradient(
+
           180deg,
+
           #020402,
+
           var(--bg)
+
         );
 
-      color: var(--text);
+      color:
+        var(--text);
 
       font-family:
+
         Inter,
         ui-sans-serif,
         system-ui,
@@ -63,37 +124,63 @@
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
+
     }
 
+
     a {
-      color: inherit;
-      text-decoration: none;
+
+      color:
+        inherit;
+
+      text-decoration:
+        none;
+
     }
+
 
     button,
     input,
     select {
-      font: inherit;
+
+      font:
+        inherit;
+
     }
 
+
     .noise {
-      position: fixed;
+
+      position:
+        fixed;
+
       inset: 0;
 
-      pointer-events: none;
+      pointer-events:
+        none;
 
-      opacity: .025;
+      opacity:
+        .025;
 
       background-image:
+
         repeating-linear-gradient(
+
           0deg,
+
           #fff 0,
+
           #fff 1px,
+
           transparent 1px,
+
           transparent 3px
+
         );
 
-      z-index: 100;
+      z-index:
+        100;
+
     }
 
 
@@ -102,15 +189,24 @@
        ========================================================= */
 
     header {
-      min-height: 72px;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      min-height:
+        72px;
 
-      gap: 25px;
+      display:
+        flex;
 
-      padding: 0 5vw;
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        25px;
+
+      padding:
+        0 5vw;
 
       border-bottom:
         1px solid var(--line);
@@ -121,71 +217,126 @@
       backdrop-filter:
         blur(16px);
 
-      position: sticky;
+      position:
+        sticky;
+
       top: 0;
 
-      z-index: 50;
+      z-index:
+        50;
+
     }
 
+
     .brand {
-      font-weight: 1000;
+
+      font-weight:
+        1000;
 
       letter-spacing:
         -.04em;
 
-      font-size: 22px;
+      font-size:
+        22px;
+
+      white-space:
+        nowrap;
+
     }
+
 
     .brand span {
-      color: var(--green);
+
+      color:
+        var(--green);
+
     }
 
+
     nav {
-      display: flex;
-      align-items: center;
 
-      gap: 30px;
+      display:
+        flex;
 
-      color: var(--muted);
+      align-items:
+        center;
 
-      font-size: 11px;
+      justify-content:
+        center;
 
-      font-weight: 800;
+      gap:
+        27px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        10px;
+
+      font-weight:
+        900;
 
       letter-spacing:
         .12em;
+
     }
+
 
     nav a {
+
       transition:
         color .15s ease;
+
     }
+
 
     nav a:hover {
-      color: var(--green);
+
+      color:
+        var(--green);
+
     }
 
+
     .online {
-      display: flex;
-      align-items: center;
 
-      gap: 8px;
+      display:
+        flex;
 
-      color: var(--green);
+      align-items:
+        center;
 
-      font-size: 10px;
+      gap:
+        8px;
 
-      font-weight: 900;
+      color:
+        var(--green);
+
+      font-size:
+        10px;
+
+      font-weight:
+        900;
 
       letter-spacing:
         .14em;
+
+      white-space:
+        nowrap;
+
     }
 
-    .online-dot {
-      width: 7px;
-      height: 7px;
 
-      border-radius: 50%;
+    .online-dot {
+
+      width:
+        7px;
+
+      height:
+        7px;
+
+      border-radius:
+        50%;
 
       background:
         var(--green);
@@ -193,6 +344,7 @@
       box-shadow:
         0 0 14px
         var(--green);
+
     }
 
 
@@ -201,105 +353,158 @@
        ========================================================= */
 
     .hero {
+
       width:
         min(1500px, 90vw);
 
-      margin: auto;
+      margin:
+        auto;
 
       padding:
-        clamp(80px, 11vw, 160px)
+
+        clamp(
+          80px,
+          11vw,
+          160px
+        )
+
         0
+
         80px;
+
     }
 
+
     .eyebrow {
-      color: var(--green);
 
-      font-size: 10px;
+      color:
+        var(--green);
 
-      font-weight: 900;
+      font-size:
+        10px;
+
+      font-weight:
+        900;
 
       letter-spacing:
         .22em;
 
       text-transform:
         uppercase;
+
     }
 
+
     .hero h1 {
-      max-width: 1100px;
+
+      max-width:
+        1100px;
 
       margin:
-        15px 0
+
+        15px
+        0
         25px;
 
       font-size:
+
         clamp(
           55px,
           9vw,
           145px
         );
 
-      line-height: .82;
+      line-height:
+        .82;
 
       letter-spacing:
         -.075em;
+
     }
+
 
     .hero h1 span {
-      color: var(--green);
+
+      color:
+        var(--green);
 
       text-shadow:
+
         0 0 35px
         rgba(118,255,3,.18);
+
     }
 
+
     .hero-description {
-      max-width: 650px;
+
+      max-width:
+        680px;
 
       margin: 0;
 
-      color: #96a591;
+      color:
+        #96a591;
 
       font-size:
+
         clamp(
           16px,
           2vw,
           21px
         );
 
-      line-height: 1.7;
+      line-height:
+        1.7;
+
     }
+
 
     .hero-stats {
-      display: flex;
-      flex-wrap: wrap;
 
-      gap: 12px;
+      display:
+        flex;
 
-      margin-top: 42px;
+      flex-wrap:
+        wrap;
+
+      gap:
+        12px;
+
+      margin-top:
+        42px;
+
     }
 
+
     .stat {
+
       padding:
         12px 15px;
 
       border:
-        1px solid
-        var(--line);
+        1px solid var(--line);
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
-      font-size: 9px;
+      font-size:
+        9px;
 
-      font-weight: 800;
+      font-weight:
+        800;
 
       letter-spacing:
         .13em;
+
     }
 
+
     .stat strong {
-      color: var(--green);
+
+      color:
+        var(--green);
+
     }
 
 
@@ -308,36 +513,52 @@
        ========================================================= */
 
     .tools {
+
       width:
         min(1500px, 90vw);
 
-      margin: auto;
+      margin:
+        auto;
 
-      padding-bottom: 120px;
+      padding-bottom:
+        120px;
+
     }
 
+
     .section-heading {
-      display: flex;
-      align-items: end;
+
+      display:
+        flex;
+
+      align-items:
+        end;
+
       justify-content:
         space-between;
 
-      gap: 30px;
+      gap:
+        30px;
 
-      margin-bottom: 25px;
+      margin-bottom:
+        25px;
 
       border-bottom:
-        1px solid
-        var(--line);
+        1px solid var(--line);
 
-      padding-bottom: 18px;
+      padding-bottom:
+        18px;
+
     }
 
+
     .section-heading h2 {
+
       margin:
         8px 0 0;
 
       font-size:
+
         clamp(
           32px,
           5vw,
@@ -346,128 +567,197 @@
 
       letter-spacing:
         -.055em;
+
     }
 
+
     .section-number {
-      color: var(--green);
+
+      color:
+        var(--green);
 
       font-family:
         "Courier New",
         monospace;
 
-      font-size: 12px;
+      font-size:
+        12px;
+
     }
+
 
     .tool-grid {
-      display: grid;
+
+      display:
+        grid;
 
       grid-template-columns:
-        minmax(330px, .7fr)
-        minmax(0, 1.3fr);
 
-      gap: 16px;
+        minmax(
+          330px,
+          .7fr
+        )
+
+        minmax(
+          0,
+          1.3fr
+        );
+
+      gap:
+        16px;
+
     }
 
+
     .panel {
+
       border:
         1px solid
         var(--line);
 
       background:
+
         linear-gradient(
+
           145deg,
+
           rgba(9,20,9,.9),
+
           rgba(3,7,3,.95)
+
         );
 
       padding:
+
         clamp(
           24px,
           4vw,
           42px
         );
+
     }
 
+
     .panel-title {
+
       margin:
         0 0 7px;
 
-      font-size: 26px;
+      font-size:
+        26px;
 
       letter-spacing:
         -.04em;
+
     }
 
+
     .panel-subtitle {
+
       margin:
         0 0 32px;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
-      line-height: 1.6;
+      line-height:
+        1.6;
 
-      font-size: 13px;
+      font-size:
+        13px;
+
     }
+
 
     .field {
-      display: grid;
 
-      gap: 8px;
+      display:
+        grid;
 
-      margin-bottom: 18px;
+      gap:
+        8px;
+
+      margin-bottom:
+        18px;
+
     }
 
+
     label {
-      color: #84937e;
 
-      font-size: 9px;
+      color:
+        #84937e;
 
-      font-weight: 900;
+      font-size:
+        9px;
+
+      font-weight:
+        900;
 
       letter-spacing:
         .14em;
+
     }
+
 
     input,
     select {
-      width: 100%;
 
-      min-height: 52px;
+      width:
+        100%;
+
+      min-height:
+        52px;
 
       padding:
         0 15px;
 
-      outline: none;
+      outline:
+        none;
 
       border:
         1px solid
         rgba(118,255,3,.13);
 
-      background: #020502;
+      background:
+        #020502;
 
-      color: var(--text);
+      color:
+        var(--text);
 
-      border-radius: 0;
+      border-radius:
+        0;
+
     }
+
 
     input:focus,
     select:focus {
+
       border-color:
         var(--green);
 
       box-shadow:
+
         0 0 0 1px
         rgba(118,255,3,.15);
+
     }
 
+
     .calculate {
-      width: 100%;
 
-      min-height: 54px;
+      width:
+        100%;
 
-      margin-top: 8px;
+      min-height:
+        54px;
 
-      cursor: pointer;
+      margin-top:
+        8px;
+
+      cursor:
+        pointer;
 
       border:
         1px solid
@@ -476,65 +766,102 @@
       background:
         var(--green);
 
-      color: #031000;
+      color:
+        #031000;
 
-      font-weight: 1000;
+      font-weight:
+        1000;
 
-      font-size: 11px;
+      font-size:
+        11px;
 
       letter-spacing:
         .12em;
 
       transition:
         .18s ease;
+
     }
 
+
     .calculate:hover {
+
       box-shadow:
+
         0 0 30px
         rgba(118,255,3,.22);
 
       transform:
         translateY(-1px);
+
     }
 
+
     .error {
-      display: none;
 
-      margin-top: 16px;
+      display:
+        none;
 
-      padding: 13px;
+      margin-top:
+        16px;
+
+      padding:
+        13px;
 
       border:
         1px solid
         rgba(255,71,71,.25);
 
-      color: var(--danger);
+      color:
+        var(--danger);
 
-      font-size: 12px;
+      font-size:
+        12px;
+
     }
 
+
+    /* =========================================================
+       RESULTADOS
+       ========================================================= */
+
     .results {
-      display: grid;
+
+      display:
+        grid;
 
       grid-template-columns:
+
         repeat(
           2,
           minmax(0,1fr)
         );
 
-      gap: 10px;
+      gap:
+        10px;
+
     }
 
-    .result {
-      min-height: 95px;
 
-      display: flex;
-      flex-direction: column;
+    .result {
+
+      min-height:
+        95px;
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
       justify-content:
         space-between;
 
-      padding: 16px;
+      gap:
+        12px;
+
+      padding:
+        16px;
 
       border:
         1px solid
@@ -542,20 +869,29 @@
 
       background:
         rgba(0,0,0,.18);
+
     }
 
+
     .result small {
-      color: #647060;
 
-      font-size: 8px;
+      color:
+        #647060;
 
-      font-weight: 900;
+      font-size:
+        8px;
+
+      font-weight:
+        900;
 
       letter-spacing:
         .13em;
+
     }
 
+
     .result strong {
+
       overflow-wrap:
         anywhere;
 
@@ -567,169 +903,428 @@
         monospace;
 
       font-size:
+
         clamp(
           14px,
           2vw,
           20px
         );
+
     }
 
+
     .binary-result {
+
       grid-column:
         1 / -1;
 
-      min-height: 110px;
+      min-height:
+        110px;
+
     }
 
+
     .binary-result strong {
+
       font-size:
+
         clamp(
           11px,
           1.4vw,
           15px
         );
 
-      line-height: 1.7;
+      line-height:
+        1.7;
+
     }
 
 
     /* =========================================================
-       HERRAMIENTAS
+       TOOL DIRECTORY
        ========================================================= */
 
-    .coming {
+    .directory {
+
       width:
         min(1500px, 90vw);
 
-      margin: auto;
+      margin:
+        auto;
 
-      padding-bottom: 120px;
+      padding-bottom:
+        120px;
+
     }
 
-    .coming-grid {
-      display: grid;
+
+    .tool-directory-grid {
+
+      display:
+        grid;
 
       grid-template-columns:
-        repeat(4, 1fr);
 
-      gap: 10px;
+        repeat(
+          3,
+          minmax(0,1fr)
+        );
+
+      gap:
+        10px;
+
     }
 
-    .coming-card {
-      min-height: 165px;
 
-      display: flex;
-      flex-direction: column;
+    .tool-card {
+
+      position:
+        relative;
+
+      min-height:
+        195px;
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
       justify-content:
         space-between;
 
-      padding: 22px;
+      gap:
+        20px;
+
+      overflow:
+        hidden;
+
+      padding:
+        24px;
 
       border:
         1px solid
         rgba(118,255,3,.08);
 
-      color: #707e6b;
-
       background:
         rgba(4,9,4,.6);
 
       transition:
+
         transform .18s ease,
         border-color .18s ease,
         background .18s ease,
         box-shadow .18s ease;
+
     }
 
-    .coming-card strong {
-      color: #b5c4af;
 
-      font-size: 15px;
+    .tool-card::after {
+
+      content: "";
+
+      position:
+        absolute;
+
+      right:
+        -40px;
+
+      bottom:
+        -60px;
+
+      width:
+        130px;
+
+      height:
+        130px;
+
+      border-radius:
+        50%;
+
+      background:
+        var(--green);
+
+      opacity:
+        0;
+
+      filter:
+        blur(60px);
 
       transition:
-        color .18s ease;
+        opacity .2s ease;
+
     }
 
-    .coming-card span {
-      color: var(--green);
 
-      font-size: 8px;
+    .tool-card-number {
 
-      font-weight: 900;
+      color:
+        var(--green);
+
+      font-size:
+        8px;
+
+      font-weight:
+        900;
 
       letter-spacing:
         .15em;
+
     }
 
-    .coming-card small {
-      color: #596454;
 
-      font-size: 9px;
+    .tool-card h3 {
 
-      font-weight: 700;
+      margin:
+        auto 0 0;
+
+      color:
+        #b5c4af;
+
+      font-size:
+        20px;
 
       letter-spacing:
-        .08em;
+        -.035em;
+
+      transition:
+        color .18s ease;
+
     }
 
-    .coming-card.active-tool {
-      cursor: pointer;
+
+    .tool-card p {
+
+      margin:
+        7px 0 0;
+
+      color:
+        #657160;
+
+      font-size:
+        11px;
+
+      line-height:
+        1.55;
+
+    }
+
+
+    .tool-card-status {
+
+      color:
+        #596454;
+
+      font-size:
+        8px;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        .13em;
+
+    }
+
+
+    .tool-card.active {
+
+      cursor:
+        pointer;
 
       border-color:
         rgba(118,255,3,.22);
 
       background:
+
         linear-gradient(
+
           145deg,
+
           rgba(11,26,9,.9),
+
           rgba(3,8,3,.94)
+
         );
+
     }
 
-    .coming-card.active-tool:hover {
+
+    .tool-card.active:hover {
+
       transform:
         translateY(-4px);
 
       border-color:
-        rgba(118,255,3,.6);
+        rgba(118,255,3,.62);
 
       box-shadow:
-        0 15px 50px
-        rgba(0,0,0,.25);
+
+        0 18px 60px
+        rgba(0,0,0,.28);
+
     }
 
-    .coming-card.active-tool:hover strong {
-      color: var(--green);
+
+    .tool-card.active:hover::after {
+
+      opacity:
+        .08;
+
     }
 
-    .coming-card.active-tool small {
-      color: var(--green);
+
+    .tool-card.active:hover h3 {
+
+      color:
+        var(--green);
+
     }
 
-    .status-active {
-      display: inline-flex;
 
-      align-items: center;
+    .tool-card.active
+    .tool-card-status {
 
-      gap: 5px;
+      color:
+        var(--green);
 
-      color: var(--green);
     }
 
-    .status-active::before {
+
+    .tool-card-status.active-status {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        7px;
+
+    }
+
+
+    .tool-card-status.active-status::before {
+
       content: "";
 
-      width: 5px;
-      height: 5px;
+      width:
+        6px;
 
-      border-radius: 50%;
+      height:
+        6px;
+
+      border-radius:
+        50%;
 
       background:
         var(--green);
 
       box-shadow:
-        0 0 8px
+        0 0 9px
         var(--green);
+
+    }
+
+
+    /* =========================================================
+       INFO SECTION
+       ========================================================= */
+
+    .info {
+
+      width:
+        min(1500px, 90vw);
+
+      margin:
+        auto;
+
+      padding-bottom:
+        110px;
+
+    }
+
+
+    .info-grid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      border:
+        1px solid
+        var(--line);
+
+    }
+
+
+    .info-item {
+
+      min-height:
+        160px;
+
+      padding:
+        25px;
+
+      border-right:
+        1px solid
+        var(--line);
+
+    }
+
+
+    .info-item:last-child {
+
+      border-right:
+        none;
+
+    }
+
+
+    .info-item small {
+
+      color:
+        var(--green);
+
+      font-size:
+        8px;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        .14em;
+
+    }
+
+
+    .info-item h3 {
+
+      margin:
+        15px 0 10px;
+
+      font-size:
+        20px;
+
+    }
+
+
+    .info-item p {
+
+      margin: 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        12px;
+
+      line-height:
+        1.6;
+
     }
 
 
@@ -738,31 +1333,38 @@
        ========================================================= */
 
     footer {
+
       width:
         min(1500px, 90vw);
 
-      margin: auto;
+      margin:
+        auto;
 
-      display: flex;
+      display:
+        flex;
+
       justify-content:
         space-between;
 
-      gap: 30px;
+      gap:
+        30px;
 
       padding:
-        30px 0
-        50px;
+        30px 0 50px;
 
       border-top:
         1px solid
         var(--line);
 
-      color: #596454;
+      color:
+        #596454;
 
-      font-size: 9px;
+      font-size:
+        9px;
 
       letter-spacing:
         .12em;
+
     }
 
 
@@ -770,65 +1372,127 @@
        RESPONSIVE
        ========================================================= */
 
-    @media (max-width: 1000px) {
+    @media (
+      max-width: 1050px
+    ) {
 
       .tool-grid {
+
         grid-template-columns:
           1fr;
+
       }
 
-      .coming-grid {
+
+      .tool-directory-grid {
+
         grid-template-columns:
-          repeat(2, 1fr);
+          repeat(2,1fr);
+
+      }
+
+
+      .info-grid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .info-item {
+
+        border-right:
+          none;
+
+        border-bottom:
+          1px solid var(--line);
+
+      }
+
+
+      .info-item:last-child {
+
+        border-bottom:
+          none;
+
       }
 
     }
 
-    @media (max-width: 700px) {
+
+    @media (
+      max-width: 760px
+    ) {
 
       header {
+
         padding:
-          0 20px;
+          0 18px;
+
       }
 
+
       nav {
-        display: none;
+
+        display:
+          none;
+
       }
+
 
       .hero,
       .tools,
-      .coming,
+      .directory,
+      .info,
       footer {
+
         width:
-          calc(100% - 34px);
+          calc(100% - 32px);
+
       }
+
 
       .results {
+
         grid-template-columns:
           1fr;
+
       }
+
 
       .binary-result {
+
         grid-column:
           auto;
+
       }
 
-      .coming-grid {
+
+      .tool-directory-grid {
+
         grid-template-columns:
           1fr;
+
       }
 
+
       footer {
+
         flex-direction:
           column;
+
       }
 
     }
+
   </style>
+
 </head>
 
 
 <body>
+
 
   <div class="noise"></div>
 
@@ -839,38 +1503,54 @@
 
   <header>
 
+
     <a
       class="brand"
       href="/"
     >
+
       NET<span>//</span>TOOLS
+
     </a>
 
 
     <nav>
 
+
       <a href="#ipv4">
         IPV4
       </a>
+
 
       <a href="/vlsm.html">
         VLSM
       </a>
 
+
+      <a href="/ipv6.html">
+        IPV6
+      </a>
+
+
       <a href="#herramientas">
         HERRAMIENTAS
       </a>
+
 
     </nav>
 
 
     <div class="online">
 
+
       <div class="online-dot"></div>
+
 
       ONLINE
 
+
     </div>
+
 
   </header>
 
@@ -884,46 +1564,86 @@
 
     <section class="hero">
 
+
       <div class="eyebrow">
-        Network Engineering Toolbox
+
+        Network & System Engineering Toolbox
+
       </div>
 
 
       <h1>
+
         NETWORK
+
         <br>
-        <span>TOOLS.</span>
+
+        <span>
+          TOOLS.
+        </span>
+
       </h1>
 
 
       <p class="hero-description">
 
         Herramientas rápidas para redes,
-        infraestructura y administración
-        de sistemas directamente desde
-        tu navegador.
+        direccionamiento IP, infraestructura
+        y administración de sistemas,
+        directamente desde tu navegador.
 
       </p>
 
 
       <div class="hero-stats">
 
+
         <div class="stat">
-          <strong>02</strong>
+
+          <strong>
+            03
+          </strong>
+
           HERRAMIENTAS ACTIVAS
+
         </div>
 
+
         <div class="stat">
-          <strong>100%</strong>
+
+          <strong>
+            100%
+          </strong>
+
           WEB
+
         </div>
 
+
         <div class="stat">
-          <strong>0</strong>
+
+          <strong>
+            0
+          </strong>
+
           INSTALACIONES
+
         </div>
+
+
+        <div class="stat">
+
+          <strong>
+            24/7
+          </strong>
+
+          ONLINE
+
+        </div>
+
 
       </div>
+
 
     </section>
 
@@ -937,24 +1657,36 @@
       id="ipv4"
     >
 
+
       <div class="section-heading">
+
 
         <div>
 
+
           <div class="eyebrow">
+
             IPv4 / CIDR
+
           </div>
 
+
           <h2>
+
             Calculadora de red
+
           </h2>
+
 
         </div>
 
 
         <div class="section-number">
+
           TOOL_001
+
         </div>
+
 
       </div>
 
@@ -962,28 +1694,37 @@
       <div class="tool-grid">
 
 
-        <!-- ENTRADA -->
+        <!-- ==========================
+             ENTRADA
+             ========================== -->
 
         <article class="panel">
 
+
           <h3 class="panel-title">
+
             Introduce la red
+
           </h3>
 
 
           <p class="panel-subtitle">
 
-            Escribe una dirección IPv4 y
-            selecciona el prefijo CIDR.
+            Escribe una dirección IPv4
+            y selecciona el prefijo CIDR.
 
           </p>
 
 
           <div class="field">
 
+
             <label for="ip">
+
               DIRECCIÓN IPv4
+
             </label>
+
 
             <input
               id="ip"
@@ -993,16 +1734,24 @@
               autocomplete="off"
             >
 
+
           </div>
 
 
           <div class="field">
 
+
             <label for="prefix">
+
               PREFIJO CIDR
+
             </label>
 
-            <select id="prefix"></select>
+
+            <select
+              id="prefix"
+            ></select>
+
 
           </div>
 
@@ -1012,7 +1761,9 @@
             id="calculate"
             type="button"
           >
+
             CALCULAR RED →
+
           </button>
 
 
@@ -1021,22 +1772,30 @@
             id="error"
           ></div>
 
+
         </article>
 
 
-        <!-- RESULTADOS -->
+        <!-- ==========================
+             RESULTADOS
+             ========================== -->
 
         <article class="panel">
 
+
           <h3 class="panel-title">
+
             Resultado
+
           </h3>
 
 
           <p class="panel-subtitle">
 
-            Información calculada a partir
-            de la dirección y prefijo.
+            Información calculada
+            automáticamente a partir
+            de la dirección IPv4
+            y del prefijo CIDR.
 
           </p>
 
@@ -1046,104 +1805,128 @@
 
             <div class="result">
 
+
               <small>
                 RED
               </small>
+
 
               <strong id="network">
                 —
               </strong>
 
+
             </div>
 
 
             <div class="result">
+
 
               <small>
                 MÁSCARA
               </small>
 
+
               <strong id="mask">
                 —
               </strong>
+
 
             </div>
 
 
             <div class="result">
+
 
               <small>
                 WILDCARD
               </small>
 
+
               <strong id="wildcard">
                 —
               </strong>
+
 
             </div>
 
 
             <div class="result">
+
 
               <small>
                 BROADCAST
               </small>
 
+
               <strong id="broadcast">
                 —
               </strong>
+
 
             </div>
 
 
             <div class="result">
+
 
               <small>
                 PRIMER HOST
               </small>
 
+
               <strong id="firstHost">
                 —
               </strong>
+
 
             </div>
 
 
             <div class="result">
+
 
               <small>
                 ÚLTIMO HOST
               </small>
 
+
               <strong id="lastHost">
                 —
               </strong>
+
 
             </div>
 
 
             <div class="result">
+
 
               <small>
                 DIRECCIONES TOTALES
               </small>
 
+
               <strong id="totalAddresses">
                 —
               </strong>
+
 
             </div>
 
 
             <div class="result">
 
+
               <small>
                 HOSTS UTILIZABLES
               </small>
 
+
               <strong id="usableHosts">
                 —
               </strong>
+
 
             </div>
 
@@ -1152,73 +1935,123 @@
               class="result binary-result"
             >
 
+
               <small>
                 IPv4 EN BINARIO
               </small>
 
+
               <strong id="binary">
                 —
               </strong>
+
 
             </div>
 
 
           </div>
 
+
         </article>
 
+
       </div>
+
 
     </section>
 
 
     <!-- =====================================================
-         HERRAMIENTAS
+         DIRECTORIO DE HERRAMIENTAS
          ===================================================== -->
 
     <section
-      class="coming"
+      class="directory"
       id="herramientas"
     >
 
+
       <div class="section-heading">
+
 
         <div>
 
+
           <div class="eyebrow">
+
             Network Toolbox
+
           </div>
 
+
           <h2>
+
             Herramientas
+
           </h2>
 
+
         </div>
+
+
+        <div class="section-number">
+
+          03 / 09 ACTIVAS
+
+        </div>
+
 
       </div>
 
 
-      <div class="coming-grid">
+      <div class="tool-directory-grid">
 
 
         <!-- TOOL 001 -->
 
         <a
-          class="coming-card active-tool"
+          class="tool-card active"
           href="#ipv4"
         >
 
-          <span>
+
+          <span class="tool-card-number">
+
             TOOL_001
+
           </span>
 
-          <strong>
-            IPv4 / CIDR Calculator
-          </strong>
 
-          <small class="status-active">
+          <div>
+
+
+            <h3>
+
+              IPv4 / CIDR Calculator
+
+            </h3>
+
+
+            <p>
+
+              Red, máscara, wildcard,
+              broadcast, rango de hosts
+              y representación binaria.
+
+            </p>
+
+
+          </div>
+
+
+          <span
+            class="tool-card-status active-status"
+          >
+
             ACTIVA
-          </small>
+
+          </span>
+
 
         </a>
 
@@ -1226,161 +2059,489 @@
         <!-- TOOL 002 -->
 
         <a
-          class="coming-card active-tool"
+          class="tool-card active"
           href="/vlsm.html"
         >
 
-          <span>
+
+          <span class="tool-card-number">
+
             TOOL_002
+
           </span>
 
-          <strong>
-            VLSM Calculator
-          </strong>
 
-          <small class="status-active">
+          <div>
+
+
+            <h3>
+
+              VLSM Calculator
+
+            </h3>
+
+
+            <p>
+
+              Divide una red IPv4
+              automáticamente según
+              los hosts requeridos
+              por cada segmento.
+
+            </p>
+
+
+          </div>
+
+
+          <span
+            class="tool-card-status active-status"
+          >
+
             ABRIR HERRAMIENTA →
-          </small>
+
+          </span>
+
 
         </a>
 
 
         <!-- TOOL 003 -->
 
-        <article class="coming-card">
+        <a
+          class="tool-card active"
+          href="/ipv6.html"
+        >
 
-          <span>
+
+          <span class="tool-card-number">
+
             TOOL_003
+
           </span>
 
-          <strong>
-            IPv6 Analyzer
-          </strong>
 
-          <small>
-            PRÓXIMAMENTE
-          </small>
+          <div>
 
-        </article>
+
+            <h3>
+
+              IPv6 Analyzer
+
+            </h3>
+
+
+            <p>
+
+              Expande, comprime y analiza
+              IPv6, prefijos, red,
+              host ID y tipo de dirección.
+
+            </p>
+
+
+          </div>
+
+
+          <span
+            class="tool-card-status active-status"
+          >
+
+            ABRIR HERRAMIENTA →
+
+          </span>
+
+
+        </a>
 
 
         <!-- TOOL 004 -->
 
-        <article class="coming-card">
+        <article
+          class="tool-card"
+        >
 
-          <span>
+
+          <span class="tool-card-number">
+
             TOOL_004
+
           </span>
 
-          <strong>
-            DNS Lookup
-          </strong>
 
-          <small>
+          <div>
+
+
+            <h3>
+
+              DNS Lookup
+
+            </h3>
+
+
+            <p>
+
+              Consulta registros
+              A, AAAA, MX, TXT,
+              NS y CNAME.
+
+            </p>
+
+
+          </div>
+
+
+          <span class="tool-card-status">
+
             PRÓXIMAMENTE
-          </small>
+
+          </span>
+
 
         </article>
 
 
         <!-- TOOL 005 -->
 
-        <article class="coming-card">
+        <article
+          class="tool-card"
+        >
 
-          <span>
+
+          <span class="tool-card-number">
+
             TOOL_005
+
           </span>
 
-          <strong>
-            TCP / UDP Ports
-          </strong>
 
-          <small>
+          <div>
+
+
+            <h3>
+
+              TCP / UDP Ports
+
+            </h3>
+
+
+            <p>
+
+              Consulta puertos,
+              protocolos y servicios
+              utilizados habitualmente.
+
+            </p>
+
+
+          </div>
+
+
+          <span class="tool-card-status">
+
             PRÓXIMAMENTE
-          </small>
+
+          </span>
+
 
         </article>
 
 
         <!-- TOOL 006 -->
 
-        <article class="coming-card">
+        <article
+          class="tool-card"
+        >
 
-          <span>
+
+          <span class="tool-card-number">
+
             TOOL_006
+
           </span>
 
-          <strong>
-            Subnet Trainer
-          </strong>
 
-          <small>
+          <div>
+
+
+            <h3>
+
+              Subnet Trainer
+
+            </h3>
+
+
+            <p>
+
+              Ejercicios interactivos
+              para practicar subnetting
+              y direccionamiento IPv4.
+
+            </p>
+
+
+          </div>
+
+
+          <span class="tool-card-status">
+
             PRÓXIMAMENTE
-          </small>
+
+          </span>
+
 
         </article>
 
 
         <!-- TOOL 007 -->
 
-        <article class="coming-card">
+        <article
+          class="tool-card"
+        >
 
-          <span>
+
+          <span class="tool-card-number">
+
             TOOL_007
+
           </span>
 
-          <strong>
-            Wildcard / ACL Calculator
-          </strong>
 
-          <small>
+          <div>
+
+
+            <h3>
+
+              Wildcard / ACL Calculator
+
+            </h3>
+
+
+            <p>
+
+              Calcula wildcard masks
+              y ayuda a construir
+              reglas ACL.
+
+            </p>
+
+
+          </div>
+
+
+          <span class="tool-card-status">
+
             PRÓXIMAMENTE
-          </small>
+
+          </span>
+
 
         </article>
 
 
         <!-- TOOL 008 -->
 
-        <article class="coming-card">
+        <article
+          class="tool-card"
+        >
 
-          <span>
+
+          <span class="tool-card-number">
+
             TOOL_008
+
           </span>
 
-          <strong>
-            Linux Command Builder
-          </strong>
 
-          <small>
+          <div>
+
+
+            <h3>
+
+              Linux Command Builder
+
+            </h3>
+
+
+            <p>
+
+              Construye comandos Linux
+              para administración,
+              troubleshooting y redes.
+
+            </p>
+
+
+          </div>
+
+
+          <span class="tool-card-status">
+
             PRÓXIMAMENTE
-          </small>
+
+          </span>
+
 
         </article>
 
 
         <!-- TOOL 009 -->
 
-        <article class="coming-card">
+        <article
+          class="tool-card"
+        >
 
-          <span>
+
+          <span class="tool-card-number">
+
             TOOL_009
+
           </span>
 
-          <strong>
-            Cisco Config Builder
-          </strong>
 
-          <small>
+          <div>
+
+
+            <h3>
+
+              Cisco Config Builder
+
+            </h3>
+
+
+            <p>
+
+              Generador de configuraciones
+              para VLAN, interfaces,
+              routing y servicios.
+
+            </p>
+
+
+          </div>
+
+
+          <span class="tool-card-status">
+
             PRÓXIMAMENTE
-          </small>
+
+          </span>
+
 
         </article>
 
 
       </div>
 
+
     </section>
+
+
+    <!-- =====================================================
+         INFORMACIÓN
+         ===================================================== -->
+
+    <section class="info">
+
+
+      <div class="info-grid">
+
+
+        <div class="info-item">
+
+
+          <small>
+
+            01 // PRIVACIDAD
+
+          </small>
+
+
+          <h3>
+
+            Procesamiento local
+
+          </h3>
+
+
+          <p>
+
+            Las herramientas IPv4,
+            VLSM e IPv6 realizan
+            sus cálculos directamente
+            en tu navegador.
+
+          </p>
+
+
+        </div>
+
+
+        <div class="info-item">
+
+
+          <small>
+
+            02 // ACCESO
+
+          </small>
+
+
+          <h3>
+
+            Sin instalaciones
+
+          </h3>
+
+
+          <p>
+
+            Accede desde cualquier
+            navegador moderno sin
+            instalar aplicaciones
+            adicionales.
+
+          </p>
+
+
+        </div>
+
+
+        <div class="info-item">
+
+
+          <small>
+
+            03 // OBJETIVO
+
+          </small>
+
+
+          <h3>
+
+            Networking práctico
+
+          </h3>
+
+
+          <p>
+
+            Una colección de utilidades
+            enfocadas en tareas reales
+            de redes, infraestructura
+            y administración de sistemas.
+
+          </p>
+
+
+        </div>
+
+
+      </div>
+
+
+    </section>
+
 
   </main>
 
@@ -1391,22 +2552,35 @@
 
   <footer>
 
-    <div>
-      NET//TOOLS
-    </div>
 
     <div>
-      NETWORK & SYSTEM ENGINEERING TOOLBOX
+
+      NET//TOOLS
+
     </div>
+
+
+    <div>
+
+      NETWORK & SYSTEM ENGINEERING TOOLBOX
+
+    </div>
+
 
   </footer>
 
 
   <!-- =======================================================
-       JAVASCRIPT — IPv4 / CIDR
+       JAVASCRIPT
+       TOOL_001 — IPv4 / CIDR
        ======================================================= -->
 
   <script>
+
+
+    /* ========================================================
+       CREAR SELECT CIDR
+       ======================================================== */
 
     const prefixSelect =
       document.getElementById(
@@ -1414,44 +2588,53 @@
       );
 
 
-    /* Crear prefijos /0 a /32 */
-
     for (
       let prefix = 0;
       prefix <= 32;
       prefix++
     ) {
 
+
       const option =
         document.createElement(
           "option"
         );
 
+
       option.value =
         prefix;
+
 
       option.textContent =
         `/${prefix}`;
 
-      if (prefix === 24) {
+
+      if (
+        prefix === 24
+      ) {
 
         option.selected =
           true;
 
       }
 
+
       prefixSelect.appendChild(
         option
       );
 
+
     }
 
 
-    /* =======================================================
+    /* ========================================================
        VALIDAR IPv4
-       ======================================================= */
+       ======================================================== */
 
-    function validIPv4(ip) {
+    function validIPv4(
+      ip
+    ) {
+
 
       const parts =
         ip
@@ -1469,7 +2652,9 @@
 
 
       return parts.every(
-        (part) => {
+
+        part => {
+
 
           if (
             !/^\d{1,3}$/.test(
@@ -1483,52 +2668,79 @@
 
 
           const value =
-            Number(part);
+            Number(
+              part
+            );
 
 
           return (
+
             value >= 0 &&
             value <= 255
+
           );
 
         }
+
       );
+
 
     }
 
 
-    /* =======================================================
+    /* ========================================================
        IPv4 → ENTERO
-       ======================================================= */
+       ======================================================== */
 
-    function ipToInt(ip) {
+    function ipToInt(
+      ip
+    ) {
+
 
       const parts =
         ip
           .split(".")
-          .map(Number);
+          .map(
+            Number
+          );
 
 
       return (
+
         (
+
           ((parts[0] << 24) >>> 0)
+
           +
+
           (parts[1] << 16)
+
           +
+
           (parts[2] << 8)
+
           +
+
           parts[3]
-        ) >>> 0
+
+        )
+
+        >>> 0
+
       );
+
 
     }
 
 
-    /* =======================================================
+    /* ========================================================
        ENTERO → IPv4
-       ======================================================= */
+       ======================================================== */
 
-    function intToIp(value) {
+    function intToIp(
+      value
+    ) {
+
 
       value =
         value >>> 0;
@@ -1546,14 +2758,18 @@
 
       ].join(".");
 
+
     }
 
 
-    /* =======================================================
-       PREFIJO → MÁSCARA
-       ======================================================= */
+    /* ========================================================
+       CIDR → MÁSCARA
+       ======================================================== */
 
-    function prefixToMask(prefix) {
+    function prefixToMask(
+      prefix
+    ) {
+
 
       if (
         prefix === 0
@@ -1565,25 +2781,33 @@
 
 
       return (
-        0xffffffff <<
+
+        0xffffffff
+        <<
         (32 - prefix)
+
       ) >>> 0;
+
 
     }
 
 
-    /* =======================================================
+    /* ========================================================
        IPv4 → BINARIO
-       ======================================================= */
+       ======================================================== */
 
-    function toBinary(ip) {
+    function toBinary(
+      ip
+    ) {
+
 
       return ip
 
         .split(".")
 
         .map(
-          (part) =>
+
+          part =>
 
             Number(part)
 
@@ -1593,18 +2817,21 @@
                 8,
                 "0"
               )
+
         )
 
         .join(".");
 
+
     }
 
 
-    /* =======================================================
-       CALCULAR
-       ======================================================= */
+    /* ========================================================
+       CALCULAR RED
+       ======================================================== */
 
     function calculateNetwork() {
+
 
       const error =
         document.getElementById(
@@ -1631,25 +2858,39 @@
         );
 
 
-      /* Validación */
+      /* ======================================================
+         VALIDACIÓN
+         ====================================================== */
 
       if (
-        !validIPv4(ip)
+        !validIPv4(
+          ip
+        )
       ) {
+
 
         error.textContent =
           "Introduce una dirección IPv4 válida.";
 
+
         error.style.display =
           "block";
 
+
         return;
+
 
       }
 
 
+      /* ======================================================
+         CONVERSIÓN
+         ====================================================== */
+
       const ipInt =
-        ipToInt(ip);
+        ipToInt(
+          ip
+        );
 
 
       const maskInt =
@@ -1690,64 +2931,83 @@
       let last;
 
 
-      /*
-       * /0 hasta /30:
-       * red + broadcast reservados.
-       *
-       * /31:
-       * RFC 3021 para enlaces punto a punto.
-       *
-       * /32:
-       * una única dirección.
-       */
+      /* ======================================================
+         /0 - /30
+         ====================================================== */
 
       if (
         prefix <= 30
       ) {
 
+
         usable =
           total - 2;
+
 
         first =
           (
             networkInt + 1
           ) >>> 0;
 
+
         last =
           (
             broadcastInt - 1
           ) >>> 0;
 
+
       }
+
+
+      /* ======================================================
+         /31 - RFC 3021
+         ====================================================== */
 
       else if (
         prefix === 31
       ) {
 
-        usable = 2;
+
+        usable =
+          2;
+
 
         first =
           networkInt;
+
 
         last =
           broadcastInt;
 
+
       }
+
+
+      /* ======================================================
+         /32
+         ====================================================== */
 
       else {
 
-        usable = 1;
+
+        usable =
+          1;
+
 
         first =
           networkInt;
 
+
         last =
           networkInt;
+
 
       }
 
 
-      /* RED */
+      /* ======================================================
+         MOSTRAR RED
+         ====================================================== */
 
       document
         .getElementById(
@@ -1760,7 +3020,9 @@
           )}/${prefix}`;
 
 
-      /* MÁSCARA */
+      /* ======================================================
+         MÁSCARA
+         ====================================================== */
 
       document
         .getElementById(
@@ -1773,7 +3035,9 @@
           );
 
 
-      /* WILDCARD */
+      /* ======================================================
+         WILDCARD
+         ====================================================== */
 
       document
         .getElementById(
@@ -1786,7 +3050,9 @@
           );
 
 
-      /* BROADCAST */
+      /* ======================================================
+         BROADCAST
+         ====================================================== */
 
       document
         .getElementById(
@@ -1799,7 +3065,9 @@
           );
 
 
-      /* PRIMER HOST */
+      /* ======================================================
+         PRIMER HOST
+         ====================================================== */
 
       document
         .getElementById(
@@ -1812,7 +3080,9 @@
           );
 
 
-      /* ÚLTIMO HOST */
+      /* ======================================================
+         ÚLTIMO HOST
+         ====================================================== */
 
       document
         .getElementById(
@@ -1825,7 +3095,9 @@
           );
 
 
-      /* TOTAL */
+      /* ======================================================
+         TOTAL
+         ====================================================== */
 
       document
         .getElementById(
@@ -1838,7 +3110,9 @@
           );
 
 
-      /* HOSTS */
+      /* ======================================================
+         HOSTS UTILIZABLES
+         ====================================================== */
 
       document
         .getElementById(
@@ -1851,7 +3125,9 @@
           );
 
 
-      /* BINARIO */
+      /* ======================================================
+         BINARIO
+         ====================================================== */
 
       document
         .getElementById(
@@ -1859,22 +3135,28 @@
         )
         .textContent =
 
-          toBinary(ip);
+          toBinary(
+            ip
+          );
+
 
     }
 
 
-    /* =======================================================
+    /* ========================================================
        EVENTOS
-       ======================================================= */
+       ======================================================== */
 
     document
       .getElementById(
         "calculate"
       )
       .addEventListener(
+
         "click",
+
         calculateNetwork
+
       );
 
 
@@ -1883,34 +3165,49 @@
         "ip"
       )
       .addEventListener(
+
         "keydown",
-        (event) => {
+
+        event => {
+
 
           if (
             event.key ===
             "Enter"
           ) {
 
+
             calculateNetwork();
+
 
           }
 
+
         }
+
       );
 
 
     prefixSelect
       .addEventListener(
+
         "change",
+
         calculateNetwork
+
       );
 
 
-    /* Ejecutar al cargar */
+    /* ========================================================
+       CALCULAR AL CARGAR
+       ======================================================== */
 
     calculateNetwork();
 
+
   </script>
 
+
 </body>
+
 </html>
