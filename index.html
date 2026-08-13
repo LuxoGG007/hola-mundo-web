@@ -3,2047 +3,1586 @@
 
 <head>
 
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="description"
-    content="NET//TOOLS - Herramientas gratuitas para networking, IPv4, IPv6, VLSM, DNS, puertos TCP UDP y administración de sistemas."
-  >
-
-  <title>
-    NET//TOOLS — Network Engineering Toolbox
-  </title>
-
-
-  <style>
-
-    :root {
-      --bg: #030603;
-      --panel: #071007;
-      --green: #76ff03;
-      --green-soft: #a7ff5a;
-      --text: #efffe8;
-      --muted: #788a72;
-      --line: rgba(118,255,3,.13);
-      --danger: #ff4747;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0"
+>
+
+<meta
+  name="description"
+  content="NET//TOOLS - Herramientas para networking, IPv4, IPv6, VLSM, DNS, puertos, subnetting, ACL, Linux y Cisco."
+>
+
+<title>
+NET//TOOLS — Network Engineering Toolbox
+</title>
+
+<style>
+
+:root{
+  --bg:#030603;
+  --panel:#071007;
+  --green:#76ff03;
+  --green2:#a7ff5a;
+  --text:#efffe8;
+  --muted:#788a72;
+  --line:rgba(118,255,3,.13);
+  --red:#ff4747
+}
 
-    body {
-      margin: 0;
+*{
+  box-sizing:border-box
+}
 
-      min-height: 100vh;
+html{
+  scroll-behavior:smooth
+}
 
-      background:
-        radial-gradient(
-          circle at 75% 10%,
-          rgba(118,255,3,.08),
-          transparent 28%
-        ),
-        linear-gradient(
-          180deg,
-          #020402,
-          var(--bg)
-        );
+body{
+  margin:0;
+  min-height:100vh;
 
-      color: var(--text);
+  background:
+    radial-gradient(
+      circle at 75% 10%,
+      rgba(118,255,3,.08),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #020402,
+      var(--bg)
+    );
 
-      font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-    }
+  color:var(--text);
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif
+}
 
-    button,
-    input,
-    select {
-      font: inherit;
-    }
+a{
+  color:inherit;
+  text-decoration:none
+}
 
-    .noise {
-      position: fixed;
-      inset: 0;
+button,
+input,
+select{
+  font:inherit
+}
 
-      pointer-events: none;
 
-      opacity: .025;
+/* HEADER */
 
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          #fff 0,
-          #fff 1px,
-          transparent 1px,
-          transparent 3px
-        );
+header{
+  min-height:72px;
 
-      z-index: 100;
-    }
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
+  gap:20px;
 
-    /* =========================================================
-       HEADER
-       ========================================================= */
+  padding:0 4vw;
 
-    header {
-      min-height: 72px;
+  border-bottom:
+    1px solid var(--line);
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+  background:
+    rgba(3,6,3,.9);
 
-      gap: 25px;
+  backdrop-filter:
+    blur(16px);
 
-      padding: 0 5vw;
+  position:sticky;
 
-      border-bottom:
-        1px solid var(--line);
+  top:0;
 
-      background:
-        rgba(3,6,3,.88);
+  z-index:50
+}
 
-      backdrop-filter:
-        blur(16px);
+.brand{
+  font-size:22px;
+  font-weight:1000;
+  letter-spacing:-.04em;
+  white-space:nowrap
+}
 
-      position: sticky;
-      top: 0;
+.brand span{
+  color:var(--green)
+}
 
-      z-index: 50;
-    }
+nav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-    .brand {
-      font-weight: 1000;
+  gap:15px;
 
-      letter-spacing: -.04em;
+  color:var(--muted);
 
-      font-size: 22px;
+  font-size:8px;
 
-      white-space: nowrap;
-    }
+  font-weight:900;
 
-    .brand span {
-      color: var(--green);
-    }
+  letter-spacing:.09em
+}
 
-    nav {
-      display: flex;
-      align-items: center;
+nav a:hover{
+  color:var(--green)
+}
 
-      gap: 23px;
+.online{
+  color:var(--green);
 
-      color: var(--muted);
+  font-size:9px;
 
-      font-size: 9px;
+  font-weight:900;
 
-      font-weight: 900;
+  letter-spacing:.13em;
 
-      letter-spacing: .1em;
-    }
+  white-space:nowrap
+}
 
-    nav a:hover {
-      color: var(--green);
-    }
 
-    .online {
-      display: flex;
-      align-items: center;
+/* HERO */
 
-      gap: 8px;
+.hero{
+  width:min(1500px,90vw);
 
-      color: var(--green);
+  margin:auto;
 
-      font-size: 10px;
+  padding:
+    clamp(80px,11vw,160px)
+    0
+    80px
+}
 
-      font-weight: 900;
+.eyebrow{
+  color:var(--green);
 
-      letter-spacing: .14em;
-    }
+  font-size:9px;
 
-    .online-dot {
-      width: 7px;
-      height: 7px;
+  font-weight:900;
 
-      border-radius: 50%;
+  letter-spacing:.2em;
 
-      background: var(--green);
+  text-transform:uppercase
+}
 
-      box-shadow:
-        0 0 14px
-        var(--green);
-    }
+.hero h1{
+  margin:
+    15px 0
+    25px;
 
+  font-size:
+    clamp(55px,9vw,145px);
 
-    /* =========================================================
-       HERO
-       ========================================================= */
+  line-height:.82;
 
-    .hero {
-      width:
-        min(1500px,90vw);
+  letter-spacing:-.075em
+}
 
-      margin: auto;
+.hero h1 span{
+  color:var(--green);
 
-      padding:
-        clamp(80px,11vw,160px)
-        0
-        80px;
-    }
+  text-shadow:
+    0 0 35px
+    rgba(118,255,3,.18)
+}
 
-    .eyebrow {
-      color: var(--green);
+.hero-description{
+  max-width:750px;
 
-      font-size: 10px;
+  margin:0;
 
-      font-weight: 900;
+  color:#96a591;
 
-      letter-spacing: .22em;
+  font-size:
+    clamp(16px,2vw,21px);
 
-      text-transform: uppercase;
-    }
+  line-height:1.7
+}
 
-    .hero h1 {
-      max-width: 1100px;
+.hero-stats{
+  display:flex;
+  flex-wrap:wrap;
 
-      margin:
-        15px 0
-        25px;
+  gap:10px;
 
-      font-size:
-        clamp(55px,9vw,145px);
+  margin-top:40px
+}
 
-      line-height: .82;
+.stat{
+  padding:12px 15px;
 
-      letter-spacing: -.075em;
-    }
+  border:
+    1px solid var(--line);
 
-    .hero h1 span {
-      color: var(--green);
+  color:var(--muted);
 
-      text-shadow:
-        0 0 35px
-        rgba(118,255,3,.18);
-    }
+  font-size:9px;
 
-    .hero-description {
-      max-width: 710px;
+  font-weight:800;
 
-      margin: 0;
+  letter-spacing:.12em
+}
 
-      color: #96a591;
+.stat strong{
+  color:var(--green)
+}
 
-      font-size:
-        clamp(16px,2vw,21px);
 
-      line-height: 1.7;
-    }
+/* SECTIONS */
 
-    .hero-stats {
-      display: flex;
-      flex-wrap: wrap;
+.tools,
+.directory,
+.info{
+  width:min(1500px,90vw);
 
-      gap: 12px;
+  margin:auto;
 
-      margin-top: 42px;
-    }
+  padding-bottom:115px
+}
 
-    .stat {
-      padding:
-        12px 15px;
+.section-heading{
+  display:flex;
 
-      border:
-        1px solid var(--line);
+  align-items:end;
+  justify-content:space-between;
 
-      color: var(--muted);
+  gap:25px;
 
-      font-size: 9px;
+  margin-bottom:25px;
 
-      font-weight: 800;
+  padding-bottom:18px;
 
-      letter-spacing: .13em;
-    }
+  border-bottom:
+    1px solid var(--line)
+}
 
-    .stat strong {
-      color: var(--green);
-    }
+.section-heading h2{
+  margin:8px 0 0;
 
+  font-size:
+    clamp(32px,5vw,65px);
 
-    /* =========================================================
-       COMMON SECTIONS
-       ========================================================= */
+  letter-spacing:-.055em
+}
 
-    .tools,
-    .directory,
-    .info {
-      width:
-        min(1500px,90vw);
+.section-number{
+  color:var(--green);
 
-      margin: auto;
+  font-family:
+    "Courier New",
+    monospace;
 
-      padding-bottom: 120px;
-    }
+  font-size:12px
+}
 
-    .section-heading {
-      display: flex;
 
-      align-items: end;
-      justify-content: space-between;
+/* IPV4 */
 
-      gap: 30px;
+.tool-grid{
+  display:grid;
 
-      margin-bottom: 25px;
+  grid-template-columns:
+    minmax(330px,.7fr)
+    minmax(0,1.3fr);
 
-      padding-bottom: 18px;
+  gap:16px
+}
 
-      border-bottom:
-        1px solid var(--line);
-    }
+.panel{
+  padding:
+    clamp(24px,4vw,42px);
 
-    .section-heading h2 {
-      margin:
-        8px 0 0;
+  border:
+    1px solid var(--line);
 
-      font-size:
-        clamp(32px,5vw,65px);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(9,20,9,.9),
+      rgba(3,7,3,.95)
+    )
+}
 
-      letter-spacing: -.055em;
-    }
+.panel-title{
+  margin:0 0 7px;
 
-    .section-number {
-      color: var(--green);
+  font-size:26px
+}
 
-      font-family:
-        "Courier New",
-        monospace;
+.panel-subtitle{
+  margin:0 0 30px;
 
-      font-size: 12px;
-    }
+  color:var(--muted);
 
+  font-size:13px;
 
-    /* =========================================================
-       TOOL 001
-       ========================================================= */
+  line-height:1.6
+}
 
-    .tool-grid {
-      display: grid;
+.field{
+  display:grid;
 
-      grid-template-columns:
-        minmax(330px,.7fr)
-        minmax(0,1.3fr);
+  gap:8px;
 
-      gap: 16px;
-    }
+  margin-bottom:18px
+}
 
-    .panel {
-      padding:
-        clamp(24px,4vw,42px);
+label{
+  color:#84937e;
 
-      border:
-        1px solid var(--line);
+  font-size:8px;
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(9,20,9,.9),
-          rgba(3,7,3,.95)
-        );
-    }
+  font-weight:900;
 
-    .panel-title {
-      margin:
-        0 0 7px;
+  letter-spacing:.13em
+}
 
-      font-size: 26px;
+input,
+select{
+  width:100%;
 
-      letter-spacing: -.04em;
-    }
+  min-height:52px;
 
-    .panel-subtitle {
-      margin:
-        0 0 32px;
+  padding:0 15px;
 
-      color: var(--muted);
+  outline:none;
 
-      line-height: 1.6;
+  border:
+    1px solid
+    rgba(118,255,3,.13);
 
-      font-size: 13px;
-    }
+  background:#020502;
 
-    .field {
-      display: grid;
+  color:var(--text)
+}
 
-      gap: 8px;
+input:focus,
+select:focus{
+  border-color:var(--green)
+}
 
-      margin-bottom: 18px;
-    }
+.calculate{
+  width:100%;
 
-    label {
-      color: #84937e;
+  min-height:54px;
 
-      font-size: 9px;
+  margin-top:8px;
 
-      font-weight: 900;
+  border:
+    1px solid var(--green);
 
-      letter-spacing: .14em;
-    }
+  background:var(--green);
 
-    input,
-    select {
-      width: 100%;
+  color:#031000;
 
-      min-height: 52px;
+  cursor:pointer;
 
-      padding:
-        0 15px;
+  font-size:10px;
 
-      outline: none;
+  font-weight:1000;
 
-      border:
-        1px solid
-        rgba(118,255,3,.13);
+  letter-spacing:.12em
+}
 
-      background:
-        #020502;
+.error{
+  display:none;
 
-      color: var(--text);
-    }
+  margin-top:15px;
 
-    input:focus,
-    select:focus {
-      border-color: var(--green);
-    }
+  padding:12px;
 
-    .calculate {
-      width: 100%;
+  color:var(--red);
 
-      min-height: 54px;
+  border:
+    1px solid
+    rgba(255,71,71,.25);
 
-      margin-top: 8px;
+  font-size:11px
+}
 
-      border:
-        1px solid var(--green);
+.results{
+  display:grid;
 
-      cursor: pointer;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
 
-      background:
-        var(--green);
+  gap:9px
+}
 
-      color: #031000;
+.result{
+  min-height:95px;
 
-      font-size: 11px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 
-      font-weight: 1000;
+  gap:10px;
 
-      letter-spacing: .12em;
-    }
+  padding:15px;
 
-    .calculate:hover {
-      box-shadow:
-        0 0 30px
-        rgba(118,255,3,.22);
-    }
+  border:
+    1px solid
+    rgba(118,255,3,.08);
 
-    .error {
-      display: none;
+  background:
+    rgba(0,0,0,.18)
+}
 
-      margin-top: 16px;
+.result small{
+  color:#647060;
 
-      padding: 13px;
+  font-size:8px;
 
-      border:
-        1px solid
-        rgba(255,71,71,.25);
+  font-weight:900;
 
-      color: var(--danger);
+  letter-spacing:.12em
+}
 
-      font-size: 12px;
-    }
+.result strong{
+  color:var(--green2);
 
-    .results {
-      display: grid;
+  font-family:
+    "Courier New",
+    monospace;
 
-      grid-template-columns:
-        repeat(2,minmax(0,1fr));
+  overflow-wrap:anywhere
+}
 
-      gap: 10px;
-    }
+.binary-result{
+  grid-column:1/-1
+}
 
-    .result {
-      min-height: 95px;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+/* DIRECTORY */
 
-      gap: 12px;
+.tool-directory-grid{
+  display:grid;
 
-      padding: 16px;
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
 
-      border:
-        1px solid
-        rgba(118,255,3,.08);
+  gap:10px
+}
 
-      background:
-        rgba(0,0,0,.18);
-    }
+.tool-card{
+  min-height:205px;
 
-    .result small {
-      color: #647060;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 
-      font-size: 8px;
+  gap:20px;
 
-      font-weight: 900;
+  padding:24px;
 
-      letter-spacing: .13em;
-    }
+  border:
+    1px solid
+    rgba(118,255,3,.22);
 
-    .result strong {
-      color: var(--green-soft);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(11,26,9,.9),
+      rgba(3,8,3,.94)
+    );
 
-      overflow-wrap: anywhere;
+  transition:.18s ease
+}
 
-      font-family:
-        "Courier New",
-        monospace;
+.tool-card:hover{
+  transform:
+    translateY(-4px);
 
-      font-size:
-        clamp(14px,2vw,20px);
-    }
+  border-color:
+    rgba(118,255,3,.7);
 
-    .binary-result {
-      grid-column:
-        1 / -1;
+  box-shadow:
+    0 18px 60px
+    rgba(0,0,0,.28)
+}
 
-      min-height: 110px;
-    }
+.tool-card:hover h3{
+  color:var(--green)
+}
 
-    .binary-result strong {
-      font-size:
-        clamp(11px,1.4vw,15px);
+.tool-card-number{
+  color:var(--green);
 
-      line-height: 1.7;
-    }
+  font-size:8px;
 
+  font-weight:900;
 
-    /* =========================================================
-       DIRECTORY
-       ========================================================= */
+  letter-spacing:.15em
+}
 
-    .tool-directory-grid {
-      display: grid;
+.tool-card h3{
+  margin:auto 0 0;
 
-      grid-template-columns:
-        repeat(3,minmax(0,1fr));
+  color:#c0cebb;
 
-      gap: 10px;
-    }
+  font-size:20px;
 
-    .tool-card {
-      position: relative;
+  letter-spacing:-.035em
+}
 
-      min-height: 195px;
+.tool-card p{
+  margin:7px 0 0;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+  color:#687563;
 
-      gap: 20px;
+  font-size:11px;
 
-      padding: 24px;
+  line-height:1.55
+}
 
-      border:
-        1px solid
-        rgba(118,255,3,.08);
+.active-status{
+  display:flex;
 
-      background:
-        rgba(4,9,4,.6);
+  align-items:center;
 
-      transition: .18s ease;
-    }
+  gap:7px;
 
-    .tool-card-number {
-      color: var(--green);
+  color:var(--green);
 
-      font-size: 8px;
+  font-size:8px;
 
-      font-weight: 900;
+  font-weight:900;
 
-      letter-spacing: .15em;
-    }
+  letter-spacing:.12em
+}
 
-    .tool-card h3 {
-      margin:
-        auto 0 0;
+.active-status::before{
+  content:"";
 
-      color: #b5c4af;
+  width:6px;
+  height:6px;
 
-      font-size: 20px;
+  border-radius:50%;
 
-      letter-spacing: -.035em;
-    }
+  background:var(--green);
 
-    .tool-card p {
-      margin:
-        7px 0 0;
+  box-shadow:
+    0 0 9px
+    var(--green)
+}
 
-      color: #657160;
 
-      font-size: 11px;
+/* INFO */
 
-      line-height: 1.55;
-    }
+.info-grid{
+  display:grid;
 
-    .tool-card-status {
-      color: #596454;
+  grid-template-columns:
+    repeat(3,1fr);
 
-      font-size: 8px;
+  border:
+    1px solid var(--line)
+}
 
-      font-weight: 900;
+.info-item{
+  min-height:165px;
 
-      letter-spacing: .13em;
-    }
+  padding:25px;
 
-    .tool-card.active {
-      cursor: pointer;
+  border-right:
+    1px solid var(--line)
+}
 
-      border-color:
-        rgba(118,255,3,.22);
+.info-item:last-child{
+  border-right:none
+}
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(11,26,9,.9),
-          rgba(3,8,3,.94)
-        );
-    }
+.info-item small{
+  color:var(--green);
 
-    .tool-card.active:hover {
-      transform:
-        translateY(-4px);
+  font-size:8px;
 
-      border-color:
-        rgba(118,255,3,.62);
+  font-weight:900;
 
-      box-shadow:
-        0 18px 60px
-        rgba(0,0,0,.28);
-    }
+  letter-spacing:.14em
+}
 
-    .tool-card.active:hover h3 {
-      color: var(--green);
-    }
+.info-item h3{
+  margin:
+    15px 0
+    10px;
 
-    .active-status {
-      display: flex;
+  font-size:20px
+}
 
-      align-items: center;
+.info-item p{
+  margin:0;
 
-      gap: 7px;
+  color:var(--muted);
 
-      color: var(--green);
-    }
+  font-size:12px;
 
-    .active-status::before {
-      content: "";
+  line-height:1.6
+}
 
-      width: 6px;
-      height: 6px;
 
-      border-radius: 50%;
+/* FOOTER */
 
-      background: var(--green);
+footer{
+  width:min(1500px,90vw);
 
-      box-shadow:
-        0 0 9px
-        var(--green);
-    }
+  margin:auto;
 
+  display:flex;
 
-    /* =========================================================
-       INFO
-       ========================================================= */
+  justify-content:space-between;
 
-    .info-grid {
-      display: grid;
+  gap:30px;
 
-      grid-template-columns:
-        repeat(3,1fr);
+  padding:
+    30px 0
+    50px;
 
-      border:
-        1px solid var(--line);
-    }
+  border-top:
+    1px solid var(--line);
 
-    .info-item {
-      min-height: 160px;
+  color:#596454;
 
-      padding: 25px;
+  font-size:9px;
 
-      border-right:
-        1px solid var(--line);
-    }
+  letter-spacing:.12em
+}
 
-    .info-item:last-child {
-      border-right: none;
-    }
 
-    .info-item small {
-      color: var(--green);
+/* RESPONSIVE */
 
-      font-size: 8px;
+@media(max-width:1100px){
 
-      font-weight: 900;
+  nav{
+    gap:10px;
+    font-size:7px
+  }
 
-      letter-spacing: .14em;
-    }
+  .tool-grid{
+    grid-template-columns:1fr
+  }
 
-    .info-item h3 {
-      margin:
-        15px 0 10px;
+  .tool-directory-grid{
+    grid-template-columns:
+      repeat(2,1fr)
+  }
 
-      font-size: 20px;
-    }
+}
 
-    .info-item p {
-      margin: 0;
+@media(max-width:760px){
 
-      color: var(--muted);
+  header{
+    padding:0 18px
+  }
 
-      font-size: 12px;
+  nav{
+    display:none
+  }
 
-      line-height: 1.6;
-    }
+  .hero,
+  .tools,
+  .directory,
+  .info,
+  footer{
+    width:
+      calc(100% - 32px)
+  }
 
+  .results{
+    grid-template-columns:1fr
+  }
 
-    /* =========================================================
-       FOOTER
-       ========================================================= */
+  .binary-result{
+    grid-column:auto
+  }
 
-    footer {
-      width:
-        min(1500px,90vw);
+  .tool-directory-grid{
+    grid-template-columns:1fr
+  }
 
-      margin: auto;
+  .info-grid{
+    grid-template-columns:1fr
+  }
 
-      display: flex;
-      justify-content: space-between;
+  .info-item{
+    border-right:none;
 
-      gap: 30px;
+    border-bottom:
+      1px solid var(--line)
+  }
 
-      padding:
-        30px 0
-        50px;
+  footer{
+    flex-direction:column
+  }
 
-      border-top:
-        1px solid var(--line);
+}
 
-      color: #596454;
-
-      font-size: 9px;
-
-      letter-spacing: .12em;
-    }
-
-
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
-
-    @media (max-width:1050px) {
-
-      .tool-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .tool-directory-grid {
-        grid-template-columns:
-          repeat(2,1fr);
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .info-item {
-        border-right: none;
-
-        border-bottom:
-          1px solid var(--line);
-      }
-
-    }
-
-    @media (max-width:760px) {
-
-      header {
-        padding:
-          0 18px;
-      }
-
-      nav {
-        display: none;
-      }
-
-      .hero,
-      .tools,
-      .directory,
-      .info,
-      footer {
-        width:
-          calc(100% - 32px);
-      }
-
-      .results {
-        grid-template-columns: 1fr;
-      }
-
-      .binary-result {
-        grid-column: auto;
-      }
-
-      .tool-directory-grid {
-        grid-template-columns: 1fr;
-      }
-
-      footer {
-        flex-direction: column;
-      }
-
-    }
-
-  </style>
-
+</style>
 </head>
 
 
 <body>
 
-  <div class="noise"></div>
 
+<header>
 
-  <!-- =======================================================
-       HEADER
-       ======================================================= -->
+<a
+  class="brand"
+  href="/"
+>
+NET<span>//</span>TOOLS
+</a>
 
-  <header>
 
-    <a
-      class="brand"
-      href="/"
-    >
-      NET<span>//</span>TOOLS
-    </a>
+<nav>
 
+<a href="#ipv4">IPV4</a>
 
-    <nav>
+<a href="/vlsm.html">VLSM</a>
 
-      <a href="#ipv4">
-        IPV4
-      </a>
+<a href="/ipv6.html">IPV6</a>
 
-      <a href="/vlsm.html">
-        VLSM
-      </a>
+<a href="/dns.html">DNS</a>
 
-      <a href="/ipv6.html">
-        IPV6
-      </a>
+<a href="/ports.html">PORTS</a>
 
-      <a href="/dns.html">
-        DNS
-      </a>
+<a href="/trainer.html">TRAINER</a>
 
-      <a href="/ports.html">
-        PORTS
-      </a>
+<a href="/wildcard.html">ACL</a>
 
-      <a href="#herramientas">
-        HERRAMIENTAS
-      </a>
+<a href="/linux.html">LINUX</a>
 
-    </nav>
+<a href="/cisco.html">CISCO</a>
 
+</nav>
 
-    <div class="online">
 
-      <div class="online-dot"></div>
+<div class="online">
+● ONLINE
+</div>
 
-      ONLINE
+</header>
 
-    </div>
 
-  </header>
+<main>
 
 
-  <main>
+<section class="hero">
 
+<div class="eyebrow">
+Network & System Engineering Toolbox
+</div>
 
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
+<h1>
+NETWORK
+<br>
+<span>TOOLS.</span>
+</h1>
 
-    <section class="hero">
+<p class="hero-description">
+Herramientas web para direccionamiento IP,
+subnetting, DNS, puertos, ACL, Linux,
+Cisco e infraestructura de redes.
+</p>
 
-      <div class="eyebrow">
-        Network & System Engineering Toolbox
-      </div>
+<div class="hero-stats">
 
+<div class="stat">
+<strong>09</strong>
+HERRAMIENTAS ACTIVAS
+</div>
 
-      <h1>
+<div class="stat">
+<strong>100%</strong>
+WEB
+</div>
 
-        NETWORK
+<div class="stat">
+<strong>0</strong>
+INSTALACIONES
+</div>
 
-        <br>
+<div class="stat">
+<strong>24/7</strong>
+ONLINE
+</div>
 
-        <span>
-          TOOLS.
-        </span>
+</div>
 
-      </h1>
+</section>
 
 
-      <p class="hero-description">
+<!-- TOOL 001 -->
 
-        Herramientas rápidas para redes,
-        direccionamiento IP, DNS,
-        puertos, infraestructura y
-        administración de sistemas,
-        directamente desde tu navegador.
+<section
+  class="tools"
+  id="ipv4"
+>
 
-      </p>
+<div class="section-heading">
 
+<div>
 
-      <div class="hero-stats">
+<div class="eyebrow">
+IPv4 / CIDR
+</div>
 
-        <div class="stat">
+<h2>
+Calculadora de red
+</h2>
 
-          <strong>
-            05
-          </strong>
+</div>
 
-          HERRAMIENTAS ACTIVAS
+<div class="section-number">
+TOOL_001
+</div>
 
-        </div>
+</div>
 
 
-        <div class="stat">
+<div class="tool-grid">
 
-          <strong>
-            100%
-          </strong>
 
-          WEB
+<article class="panel">
 
-        </div>
+<h3 class="panel-title">
+Introduce la red
+</h3>
 
+<p class="panel-subtitle">
+Escribe una dirección IPv4
+y selecciona el prefijo CIDR.
+</p>
 
-        <div class="stat">
+<div class="field">
 
-          <strong>
-            0
-          </strong>
+<label>
+DIRECCIÓN IPv4
+</label>
 
-          INSTALACIONES
+<input
+  id="ip"
+  value="192.168.1.25"
+  autocomplete="off"
+>
 
-        </div>
+</div>
 
 
-        <div class="stat">
+<div class="field">
 
-          <strong>
-            24/7
-          </strong>
+<label>
+PREFIJO CIDR
+</label>
 
-          ONLINE
+<select id="prefix"></select>
 
-        </div>
+</div>
 
-      </div>
 
-    </section>
+<button
+  class="calculate"
+  id="calculate"
+>
+CALCULAR RED →
+</button>
 
 
-    <!-- =====================================================
-         TOOL 001
-         ===================================================== -->
+<div
+  class="error"
+  id="error"
+></div>
 
-    <section
-      class="tools"
-      id="ipv4"
-    >
+</article>
 
-      <div class="section-heading">
 
-        <div>
+<article class="panel">
 
-          <div class="eyebrow">
-            IPv4 / CIDR
-          </div>
+<h3 class="panel-title">
+Resultado
+</h3>
 
-          <h2>
-            Calculadora de red
-          </h2>
+<p class="panel-subtitle">
+Información calculada automáticamente.
+</p>
 
-        </div>
 
-        <div class="section-number">
-          TOOL_001
-        </div>
+<div class="results">
 
-      </div>
+<div class="result">
+<small>RED</small>
+<strong id="network">—</strong>
+</div>
 
+<div class="result">
+<small>MÁSCARA</small>
+<strong id="mask">—</strong>
+</div>
 
-      <div class="tool-grid">
+<div class="result">
+<small>WILDCARD</small>
+<strong id="wildcard">—</strong>
+</div>
 
+<div class="result">
+<small>BROADCAST</small>
+<strong id="broadcast">—</strong>
+</div>
 
-        <article class="panel">
+<div class="result">
+<small>PRIMER HOST</small>
+<strong id="firstHost">—</strong>
+</div>
 
-          <h3 class="panel-title">
-            Introduce la red
-          </h3>
+<div class="result">
+<small>ÚLTIMO HOST</small>
+<strong id="lastHost">—</strong>
+</div>
 
-          <p class="panel-subtitle">
-            Escribe una dirección IPv4
-            y selecciona el prefijo CIDR.
-          </p>
+<div class="result">
+<small>DIRECCIONES</small>
+<strong id="totalAddresses">—</strong>
+</div>
 
+<div class="result">
+<small>HOSTS UTILIZABLES</small>
+<strong id="usableHosts">—</strong>
+</div>
 
-          <div class="field">
+<div class="result binary-result">
+<small>IPv4 EN BINARIO</small>
+<strong id="binary">—</strong>
+</div>
 
-            <label for="ip">
-              DIRECCIÓN IPv4
-            </label>
+</div>
 
-            <input
-              id="ip"
-              value="192.168.1.25"
-              autocomplete="off"
-            >
+</article>
 
-          </div>
+</div>
 
+</section>
 
-          <div class="field">
 
-            <label for="prefix">
-              PREFIJO CIDR
-            </label>
+<!-- DIRECTORY -->
 
-            <select id="prefix"></select>
+<section
+  class="directory"
+  id="herramientas"
+>
 
-          </div>
+<div class="section-heading">
 
+<div>
 
-          <button
-            class="calculate"
-            id="calculate"
-            type="button"
-          >
-            CALCULAR RED →
-          </button>
+<div class="eyebrow">
+Complete Toolbox
+</div>
 
+<h2>
+Herramientas
+</h2>
 
-          <div
-            class="error"
-            id="error"
-          ></div>
+</div>
 
-        </article>
+<div class="section-number">
+09 / 09 ACTIVAS
+</div>
 
+</div>
 
-        <article class="panel">
 
-          <h3 class="panel-title">
-            Resultado
-          </h3>
+<div class="tool-directory-grid">
 
-          <p class="panel-subtitle">
-            Información calculada
-            automáticamente.
-          </p>
 
+<a
+  class="tool-card"
+  href="#ipv4"
+>
 
-          <div class="results">
+<span class="tool-card-number">
+TOOL_001
+</span>
 
-            <div class="result">
+<div>
+<h3>IPv4 / CIDR Calculator</h3>
+<p>
+Red, máscara, wildcard,
+broadcast, hosts y binario.
+</p>
+</div>
 
-              <small>
-                RED
-              </small>
+<span class="active-status">
+ACTIVA
+</span>
 
-              <strong id="network">
-                —
-              </strong>
+</a>
 
-            </div>
 
+<a
+  class="tool-card"
+  href="/vlsm.html"
+>
 
-            <div class="result">
+<span class="tool-card-number">
+TOOL_002
+</span>
 
-              <small>
-                MÁSCARA
-              </small>
+<div>
+<h3>VLSM Calculator</h3>
+<p>
+Diseña subredes de tamaño variable
+según los hosts requeridos.
+</p>
+</div>
 
-              <strong id="mask">
-                —
-              </strong>
+<span class="active-status">
+ABRIR →
+</span>
 
-            </div>
+</a>
 
 
-            <div class="result">
+<a
+  class="tool-card"
+  href="/ipv6.html"
+>
 
-              <small>
-                WILDCARD
-              </small>
+<span class="tool-card-number">
+TOOL_003
+</span>
 
-              <strong id="wildcard">
-                —
-              </strong>
+<div>
+<h3>IPv6 Analyzer</h3>
+<p>
+Expansión, compresión,
+red, prefijo y clasificación IPv6.
+</p>
+</div>
 
-            </div>
+<span class="active-status">
+ABRIR →
+</span>
 
+</a>
 
-            <div class="result">
 
-              <small>
-                BROADCAST
-              </small>
+<a
+  class="tool-card"
+  href="/dns.html"
+>
 
-              <strong id="broadcast">
-                —
-              </strong>
+<span class="tool-card-number">
+TOOL_004
+</span>
 
-            </div>
+<div>
+<h3>DNS Lookup</h3>
+<p>
+Consulta A, AAAA, MX,
+NS, TXT, CNAME, CAA y SOA.
+</p>
+</div>
 
+<span class="active-status">
+ABRIR →
+</span>
 
-            <div class="result">
+</a>
 
-              <small>
-                PRIMER HOST
-              </small>
 
-              <strong id="firstHost">
-                —
-              </strong>
+<a
+  class="tool-card"
+  href="/ports.html"
+>
 
-            </div>
+<span class="tool-card-number">
+TOOL_005
+</span>
 
+<div>
+<h3>TCP / UDP Ports</h3>
+<p>
+Puertos, protocolos,
+servicios y comandos de diagnóstico.
+</p>
+</div>
 
-            <div class="result">
+<span class="active-status">
+ABRIR →
+</span>
 
-              <small>
-                ÚLTIMO HOST
-              </small>
+</a>
 
-              <strong id="lastHost">
-                —
-              </strong>
 
-            </div>
+<a
+  class="tool-card"
+  href="/trainer.html"
+>
 
+<span class="tool-card-number">
+TOOL_006
+</span>
 
-            <div class="result">
+<div>
+<h3>Subnet Trainer</h3>
+<p>
+Practica subnetting con ejercicios,
+puntuación y soluciones automáticas.
+</p>
+</div>
 
-              <small>
-                DIRECCIONES TOTALES
-              </small>
+<span class="active-status">
+ABRIR →
+</span>
 
-              <strong id="totalAddresses">
-                —
-              </strong>
+</a>
 
-            </div>
 
+<a
+  class="tool-card"
+  href="/wildcard.html"
+>
 
-            <div class="result">
+<span class="tool-card-number">
+TOOL_007
+</span>
 
-              <small>
-                HOSTS UTILIZABLES
-              </small>
+<div>
+<h3>Wildcard / ACL</h3>
+<p>
+Calcula wildcard masks
+y genera ejemplos de ACL estándar.
+</p>
+</div>
 
-              <strong id="usableHosts">
-                —
-              </strong>
+<span class="active-status">
+ABRIR →
+</span>
 
-            </div>
+</a>
 
 
-            <div
-              class="result binary-result"
-            >
+<a
+  class="tool-card"
+  href="/linux.html"
+>
 
-              <small>
-                IPv4 EN BINARIO
-              </small>
+<span class="tool-card-number">
+TOOL_008
+</span>
 
-              <strong id="binary">
-                —
-              </strong>
+<div>
+<h3>Linux Command Builder</h3>
+<p>
+Genera comandos de networking,
+systemd, logs, disco, LVM y troubleshooting.
+</p>
+</div>
 
-            </div>
+<span class="active-status">
+ABRIR →
+</span>
 
-          </div>
+</a>
 
-        </article>
 
-      </div>
+<a
+  class="tool-card"
+  href="/cisco.html"
+>
 
-    </section>
+<span class="tool-card-number">
+TOOL_009
+</span>
 
+<div>
+<h3>Cisco Config Builder</h3>
+<p>
+Genera configuraciones base
+para switches Cisco IOS.
+</p>
+</div>
 
-    <!-- =====================================================
-         HERRAMIENTAS
-         ===================================================== -->
+<span class="active-status">
+ABRIR →
+</span>
 
-    <section
-      class="directory"
-      id="herramientas"
-    >
+</a>
 
-      <div class="section-heading">
 
-        <div>
+</div>
 
-          <div class="eyebrow">
-            Network Toolbox
-          </div>
+</section>
 
-          <h2>
-            Herramientas
-          </h2>
 
-        </div>
+<section class="info">
 
-        <div class="section-number">
-          05 / 09 ACTIVAS
-        </div>
+<div class="info-grid">
 
-      </div>
 
+<div class="info-item">
 
-      <div class="tool-directory-grid">
+<small>
+01 // TOOLBOX
+</small>
 
+<h3>
+9 herramientas
+</h3>
 
-        <!-- TOOL 001 -->
+<p>
+IPv4, VLSM, IPv6, DNS,
+puertos, subnetting, ACL,
+Linux y Cisco desde una sola web.
+</p>
 
-        <a
-          class="tool-card active"
-          href="#ipv4"
-        >
+</div>
 
-          <span class="tool-card-number">
-            TOOL_001
-          </span>
 
-          <div>
+<div class="info-item">
 
-            <h3>
-              IPv4 / CIDR Calculator
-            </h3>
+<small>
+02 // PRIVACIDAD
+</small>
 
-            <p>
-              Red, máscara, wildcard,
-              broadcast, hosts y binario.
-            </p>
+<h3>
+Procesamiento en navegador
+</h3>
 
-          </div>
+<p>
+La mayoría de los cálculos se realizan
+localmente. DNS Lookup consulta un
+resolver DNS público mediante HTTPS.
+</p>
 
-          <span
-            class="tool-card-status active-status"
-          >
-            ACTIVA
-          </span>
+</div>
 
-        </a>
 
+<div class="info-item">
 
-        <!-- TOOL 002 -->
+<small>
+03 // OBJETIVO
+</small>
 
-        <a
-          class="tool-card active"
-          href="/vlsm.html"
-        >
+<h3>
+Networking práctico
+</h3>
 
-          <span class="tool-card-number">
-            TOOL_002
-          </span>
+<p>
+Herramientas diseñadas para estudiar,
+diagnosticar y trabajar con redes
+e infraestructura.
+</p>
 
-          <div>
+</div>
 
-            <h3>
-              VLSM Calculator
-            </h3>
 
-            <p>
-              Distribución automática
-              de subredes según
-              necesidades de hosts.
-            </p>
+</div>
 
-          </div>
+</section>
 
-          <span
-            class="tool-card-status active-status"
-          >
-            ABRIR HERRAMIENTA →
-          </span>
 
-        </a>
+</main>
 
 
-        <!-- TOOL 003 -->
+<footer>
 
-        <a
-          class="tool-card active"
-          href="/ipv6.html"
-        >
+<div>
+NET//TOOLS
+</div>
 
-          <span class="tool-card-number">
-            TOOL_003
-          </span>
+<div>
+NETWORK & SYSTEM ENGINEERING TOOLBOX
+</div>
 
-          <div>
+</footer>
 
-            <h3>
-              IPv6 Analyzer
-            </h3>
 
-            <p>
-              Expansión, compresión,
-              red, prefijo y clasificación
-              de direcciones IPv6.
-            </p>
+<script>
 
-          </div>
+const prefixSelect=
+  document.getElementById("prefix");
 
-          <span
-            class="tool-card-status active-status"
-          >
-            ABRIR HERRAMIENTA →
-          </span>
+for(
+  let prefix=0;
+  prefix<=32;
+  prefix++
+){
 
-        </a>
+  const option=
+    document.createElement("option");
 
+  option.value=prefix;
 
-        <!-- TOOL 004 -->
+  option.textContent=
+    `/${prefix}`;
 
-        <a
-          class="tool-card active"
-          href="/dns.html"
-        >
+  if(prefix===24){
+    option.selected=true;
+  }
 
-          <span class="tool-card-number">
-            TOOL_004
-          </span>
+  prefixSelect.appendChild(option);
+}
 
-          <div>
 
-            <h3>
-              DNS Lookup
-            </h3>
+function validIPv4(ip){
 
-            <p>
-              Consulta registros A,
-              AAAA, MX, NS, TXT,
-              CNAME, CAA y SOA.
-            </p>
+  const parts=
+    ip.trim().split(".");
 
-          </div>
+  return (
+    parts.length===4 &&
+    parts.every(
+      part =>
+        /^\d{1,3}$/.test(part) &&
+        Number(part)>=0 &&
+        Number(part)<=255
+    )
+  );
+}
 
-          <span
-            class="tool-card-status active-status"
-          >
-            ABRIR HERRAMIENTA →
-          </span>
 
-        </a>
+function ipToInt(ip){
 
+  const p=
+    ip.split(".").map(Number);
 
-        <!-- TOOL 005 -->
+  return (
+    (
+      ((p[0]<<24)>>>0)
+      +(p[1]<<16)
+      +(p[2]<<8)
+      +p[3]
+    )>>>0
+  );
+}
 
-        <a
-          class="tool-card active"
-          href="/ports.html"
-        >
 
-          <span class="tool-card-number">
-            TOOL_005
-          </span>
+function intToIp(value){
 
-          <div>
+  value=value>>>0;
 
-            <h3>
-              TCP / UDP Ports
-            </h3>
+  return [
+    (value>>>24)&255,
+    (value>>>16)&255,
+    (value>>>8)&255,
+    value&255
+  ].join(".");
+}
 
-            <p>
-              Busca puertos,
-              protocolos, servicios
-              y comandos de diagnóstico.
-            </p>
 
-          </div>
+function prefixToMask(prefix){
 
-          <span
-            class="tool-card-status active-status"
-          >
-            ABRIR HERRAMIENTA →
-          </span>
-
-        </a>
-
-
-        <!-- TOOL 006 -->
-
-        <article class="tool-card">
-
-          <span class="tool-card-number">
-            TOOL_006
-          </span>
-
-          <div>
-
-            <h3>
-              Subnet Trainer
-            </h3>
-
-            <p>
-              Ejercicios interactivos
-              de subnetting IPv4.
-            </p>
-
-          </div>
-
-          <span class="tool-card-status">
-            PRÓXIMAMENTE
-          </span>
-
-        </article>
-
-
-        <!-- TOOL 007 -->
-
-        <article class="tool-card">
-
-          <span class="tool-card-number">
-            TOOL_007
-          </span>
-
-          <div>
-
-            <h3>
-              Wildcard / ACL Calculator
-            </h3>
-
-            <p>
-              Calcula wildcard masks
-              y ayuda a construir
-              reglas ACL.
-            </p>
-
-          </div>
-
-          <span class="tool-card-status">
-            PRÓXIMAMENTE
-          </span>
-
-        </article>
-
-
-        <!-- TOOL 008 -->
-
-        <article class="tool-card">
-
-          <span class="tool-card-number">
-            TOOL_008
-          </span>
-
-          <div>
-
-            <h3>
-              Linux Command Builder
-            </h3>
-
-            <p>
-              Generador de comandos
-              Linux para administración
-              y troubleshooting.
-            </p>
-
-          </div>
-
-          <span class="tool-card-status">
-            PRÓXIMAMENTE
-          </span>
-
-        </article>
-
-
-        <!-- TOOL 009 -->
-
-        <article class="tool-card">
-
-          <span class="tool-card-number">
-            TOOL_009
-          </span>
-
-          <div>
-
-            <h3>
-              Cisco Config Builder
-            </h3>
-
-            <p>
-              Generador para VLAN,
-              interfaces, routing
-              y servicios de red.
-            </p>
-
-          </div>
-
-          <span class="tool-card-status">
-            PRÓXIMAMENTE
-          </span>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         INFO
-         ===================================================== -->
-
-    <section class="info">
-
-      <div class="info-grid">
-
-
-        <div class="info-item">
-
-          <small>
-            01 // PRIVACIDAD
-          </small>
-
-          <h3>
-            Procesamiento local
-          </h3>
-
-          <p>
-            IPv4, VLSM, IPv6 y el buscador
-            de puertos funcionan directamente
-            en el navegador. DNS Lookup utiliza
-            un resolver DNS público.
-          </p>
-
-        </div>
-
-
-        <div class="info-item">
-
-          <small>
-            02 // ACCESO
-          </small>
-
-          <h3>
-            Sin instalaciones
-          </h3>
-
-          <p>
-            Accede desde cualquier navegador
-            moderno sin instalar aplicaciones
-            adicionales.
-          </p>
-
-        </div>
-
-
-        <div class="info-item">
-
-          <small>
-            03 // OBJETIVO
-          </small>
-
-          <h3>
-            Networking práctico
-          </h3>
-
-          <p>
-            Utilidades pensadas para
-            tareas reales de redes,
-            infraestructura y sistemas.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =======================================================
-       FOOTER
-       ======================================================= -->
-
-  <footer>
-
-    <div>
-      NET//TOOLS
-    </div>
-
-    <div>
-      NETWORK & SYSTEM ENGINEERING TOOLBOX
-    </div>
-
-  </footer>
-
-
-  <!-- =======================================================
-       TOOL_001 JAVASCRIPT
-       ======================================================= -->
-
-  <script>
-
-    const prefixSelect =
-      document.getElementById(
-        "prefix"
-      );
-
-
-    for (
-      let prefix = 0;
-      prefix <= 32;
-      prefix++
-    ) {
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-      option.value =
-        prefix;
-
-      option.textContent =
-        `/${prefix}`;
-
-      if (
-        prefix === 24
-      ) {
-
-        option.selected =
-          true;
-
-      }
-
-      prefixSelect.appendChild(
-        option
-      );
-
-    }
-
-
-    function validIPv4(ip) {
-
-      const parts =
-        ip
-          .trim()
-          .split(".");
-
-
-      if (
-        parts.length !== 4
-      ) {
-
-        return false;
-
-      }
-
-
-      return parts.every(
-        part => {
-
-          if (
-            !/^\d{1,3}$/.test(
-              part
-            )
-          ) {
-
-            return false;
-
-          }
-
-
-          const value =
-            Number(part);
-
-
-          return (
-            value >= 0 &&
-            value <= 255
-          );
-
-        }
-      );
-
-    }
-
-
-    function ipToInt(ip) {
-
-      const parts =
-        ip
-          .split(".")
-          .map(Number);
-
-
-      return (
-        (
-          ((parts[0] << 24) >>> 0)
-          +
-          (parts[1] << 16)
-          +
-          (parts[2] << 8)
-          +
-          parts[3]
-        )
-        >>> 0
-      );
-
-    }
-
-
-    function intToIp(value) {
-
-      value =
-        value >>> 0;
-
-
-      return [
-
-        (value >>> 24) & 255,
-
-        (value >>> 16) & 255,
-
-        (value >>> 8) & 255,
-
-        value & 255
-
-      ].join(".");
-
-    }
-
-
-    function prefixToMask(prefix) {
-
-      if (
-        prefix === 0
-      ) {
-
-        return 0;
-
-      }
-
-
-      return (
+  return prefix===0
+    ? 0
+    : (
         0xffffffff <<
-        (32 - prefix)
-      ) >>> 0;
+        (32-prefix)
+      )>>>0;
+}
 
-    }
 
+function toBinary(ip){
 
-    function toBinary(ip) {
+  return ip
+    .split(".")
+    .map(
+      part =>
+        Number(part)
+          .toString(2)
+          .padStart(8,"0")
+    )
+    .join(".");
+}
 
-      return ip
 
-        .split(".")
+function calculateNetwork(){
 
-        .map(
-          part =>
+  const error=
+    document.getElementById("error");
 
-            Number(part)
+  error.style.display="none";
 
-              .toString(2)
-
-              .padStart(
-                8,
-                "0"
-              )
-        )
-
-        .join(".");
-
-    }
-
-
-    function calculateNetwork() {
-
-      const error =
-        document.getElementById(
-          "error"
-        );
-
-
-      error.style.display =
-        "none";
-
-
-      const ip =
-        document
-          .getElementById(
-            "ip"
-          )
-          .value
-          .trim();
-
-
-      const prefix =
-        Number(
-          prefixSelect.value
-        );
-
-
-      if (
-        !validIPv4(ip)
-      ) {
-
-        error.textContent =
-          "Introduce una dirección IPv4 válida.";
-
-        error.style.display =
-          "block";
-
-        return;
-
-      }
-
-
-      const ipInt =
-        ipToInt(ip);
-
-
-      const maskInt =
-        prefixToMask(prefix);
-
-
-      const wildcardInt =
-        (~maskInt) >>> 0;
-
-
-      const networkInt =
-        (
-          ipInt &
-          maskInt
-        ) >>> 0;
-
-
-      const broadcastInt =
-        (
-          networkInt |
-          wildcardInt
-        ) >>> 0;
-
-
-      const total =
-        2 ** (
-          32 - prefix
-        );
-
-
-      let usable;
-      let first;
-      let last;
-
-
-      if (
-        prefix <= 30
-      ) {
-
-        usable =
-          total - 2;
-
-        first =
-          (
-            networkInt + 1
-          ) >>> 0;
-
-        last =
-          (
-            broadcastInt - 1
-          ) >>> 0;
-
-      }
-
-      else if (
-        prefix === 31
-      ) {
-
-        usable = 2;
-
-        first =
-          networkInt;
-
-        last =
-          broadcastInt;
-
-      }
-
-      else {
-
-        usable = 1;
-
-        first =
-          networkInt;
-
-        last =
-          networkInt;
-
-      }
-
-
-      document
-        .getElementById(
-          "network"
-        )
-        .textContent =
-          `${intToIp(networkInt)}/${prefix}`;
-
-
-      document
-        .getElementById(
-          "mask"
-        )
-        .textContent =
-          intToIp(maskInt);
-
-
-      document
-        .getElementById(
-          "wildcard"
-        )
-        .textContent =
-          intToIp(wildcardInt);
-
-
-      document
-        .getElementById(
-          "broadcast"
-        )
-        .textContent =
-          intToIp(broadcastInt);
-
-
-      document
-        .getElementById(
-          "firstHost"
-        )
-        .textContent =
-          intToIp(first);
-
-
-      document
-        .getElementById(
-          "lastHost"
-        )
-        .textContent =
-          intToIp(last);
-
-
-      document
-        .getElementById(
-          "totalAddresses"
-        )
-        .textContent =
-          total.toLocaleString(
-            "es-ES"
-          );
-
-
-      document
-        .getElementById(
-          "usableHosts"
-        )
-        .textContent =
-          usable.toLocaleString(
-            "es-ES"
-          );
-
-
-      document
-        .getElementById(
-          "binary"
-        )
-        .textContent =
-          toBinary(ip);
-
-    }
-
-
+  const ip=
     document
-      .getElementById(
-        "calculate"
-      )
-      .addEventListener(
-        "click",
-        calculateNetwork
-      );
+      .getElementById("ip")
+      .value
+      .trim();
+
+  const prefix=
+    Number(prefixSelect.value);
 
 
-    document
-      .getElementById(
-        "ip"
-      )
-      .addEventListener(
-        "keydown",
-        event => {
+  if(!validIPv4(ip)){
 
-          if (
-            event.key === "Enter"
-          ) {
+    error.textContent=
+      "Introduce una dirección IPv4 válida.";
 
-            calculateNetwork();
+    error.style.display=
+      "block";
 
-          }
-
-        }
-      );
+    return;
+  }
 
 
-    prefixSelect
-      .addEventListener(
-        "change",
-        calculateNetwork
-      );
+  const ipInt=
+    ipToInt(ip);
+
+  const maskInt=
+    prefixToMask(prefix);
+
+  const wildcardInt=
+    (~maskInt)>>>0;
+
+  const networkInt=
+    (ipInt&maskInt)>>>0;
+
+  const broadcastInt=
+    (networkInt|wildcardInt)>>>0;
+
+  const total=
+    2**(32-prefix);
 
 
-    calculateNetwork();
+  let usable;
+  let first;
+  let last;
 
-  </script>
+
+  if(prefix<=30){
+
+    usable=total-2;
+
+    first=
+      (networkInt+1)>>>0;
+
+    last=
+      (broadcastInt-1)>>>0;
+
+  }
+
+  else if(prefix===31){
+
+    usable=2;
+
+    first=networkInt;
+
+    last=broadcastInt;
+
+  }
+
+  else{
+
+    usable=1;
+
+    first=networkInt;
+
+    last=networkInt;
+
+  }
+
+
+  document
+    .getElementById("network")
+    .textContent=
+      `${intToIp(networkInt)}/${prefix}`;
+
+
+  document
+    .getElementById("mask")
+    .textContent=
+      intToIp(maskInt);
+
+
+  document
+    .getElementById("wildcard")
+    .textContent=
+      intToIp(wildcardInt);
+
+
+  document
+    .getElementById("broadcast")
+    .textContent=
+      intToIp(broadcastInt);
+
+
+  document
+    .getElementById("firstHost")
+    .textContent=
+      intToIp(first);
+
+
+  document
+    .getElementById("lastHost")
+    .textContent=
+      intToIp(last);
+
+
+  document
+    .getElementById("totalAddresses")
+    .textContent=
+      total.toLocaleString("es-ES");
+
+
+  document
+    .getElementById("usableHosts")
+    .textContent=
+      usable.toLocaleString("es-ES");
+
+
+  document
+    .getElementById("binary")
+    .textContent=
+      toBinary(ip);
+
+}
+
+
+document
+  .getElementById("calculate")
+  .addEventListener(
+    "click",
+    calculateNetwork
+  );
+
+
+document
+  .getElementById("ip")
+  .addEventListener(
+    "keydown",
+    event=>{
+
+      if(event.key==="Enter"){
+        calculateNetwork();
+      }
+
+    }
+  );
+
+
+prefixSelect
+  .addEventListener(
+    "change",
+    calculateNetwork
+  );
+
+
+calculateNetwork();
+
+</script>
 
 </body>
 
