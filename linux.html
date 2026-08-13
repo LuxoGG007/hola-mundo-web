@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Generador seguro de comandos Linux para administración y troubleshooting.">
+<title>Linux Command Builder — NET//TOOLS</title>
+
+<style>
+:root{
+  --bg:#030603;
+  --green:#76ff03;
+  --green2:#a7ff5a;
+  --text:#efffe8;
+  --muted:#788a72;
+  --line:rgba(118,255,3,.13);
+  --red:#ff5050
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 78% 8%,rgba(118,255,3,.08),transparent 30%),
+    #030603;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif
+}
+a{text-decoration:none;color:inherit}
+button,input,select{font:inherit}
+header{
+  height:72px;
+  padding:0 5vw;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  background:rgba(3,6,3,.92);
+  position:sticky;
+  top:0;
+  z-index:20
+}
+.brand{font-size:22px;font-weight:1000;letter-spacing:-.04em}
+.brand span{color:var(--green)}
+.back{color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.12em}
+.back:hover{color:var(--green)}
+.online{color:var(--green);font-size:9px;font-weight:900;letter-spacing:.14em}
+main{width:min(1400px,90vw);margin:auto;padding:80px 0 110px}
+.eyebrow{color:var(--green);font-size:9px;font-weight:900;letter-spacing:.2em}
+h1{
+  margin:14px 0 22px;
+  font-size:clamp(50px,8vw,112px);
+  line-height:.85;
+  letter-spacing:-.07em
+}
+h1 span{color:var(--green)}
+.intro{max-width:790px;color:#93a18e;line-height:1.7;margin-bottom:50px}
+.layout{
+  display:grid;
+  grid-template-columns:minmax(320px,.75fr) minmax(0,1.25fr);
+  gap:16px
+}
+.panel{
+  padding:clamp(24px,4vw,40px);
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,rgba(9,20,9,.92),rgba(3,7,3,.97))
+}
+.panel h2{margin:0 0 7px;font-size:27px}
+.subtitle{margin:0 0 28px;color:var(--muted);font-size:13px;line-height:1.6}
+.field{display:grid;gap:8px;margin-bottom:16px}
+label{font-size:8px;font-weight:900;letter-spacing:.13em;color:#85947f}
+input,select{
+  width:100%;
+  min-height:50px;
+  padding:0 14px;
+  border:1px solid rgba(118,255,3,.13);
+  background:#020502;
+  color:var(--text);
+  outline:none
+}
+input:focus,select:focus{border-color:var(--green)}
+.btn{
+  width:100%;
+  min-height:52px;
+  margin-top:8px;
+  border:1px solid var(--green);
+  background:var(--green);
+  color:#031000;
+  cursor:pointer;
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.12em
+}
+.output{
+  padding:22px;
+  border:1px solid rgba(118,255,3,.12);
+  background:#020502
+}
+.output small{
+  display:block;
+  color:#657060;
+  font-size:8px;
+  letter-spacing:.12em;
+  margin-bottom:12px
+}
+.output pre{
+  min-height:80px;
+  margin:0;
+  color:var(--green2);
+  font-family:"Courier New",monospace;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  line-height:1.7
+}
+.explanation{
+  margin-top:15px;
+  padding:17px;
+  border:1px solid rgba(118,255,3,.07);
+  color:#879482;
+  font-size:12px;
+  line-height:1.7
+}
+.copy{
+  width:auto;
+  padding:9px 13px;
+  margin-top:14px;
+  border:1px solid var(--green);
+  background:transparent;
+  color:var(--green);
+  cursor:pointer;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.1em
+}
+.presets{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:30px
+}
+.preset{
+  padding:14px;
+  border:1px solid rgba(118,255,3,.08);
+  background:rgba(0,0,0,.18);
+  color:#81907c;
+  cursor:pointer;
+  font-size:10px
+}
+.preset:hover{border-color:var(--green);color:var(--green)}
+.note{
+  margin-top:22px;
+  padding:15px;
+  border-left:2px solid var(--green);
+  background:rgba(118,255,3,.025);
+  color:#71806d;
+  font-size:11px;
+  line-height:1.7
+}
+footer{
+  margin-top:65px;
+  padding-top:25px;
+  border-top:1px solid var(--line);
+  color:#53604f;
+  font-size:9px;
+  letter-spacing:.12em
+}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+@media(max-width:600px){
+  main{width:calc(100% - 30px)}
+  header{padding:0 18px}
+  .online{display:none}
+  .presets{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<a class="brand" href="/">NET<span>//</span>TOOLS</a>
+<a class="back" href="/">← VOLVER A HERRAMIENTAS</a>
+<div class="online">● TOOL_008</div>
+</header>
+
+<main>
+
+<div class="eyebrow">TOOL_008 // LINUX ADMINISTRATION</div>
+
+<h1>LINUX <span>COMMANDS.</span></h1>
+
+<p class="intro">
+Genera comandos de diagnóstico y administración para Linux.
+El constructor utiliza operaciones no destructivas orientadas
+a troubleshooting, redes, servicios y archivos.
+</p>
+
+<section class="layout">
+
+<article class="panel">
+
+<h2>Construir comando</h2>
+
+<p class="subtitle">
+Selecciona una operación y completa los parámetros necesarios.
+</p>
+
+<div class="field">
+<label>OPERACIÓN</label>
+
+<select id="task">
+<option value="serviceStatus">Estado de servicio</option>
+<option value="serviceLogs">Logs de servicio</option>
+<option value="ports">Puertos escuchando</option>
+<option value="tcp">Probar puerto TCP remoto</option>
+<option value="dns">Consulta DNS</option>
+<option value="ping">Ping</option>
+<option value="route">Tabla de rutas</option>
+<option value="interfaces">Interfaces de red</option>
+<option value="find">Buscar archivo</option>
+<option value="grep">Buscar texto en archivos</option>
+<option value="disk">Uso de disco</option>
+<option value="memory">Memoria</option>
+<option value="process">Buscar proceso</option>
+<option value="firewall">Ver firewalld</option>
+<option value="nmcli">Estado NetworkManager</option>
+<option value="lvm">Estado LVM</option>
+</select>
+</div>
+
+<div id="dynamicFields"></div>
+
+<button class="btn" id="generate">
+GENERAR COMANDO →
+</button>
+
+<div class="presets">
+
+<button class="preset" data-task="ports">
+PUERTOS
+</button>
+
+<button class="preset" data-task="serviceLogs">
+JOURNALCTL
+</button>
+
+<button class="preset" data-task="firewall">
+FIREWALL
+</button>
+
+<button class="preset" data-task="nmcli">
+NMCLI
+</button>
+
+<button class="preset" data-task="disk">
+DISCO
+</button>
+
+<button class="preset" data-task="lvm">
+LVM
+</button>
+
+</div>
+
+</article>
+
+
+<article class="panel">
+
+<h2>Resultado</h2>
+
+<p class="subtitle">
+Revisa siempre el comando antes de ejecutarlo.
+</p>
+
+<div class="output">
+
+<small>COMANDO LINUX</small>
+
+<pre id="command">—</pre>
+
+<button class="copy" id="copy">
+COPIAR COMANDO
+</button>
+
+</div>
+
+<div class="explanation" id="explanation">
+Selecciona una operación.
+</div>
+
+<div class="note">
+Algunos comandos pueden requerir privilegios sudo o paquetes
+adicionales como <code>dig</code> o <code>nc</code>.
+NET//TOOLS no ejecuta los comandos: solamente los construye.
+</div>
+
+</article>
+
+</section>
+
+<footer>
+NET//TOOLS — NETWORK & SYSTEM ENGINEERING TOOLBOX
+</footer>
+
+</main>
+
+<script>
+const task = document.getElementById("task");
+const fields = document.getElementById("dynamicFields");
+
+function esc(value){
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;");
+}
+
+function shellQuote(value){
+  return "'" + String(value).replaceAll("'","'\"'\"'") + "'";
+}
+
+function inputField(id,label,value="",placeholder=""){
+  return `
+    <div class="field">
+      <label>${label}</label>
+      <input
+        id="${id}"
+        value="${esc(value)}"
+        placeholder="${esc(placeholder)}"
+      >
+    </div>
+  `;
+}
+
+function renderFields(){
+
+  const value=task.value;
+  let html="";
+
+  if(value==="serviceStatus"){
+    html=inputField("service","SERVICIO","sshd","sshd");
+  }
+
+  if(value==="serviceLogs"){
+    html=
+      inputField("service","SERVICIO","sshd","sshd")+
+      inputField("since","DESDE","1 hour ago","1 hour ago");
+  }
+
+  if(value==="tcp"){
+    html=
+      inputField("host","HOST","192.168.1.10","server.example.com")+
+      inputField("port","PUERTO","443","443");
+  }
+
+  if(value==="dns" || value==="ping"){
+    html=inputField("host","HOST / DOMINIO","example.com","example.com");
+  }
+
+  if(value==="find"){
+    html=
+      inputField("path","RUTA","/var/log","/var/log")+
+      inputField("pattern","NOMBRE","*.log","*.log");
+  }
+
+  if(value==="grep"){
+    html=
+      inputField("path","RUTA","/var/log","/var/log")+
+      inputField("text","TEXTO","error","error");
+  }
+
+  if(value==="process"){
+    html=inputField("process","PROCESO","nginx","nginx");
+  }
+
+  fields.innerHTML=html;
+}
+
+function token(id){
+
+  const el=document.getElementById(id);
+
+  return el
+    ? el.value.trim()
+    : "";
+}
+
+function safeService(value){
+
+  if(!/^[A-Za-z0-9_.@-]+$/.test(value)){
+    throw new Error("Nombre de servicio inválido.");
+  }
+
+  return value;
+}
+
+function safeHost(value){
+
+  if(!/^[A-Za-z0-9_.:\-]+$/.test(value)){
+    throw new Error("Host o dirección inválida.");
+  }
+
+  return value;
+}
+
+function generate(){
+
+  const type=task.value;
+
+  let command="";
+  let explanation="";
+
+  try{
+
+    if(type==="serviceStatus"){
+
+      const service=safeService(token("service"));
+
+      command=`systemctl status ${service}`;
+
+      explanation=
+        "Muestra el estado actual del servicio, PID, actividad y últimas líneas del journal.";
+    }
+
+    else if(type==="serviceLogs"){
+
+      const service=safeService(token("service"));
+      const since=token("since");
+
+      command=
+        `journalctl -u ${service} --since ${shellQuote(since)} --no-pager`;
+
+      explanation=
+        "Consulta los logs de un servicio systemd desde el período indicado.";
+    }
+
+    else if(type==="ports"){
+
+      command="sudo ss -lntup";
+
+      explanation=
+        "Lista sockets TCP y UDP que están escuchando, junto con procesos cuando los permisos lo permiten.";
+    }
+
+    else if(type==="tcp"){
+
+      const host=safeHost(token("host"));
+      const port=Number(token("port"));
+
+      if(!Number.isInteger(port)||port<1||port>65535){
+        throw new Error("Puerto inválido.");
+      }
+
+      command=`nc -vz ${host} ${port}`;
+
+      explanation=
+        "Prueba si es posible establecer una conexión TCP hacia el host y puerto especificados.";
+    }
+
+    else if(type==="dns"){
+
+      const host=safeHost(token("host"));
+
+      command=`dig +short ${host}`;
+
+      explanation=
+        "Realiza una consulta DNS resumida utilizando dig.";
+    }
+
+    else if(type==="ping"){
+
+      const host=safeHost(token("host"));
+
+      command=`ping -c 4 ${host}`;
+
+      explanation=
+        "Envía cuatro solicitudes ICMP echo al destino.";
+    }
+
+    else if(type==="route"){
+
+      command="ip route show";
+
+      explanation=
+        "Muestra la tabla de enrutamiento IPv4 del sistema.";
+    }
+
+    else if(type==="interfaces"){
+
+      command="ip -br addr show";
+
+      explanation=
+        "Muestra las interfaces y sus direcciones IP en formato resumido.";
+    }
+
+    else if(type==="find"){
+
+      const path=token("path");
+      const pattern=token("pattern");
+
+      command=
+        `find ${shellQuote(path)} -type f -name ${shellQuote(pattern)} 2>/dev/null`;
+
+      explanation=
+        "Busca archivos por nombre dentro de la ruta indicada.";
+    }
+
+    else if(type==="grep"){
+
+      const path=token("path");
+      const text=token("text");
+
+      command=
+        `grep -Rni -- ${shellQuote(text)} ${shellQuote(path)} 2>/dev/null`;
+
+      explanation=
+        "Busca texto recursivamente e incluye número de línea.";
+    }
+
+    else if(type==="disk"){
+
+      command="df -hT";
+
+      explanation=
+        "Muestra uso, espacio disponible y tipo de sistema de archivos.";
+    }
+
+    else if(type==="memory"){
+
+      command="free -h";
+
+      explanation=
+        "Muestra memoria RAM y swap en unidades legibles.";
+    }
+
+    else if(type==="process"){
+
+      const process=token("process");
+
+      command=
+        `ps aux | grep -i -- ${shellQuote(process)} | grep -v grep`;
+
+      explanation=
+        "Busca procesos cuyo comando contiene el texto indicado.";
+    }
+
+    else if(type==="firewall"){
+
+      command="sudo firewall-cmd --list-all";
+
+      explanation=
+        "Muestra la configuración de la zona activa de firewalld.";
+    }
+
+    else if(type==="nmcli"){
+
+      command="nmcli device status";
+
+      explanation=
+        "Muestra el estado de las interfaces administradas por NetworkManager.";
+    }
+
+    else if(type==="lvm"){
+
+      command="sudo pvs && sudo vgs && sudo lvs";
+
+      explanation=
+        "Muestra volúmenes físicos, grupos de volúmenes y volúmenes lógicos LVM.";
+    }
+
+    document.getElementById("command").textContent=
+      command;
+
+    document.getElementById("explanation").textContent=
+      explanation;
+
+  }
+  catch(error){
+
+    document.getElementById("command").textContent=
+      `ERROR: ${error.message}`;
+
+    document.getElementById("explanation").textContent=
+      "Corrige los parámetros e inténtalo nuevamente.";
+  }
+}
+
+task.addEventListener("change",()=>{
+  renderFields();
+  generate();
+});
+
+document.getElementById("generate")
+  .addEventListener("click",generate);
+
+document.querySelectorAll("[data-task]")
+  .forEach(button=>{
+    button.addEventListener("click",()=>{
+      task.value=button.dataset.task;
+      renderFields();
+      generate();
+    });
+  });
+
+document.getElementById("copy")
+  .addEventListener("click",async()=>{
+
+    const value=
+      document.getElementById("command").textContent;
+
+    try{
+      await navigator.clipboard.writeText(value);
+      document.getElementById("copy").textContent="COPIADO ✓";
+
+      setTimeout(()=>{
+        document.getElementById("copy").textContent="COPIAR COMANDO";
+      },1200);
+    }
+    catch{
+      document.getElementById("copy").textContent="COPIA MANUALMENTE";
+    }
+  });
+
+renderFields();
+generate();
+</script>
+
+</body>
+</html>
